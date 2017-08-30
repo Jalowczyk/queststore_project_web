@@ -1,6 +1,5 @@
-
 public interface DAOprovider{
 
-    public void SaveObject(Object o);
-    public Object loadBook(String isbn);
+    public void saveObject(Object o);
+    public Object loadObject(String isbn);
     }
