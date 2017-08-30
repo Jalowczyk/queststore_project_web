@@ -1,3 +1,3 @@
-public class MainController {
+public class Application {
 
 }
