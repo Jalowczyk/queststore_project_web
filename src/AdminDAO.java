@@ -1,7 +1,7 @@
 public interface AdminDAO {
 
-    public Object load(String id) throws FileNotFound;
-    public void save(Admin obj) throws FileNotFound;
+    public Object load(String id);
+    public void save(Admin object);
     public Object createFromRow(String[] line);
 
     }
