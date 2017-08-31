@@ -2,16 +2,21 @@ public abstract class AbstractUser {
 
     String name;
     String surname;
-    protected Character[] password;
+    String password;
     String login;
     String id;
+    String mail;
 
-    public AbstractUser(String name, String surname, Character[] password, String login, String id) {
+    public AbstractUser(){}
+
+    public AbstractUser(String name, String surname, String login, String id, String mail) {
+
         this.name = name;
         this.surname = surname;
-        this.password = password;
         this.login = login;
         this.id = id;
+        this.mail = mail;
+
     }
 
     public void showInfo(){
