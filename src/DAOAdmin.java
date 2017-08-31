@@ -9,11 +9,12 @@ public class DAOAdmin implements AdminDAO {
 
     public DAOAdmin() {
     }
-d
+
     @Override
     public Admin load(String id){
 
         Admin admin = null;
+
 
         try {
 
@@ -27,6 +28,7 @@ d
                 if(nLine[4].equals(id)) {
                     admin = createFromRow(nLine);
                 }           
+
             }
             scanner.close();
 
@@ -34,6 +36,7 @@ d
             e.printStackTrace();
         }
         return admin;
+
     }
 
     @Override
@@ -48,11 +51,13 @@ d
             fw.append(line);
             
 
+
         } catch (IOException e) {
             e.printStackTrace();
 
         } finally{
             fw.close();
+
         }
     }
     @Override
