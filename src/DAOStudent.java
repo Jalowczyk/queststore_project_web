@@ -24,7 +24,7 @@ public class DAOStudent implements StudentDAO {
                 String nLine [] = line.split(",");
                 if(nLine[4].equals(id)) {
                     Student student = createFromRow(nLine);
-                    return mentor;
+//                    return mentor;
                 }
             }
             scanner.close();
@@ -40,10 +40,10 @@ public class DAOStudent implements StudentDAO {
 
         try {
             FileWriter fw = new FileWriter(getClass().getClassLoader().getResource(FILE_NAME).getFile(),true);
+//
+//            String line = String.format("\n%s,%s,%s,%s,%s", student.getName(),student.getSurname(),student.getLogin(), student.getId());
 
-            String line = String.format("\n%s,%s,%s,%s,%s", student.getName(),student.getSurname(),student.getLogin(), student.getId());
-
-            fw.append(line);
+//            fw.append(line);
             fw.close();
 
         } catch (IOException e) {
@@ -62,11 +62,11 @@ public class DAOStudent implements StudentDAO {
         String id = nLine[4];
 
 
-
-        s.setName(name);
-        s.setId(id);
-        s.setSurname(surname);
-        s.setLogin(login);
+//
+//        s.setName(name);
+//        s.setId(id);
+//        s.setSurname(surname);
+//        s.setLogin(login);
 
         return s;
     }
