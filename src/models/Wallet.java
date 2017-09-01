@@ -2,7 +2,8 @@ package src.models;
 
 import java.util.ArrayList;
 
-public class Wallet{
+
+public class Wallet implements WalletInterface{
 
   ArrayList artifacts = new ArrayList();
   Integer experience = 0;
@@ -10,10 +11,7 @@ public class Wallet{
 
   public Wallet(){
   }
-  // @Override
-  // public String toString() {
-  //   return artifacts, experience, balance;
-  // }
+ 
   public String vievWallet(){
     String walletInfo;
 
@@ -37,3 +35,4 @@ public class Wallet{
     this.balance = bal;
   }
 }
+
