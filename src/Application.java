@@ -1,23 +1,42 @@
 public class Application {
 
     public static void main(String[] args) {
+        mainController();
+    }
+
+    public static void mainController() {
 
         ApplicationView.setUserLoginMsg();
         String choice = ApplicationView.getInput();
 
-        if(choice.equals("1")){
-            ApplicationView.setUserId();
-            String id = ApplicationView.getInput();
+        ApplicationView.setUserId();
+        String id = ApplicationView.getInput();
 
-            DAOAdmin admin = new DAOAdmin();
-            Admin admin1 = admin.load(id);
-            if(admin1 == null){
+        loginProcess(choice, id);
+    }
+
+    public static void loginProcess(String choice, String id) {
+
+        if (choice.equals("1")) {
+
+            Admin createdAdmin = getAdmin(id);
+
+            if (createdAdmin != null) {
+                AdminController.startController(createdAdmin);
+            } else {
                 ApplicationView.failedLoginMsg();
-            }else{
-                AdminController.startController(admin1);
             }
         }
+    }
 
+    public static Admin getAdmin(String id) {
+
+        DAOAdmin admin = new DAOAdmin();
+        Admin createdAdmin = admin.load(id);
+        return createdAdmin;
     }
 }
+
+
+
 
