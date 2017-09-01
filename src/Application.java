@@ -1,13 +1,23 @@
 public class Application {
+
     public static void main(String[] args) {
 
-        DAOAdmin admin = new DAOAdmin();
+        ApplicationView.setUserLoginMsg();
+        String choice = ApplicationView.getInput();
 
-        Admin admin1 = admin.load("cc13023");
-        Admin admin2 = admin.load("cc12954");
+        if(choice.equals("1")){
+            ApplicationView.setUserId();
+            String id = ApplicationView.getInput();
 
-        admin.save(admin1);
-        admin.save(admin2);
+            DAOAdmin admin = new DAOAdmin();
+            Admin admin1 = admin.load(id);
+            if(admin1 == null){
+                ApplicationView.failedLoginMsg();
+            }else{
+                AdminController.startController(admin1);
+            }
+        }
 
     }
 }
+

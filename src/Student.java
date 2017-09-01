@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class Student extends AbstractUser {
     Wallet wallet;
     //ArrayList<> studentQuests = new ArrayList<>();
@@ -39,3 +38,4 @@ public class Student extends AbstractUser {
       this.id = id;
     }
 }
+
