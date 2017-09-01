@@ -18,13 +18,13 @@ public class Application {
 
     public static void mainController() {
 
-            ApplicationView.setUserLoginMsg();
-            String choice = ApplicationView.getUserChoiceInput();
+        ApplicationView.setUserLoginMsg();
+        String choice = ApplicationView.getUserChoiceInput();
 
-            ApplicationView.setUserId();
-            String id = ApplicationView.getInput();
+        ApplicationView.setUserId();
+        String id = ApplicationView.getInput();
 
-            startLoginProcess(choice, id);
+        startLoginProcess(choice, id);
         }
 
     public static void startLoginProcess(String choice, String id) {
@@ -45,7 +45,6 @@ public class Application {
     }
 
     public static Mentor getMentor(String id) {
-
         DAOMentor mentor = new DAOMentor();
         Mentor createdMentor = mentor.load(id);
         return createdMentor;
@@ -55,7 +54,6 @@ public class Application {
     
         Admin createdAdmin = getAdmin(id);
         
-
         if (createdAdmin != null){
          
             AdminController.startController(createdAdmin);
