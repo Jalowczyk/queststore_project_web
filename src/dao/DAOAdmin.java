@@ -1,3 +1,7 @@
+package src.dao;
+
+import src.models.Admin;
+
 import java.io.*;
 import java.util.Scanner;
 
@@ -12,15 +16,14 @@ public class DAOAdmin implements AdminDAO {
 
     @Override
     public Admin load(String id){
-
-
+    
         Admin admin = null;
 
         try {
-
-            File csvFile = new File(getClass().getClassLoader().getResource(FILE_NAME).getFile());
+            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/dao/Admins.csv");
+             
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
-
+        
             while(scanner.hasNextLine()){
 
                 String line = scanner.nextLine();

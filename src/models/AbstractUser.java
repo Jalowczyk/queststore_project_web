@@ -1,11 +1,13 @@
+package src.models;
+
 public abstract class AbstractUser {
 
-    String name;
-    String surname;
-    String password;
-    String login;
-    String id;
-    String mail;
+    protected String name;
+    protected String surname;
+    protected String password;
+    protected String login;
+    protected String id;
+    protected String mail;
 
     public AbstractUser(){}
 

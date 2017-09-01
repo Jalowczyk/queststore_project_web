@@ -1,4 +1,9 @@
-//public class StudentController{
+package src.controllers;
+
+import src.models.Student;
+
+public class StudentController{
+}
 //
 //  public static String vievWallet(){
 ////    Wallet wallet = Student.getWallet();

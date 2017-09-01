@@ -1,14 +1,27 @@
+package src.views;
+
 import java.util.Scanner;
 
 public class ApplicationView {
 
+    private static Scanner scan = new Scanner(System.in);
+    private static int inputNum;
+    private static String input;
+
     public static String getInput() {
-        Scanner scan = new Scanner(System.in);
-        String input;
         do {
             input = scan.nextLine();
         } while (input.length() == 0);
         return input;
+    }
+
+    public static String getUserChoiceInput() {
+        do {
+            System.out.println("Please provide your role: ");
+            inputNum = scan.nextInt();
+        } while (inputNum <0 | inputNum >3);
+        
+        return Integer.toString(inputNum);
     }
 
     public static void setUserLoginMsg(){

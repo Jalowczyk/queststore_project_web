@@ -1,3 +1,8 @@
+package src.dao;
+
+import src.models.Mentor;
+import src.dao.MentorDAO;
+
 import java.io.*;
 import java.util.Scanner;
 

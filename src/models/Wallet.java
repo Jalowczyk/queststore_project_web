@@ -1,3 +1,5 @@
+package src.models;
+
 import java.util.ArrayList;
 
 public class Wallet{

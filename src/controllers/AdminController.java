@@ -1,3 +1,7 @@
+package src.controllers;
+
+import src.models.Admin;
+
 public class AdminController {
 
 

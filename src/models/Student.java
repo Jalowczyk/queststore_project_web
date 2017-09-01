@@ -1,3 +1,7 @@
+package src.models;
+
+import src.models.AbstractUser;
+
 import java.util.ArrayList;
 
 public class Student extends AbstractUser {

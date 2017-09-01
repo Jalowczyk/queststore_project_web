@@ -1,3 +1,5 @@
+package src.models;
+
 public class Mentor extends AbstractUser {
 
   public Mentor(){}
