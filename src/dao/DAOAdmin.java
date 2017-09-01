@@ -19,6 +19,9 @@ public class DAOAdmin implements AdminDAO {
     
         Admin admin = null;
 
+        Admin admin = null;
+
+
         try {
             File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/dao/Admins.csv");
              
@@ -55,7 +58,8 @@ public class DAOAdmin implements AdminDAO {
 
 
             fw.append(line);
-            fw.close();
+            
+
 
         } catch (IOException e) {
             e.printStackTrace();
