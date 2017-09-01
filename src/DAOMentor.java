@@ -41,9 +41,9 @@ public class DAOMentor implements MentorDAO {
         try {
             FileWriter fw = new FileWriter(getClass().getClassLoader().getResource(FILE_NAME).getFile(),true);
 
-            String line = String.format("\n%s,%s,%s,%s,%s", mentor.getName(),mentor.getSurname(),mentor.getLogin(), mentor.getId(), mentor.getMail());
-
-            fw.append(line);
+//            String line = String.format("\n%s,%s,%s,%s,%s", mentor.getName(),mentor.getSurname(),mentor.getLogin(), mentor.getId(), mentor.getMail());
+//
+//            fw.append(line);
             fw.close();
 
         } catch (IOException e) {
@@ -60,16 +60,16 @@ public class DAOMentor implements MentorDAO {
         String surname = nLine[1];
         String login = nLine[3];
         String id = nLine[4];
-        Wallet wallet = nLine[5];
-
-
-
-        m.setName(name);
-        m.setId(id);
-        m.setSurname(surname);
-        m.setPassword(password);
-        m.setLogin(login);
-        m.setMail(mail);
+//        Wallet wallet = nLine[5];
+//
+//
+//
+//        m.setName(name);
+//        m.setId(id);
+//        m.setSurname(surname);
+//        m.setPassword(password);
+//        m.setLogin(login);
+//        m.setMail(mail);
 
         return m;
     }

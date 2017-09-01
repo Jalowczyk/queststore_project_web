@@ -5,4 +5,3 @@ public interface WalletInterface {
     public void updateBalance(int amout);
     public void updateExperience(int amount);
 }
-

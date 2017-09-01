@@ -56,5 +56,5 @@ public class Admin extends AbstractUser{
         return this.mail;
     }
 
+    }
 
-}
