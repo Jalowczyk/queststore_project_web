@@ -2,21 +2,22 @@ public class Mentor extends AbstractUser {
 
   public Mentor(){}
 
-  public Mentor(String name, String surname, Character[] password, String login, String id) {
+  public Mentor(String name, String surname, String password, String login, String id) {
       super(name, surname, password, login, id);
   }
-  public getMentorName(){
+  public String getMentorName(){
     return this.name;
   }
-  public getMentorSurname(){
+  public String getMentorSurname(){
     return this.surname;
   }
-  public getMentorLogin(){
+  public String getMentorLogin(){
     return this.login;
   }
-  public getMentorId(){
+  public String getMentorId(){
     return this.id;
   }
+
   public void setMentorName(String name){
     this.name = name;
   }

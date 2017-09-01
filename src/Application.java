@@ -1,11 +1,8 @@
 public class Application {
-  //Wallet wallet = new Wallet();
-  Student student = new Student("Grzegorz", "Winiarek", "gwin", "cc666");
-
     public static void main(String[] args) {
 
         DAOAdmin admin = new DAOAdmin();
-        
+
         Admin admin1 = admin.load("cc13023");
         Admin admin2 = admin.load("cc12954");
 

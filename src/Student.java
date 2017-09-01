@@ -1,32 +1,29 @@
 import java.util.ArrayList;
 
-public class Student extends AbstractUser {
 
-    ArrayList<Quest> studentQuests = new ArrayList<Quest>();
+public class Student extends AbstractUser {
+    Wallet wallet;
+    //ArrayList<> studentQuests = new ArrayList<>();
 
     public Student(){}
 
-    public Student(String name, String surname, String login, String id){
+    public Student(String name, String surname, String password, String login, String id){
         super(name, surname, password, login, id);
         this.wallet = new Wallet();
     }
-    @Override
-    public String toString() {
-      return name, surname, login, id;
-    }
-    public getStudentName(){
+    public String getStudentName(){
       return this.name;
     }
-    public getStudentSurname(){
+    public String getStudentSurname(){
       return this.surname;
     }
-    public getStudentLogin(){
+    public String getStudentLogin(){
       return this.login;
     }
-    public getStudentId(){
+    public String getStudentId(){
       return this.id;
     }
-    public getWallet(){
+    public Wallet getWallet(){
       return this.wallet;
     }
     public void setStudentName(String name){
