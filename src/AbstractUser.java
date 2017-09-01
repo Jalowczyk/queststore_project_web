@@ -21,9 +21,8 @@ public abstract class AbstractUser {
 
     public void showInfo(){
 
-        String info = String.format("Id: %s\nName: %s%n\nSurname: $%s%nLogin: %s%n",this.id, this.name, this.login);
+        String info = String.format("Id: %s\nName: %s%n\nSurname: $%s%nLogin: %s%n",this.id, this.name, this.surname, this.login);
     }
 
 
 }
-
