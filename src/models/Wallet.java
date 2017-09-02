@@ -1,5 +1,6 @@
 package src.models;
 
+import src.controllers.WalletInterface;
 import java.util.ArrayList;
 
 

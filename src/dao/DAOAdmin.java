@@ -19,11 +19,8 @@ public class DAOAdmin implements AdminDAO {
     
         Admin admin = null;
 
-        Admin admin = null;
-
-
         try {
-            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/dao/Admins.csv");
+            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/csv/Admins.csv");
              
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
         
