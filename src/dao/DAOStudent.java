@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 
-
+import src.dao.StudentDAO;
+import src.models.Student;
 
 public class DAOStudent implements StudentDAO {
 
