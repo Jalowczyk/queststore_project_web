@@ -2,7 +2,7 @@ package src.dao;
 
 import src.models.User;
 
-public interface DaoInterface {
+public interface DAOInterface {
 
     public Object load(String id);
     public void save(User object);
