@@ -3,13 +3,17 @@ package src.dao;
 import src.models.Admin;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.Scanner;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 
 
 public class DAOAdmin implements AdminDAO {
 
-    private static final String FILE_NAME = "Admins.csv";
+    private static final File f = new File("src/csv/Admins.csv");
+    private static final String path = f.getAbsolutePath();
 
     public DAOAdmin() {
     }
@@ -20,7 +24,8 @@ public class DAOAdmin implements AdminDAO {
         Admin admin = null;
 
         try {
-            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/csv/Admins.csv");
+
+            File csvFile = new File(path);
              
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
         
@@ -47,10 +52,10 @@ public class DAOAdmin implements AdminDAO {
     public void save(Admin admin) {
 
         try {
-            FileWriter fw = new FileWriter("/Users/valik/Desktop/queststore-system-team_power/src/csv/Admins.csv",true);
+            FileWriter fw = new FileWriter(path,true);
 
 
-            String line = String.format("\n%s,%s,%s,%s", admin.getName(),admin.getSurname(),
+            String line = String.format("%s,%s,%s,%s\n", admin.getName(),admin.getSurname(),
                                                             admin.getLogin(), admin.getMail());
 
 
