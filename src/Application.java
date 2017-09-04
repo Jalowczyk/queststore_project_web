@@ -1,6 +1,7 @@
 package src;
 
 import src.controllers.AdminController;
+import src.controllers.MentorController;
 import src.controllers.StudentController;
 import src.models.Admin;
 import src.models.Mentor;
@@ -25,15 +26,15 @@ public class Application {
         String id = ApplicationView.getInput();
 
         startLoginProcess(choice, id);
-        }
+    }
 
     public static void startLoginProcess(String choice, String id) {
-    
-        if(choice.equals("1")) {
-    
+
+        if (choice.equals("1")) {
+
             adminLoginProcess(id);
 
-        }else if(choice.equals("2")){
+        } else if (choice.equals("2")) {
             mentorLoginProcess(id);
         }
     }
@@ -50,29 +51,29 @@ public class Application {
         return createdMentor;
     }
 
-    public static void adminLoginProcess(String id){
-    
+    public static void adminLoginProcess(String id) {
+
         Admin createdAdmin = getAdmin(id);
-        
-        if (createdAdmin != null){
-         
+
+        if (createdAdmin != null) {
+
             AdminController.startController(createdAdmin);
         } else {
             ApplicationView.failedLoginMsg();
         }
     }
 
-    public static void mentorLoginProcess(String id){
+    public static void mentorLoginProcess(String id) {
 
         Mentor createdMentor = getMentor(id);
 
-        // if (createdMentor != null) {
-        //     //MentorController.startController(createdMentor);
-        // }else{
-        //     ApplicationView.failedLoginMsg();
-        // }
+        if (createdMentor != null) {
+            MentorController.startController(createdMentor);
+             }else{
+                 ApplicationView.failedLoginMsg();
+             }
+        }
     }
-}
 
 
 
