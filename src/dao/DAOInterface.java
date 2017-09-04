@@ -2,9 +2,11 @@ package src.dao;
 
 import src.models.User;
 
+import java.io.IOException;
+
 public interface DAOInterface {
 
-    public Object load(String id);
-    public void save(User object);
-    public Object createFromRow(String[] line);
+    Object load(String id);
+    void save(User object) throws IOException;
+    Object createFromRow(String[] line);
 }
