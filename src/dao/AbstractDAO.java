@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.FileWriter;
 
-public abstract class AbstractDAO implements DaoInterface {
+public abstract class AbstractDAO implements DAOInterface {
 
     private final String path;
     private User person;
@@ -23,12 +23,9 @@ public abstract class AbstractDAO implements DaoInterface {
     public User load(String id) {
 
         User user = null;
+        
+        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(new File(path))))){
 
-        try {
-
-            File csvFile = new File(path);
-
-            Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
 
             while (scanner.hasNextLine()) {
 
@@ -71,8 +68,7 @@ public abstract class AbstractDAO implements DaoInterface {
     @Override
     public void save(User user) {
 
-        try {
-            FileWriter fw = new FileWriter(path, true);
+        try(FileWriter fw = new FileWriter(path, true)){
 
             String line = String.format("\n%s,%s,%s,%s,%s", user.getName(), user.getSurname(),
                     user.getPassword(), user.getLogin(), user.getLogin());
