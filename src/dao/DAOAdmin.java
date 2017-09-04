@@ -10,7 +10,7 @@ import java.nio.file.Path;
 
 
 
-public class DAOAdmin implements AdminDAO {
+public class DAOAdmin implements adminDaoInterface {
 
     private static final File f = new File("src/csv/Admins.csv");
     private static final String path = f.getAbsolutePath();

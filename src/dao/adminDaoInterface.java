@@ -2,7 +2,7 @@ package src.dao;
 
 import src.models.Admin;
 
-public interface AdminDAO {
+public interface adminDaoInterface {
 
     public Object load(String id);
     public void save(Admin object);
