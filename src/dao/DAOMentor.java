@@ -1,8 +1,6 @@
 package src.dao;
 
 import src.models.Mentor;
-import src.dao.MentorDAO;
-
 import java.io.*;
 import java.util.Scanner;
 
@@ -20,7 +18,7 @@ public class DAOMentor implements MentorDAO {
 
         try {
 
-            File csvFile = new File(getClass().getClassLoader().getResource(FILE_NAME).getFile());
+            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/csv/Mentors.csv");
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
 
             while(scanner.hasNextLine()){
@@ -44,11 +42,12 @@ public class DAOMentor implements MentorDAO {
     public void save(Mentor mentor) {
 
         try {
-            FileWriter fw = new FileWriter(getClass().getClassLoader().getResource(FILE_NAME).getFile(),true);
+            FileWriter fw = new FileWriter("/Users/valik/Desktop/queststore-system-team_power/src/csv/Mentors.csv",true);
 
-//            String line = String.format("\n%s,%s,%s,%s,%s", mentor.getName(),mentor.getSurname(),mentor.getLogin(), mentor.getId(), mentor.getMail());
-//
-//            fw.append(line);
+            String line = String.format("\n%s,%s,%s,%s", mentor.getName(),mentor.getSurname(),
+                                                             mentor.getLogin(), mentor.getMail());
+
+            fw.append(line);
             fw.close();
 
         } catch (IOException e) {
@@ -59,23 +58,20 @@ public class DAOMentor implements MentorDAO {
     @Override
     public Mentor createFromRow(String[] nLine){
 
-        Mentor m = new Mentor();
+        Mentor mentor = new Mentor();
 
         String name = nLine[0];
         String surname = nLine[1];
-        String login = nLine[3];
-        String id = nLine[4];
-//        Wallet wallet = nLine[5];
-//
-//
-//
-//        m.setName(name);
-//        m.setId(id);
-//        m.setSurname(surname);
-//        m.setPassword(password);
-//        m.setLogin(login);
-//        m.setMail(mail);
+        String password = nLine[2];
+        String id = nLine[3];
+        String mail = nLine[4];
 
-        return m;
+        mentor.setName(name);
+        mentor.setLogin(id);
+        mentor.setSurname(surname);
+        mentor.setPassword(password);
+        mentor.setMail(mail);
+
+        return mentor;
     }
 }

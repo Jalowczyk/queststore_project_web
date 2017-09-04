@@ -1,7 +1,8 @@
+package  src.dao;
+
 import java.io.*;
 import java.util.Scanner;
 
-import src.dao.StudentDAO;
 import src.models.Student;
 
 public class DAOStudent implements StudentDAO {
@@ -16,7 +17,7 @@ public class DAOStudent implements StudentDAO {
 
         try {
 
-            File csvFile = new File(getClass().getClassLoader().getResource(FILE_NAME).getFile());
+            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/csv/Admins.csv");
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
 
             while(scanner.hasNextLine()){
@@ -41,10 +42,10 @@ public class DAOStudent implements StudentDAO {
 
         try {
             FileWriter fw = new FileWriter(getClass().getClassLoader().getResource(FILE_NAME).getFile(),true);
-//
-//            String line = String.format("\n%s,%s,%s,%s,%s", student.getName(),student.getSurname(),student.getLogin(), student.getId());
 
-//            fw.append(line);
+            String line = String.format("\n%s,%s,%s,%s,%s", student.getName(),student.getSurname(),student.getLogin(), student.getLogin());
+
+            fw.append(line);
             fw.close();
 
         } catch (IOException e) {

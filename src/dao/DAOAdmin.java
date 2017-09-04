@@ -47,11 +47,11 @@ public class DAOAdmin implements AdminDAO {
     public void save(Admin admin) {
 
         try {
-            FileWriter fw = new FileWriter(getClass().getClassLoader().getResource(FILE_NAME).getFile(),true);
+            FileWriter fw = new FileWriter("/Users/valik/Desktop/queststore-system-team_power/src/csv/Admins.csv",true);
 
 
             String line = String.format("\n%s,%s,%s,%s", admin.getName(),admin.getSurname(),
-                                                            admin.getId(), admin.getMail());
+                                                            admin.getLogin(), admin.getMail());
 
 
             fw.append(line);
@@ -74,10 +74,9 @@ public class DAOAdmin implements AdminDAO {
         String mail = nLine[4];
 
         a.setName(name);
-        a.setId(id);
+        a.setLogin(id);
         a.setSurname(surname);
         a.setPassword(password);
-
         a.setMail(mail);
 
         return a;
