@@ -23,7 +23,7 @@ public abstract class AbstractDAO implements DAOInterface {
     public User load(String id) {
 
         User user = null;
-        
+
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(new File(path))))){
 
 
