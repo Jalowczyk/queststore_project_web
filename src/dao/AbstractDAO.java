@@ -1,8 +1,6 @@
 package src.dao;
 
-import src.models.Mentor;
 import src.models.User;
-import src.models.Admin;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -53,7 +51,7 @@ public abstract class AbstractDAO implements DaoInterface {
     @Override
     public User createFromRow(String[] nLine) {
 
-        User user = checkWhoIsUser(person);
+        User user = this.person;
 
         String name = nLine[0];
         String surname = nLine[1];
@@ -67,19 +65,6 @@ public abstract class AbstractDAO implements DaoInterface {
         user.setPassword(password);
         user.setMail(mail);
 
-        return user;
-    }
-
-    public User checkWhoIsUser(User person) {
-
-        User user = null;
-
-        if (person instanceof Admin) {
-            user = new Admin();
-
-        }if (person instanceof Mentor) {
-            user = new Mentor();
-        }
         return user;
     }
 
