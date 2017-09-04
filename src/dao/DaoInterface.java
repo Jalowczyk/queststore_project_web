@@ -1,11 +1,11 @@
 package src.dao;
 
-import src.models.Admin;
+import src.models.User;
 
-public interface adminDaoInterface {
+public interface DaoInterface {
 
     public Object load(String id);
-    public void save(Admin object);
+    public void save(User object);
     public Object createFromRow(String[] line);
 
     }

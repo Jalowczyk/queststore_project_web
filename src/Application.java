@@ -2,8 +2,7 @@ package src;
 
 import src.controllers.AdminController;
 import src.controllers.MentorController;
-import src.models.Admin;
-import src.models.Mentor;
+import src.models.User;
 import src.views.ApplicationView;
 import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
@@ -36,25 +35,25 @@ public class Application {
         }
     }
 
-    public static Admin getAdmin(String id) {
+    public static User getAdmin(String id) {
         DAOAdmin admin = new DAOAdmin();
-        Admin createdAdmin = admin.load(id);
+        User createdAdmin = admin.load(id);
         return createdAdmin;
     }
 
-    public static Mentor getMentor(String id) {
+    public static User getMentor(String id) {
         DAOMentor mentor = new DAOMentor();
-        Mentor createdMentor = mentor.load(id);
+        User createdMentor = mentor.load(id);
         return createdMentor;
     }
 
     public static void adminLoginProcess(String id) {
 
-        Admin createdAdmin = getAdmin(id);
+        User user = getAdmin(id);
 
-        if (createdAdmin != null) {
+        if (user != null) {
 
-            AdminController.startController(createdAdmin);
+            AdminController.startController(user);
         } else {
             ApplicationView.failedLoginMsg();
         }
@@ -62,15 +61,18 @@ public class Application {
 
     public static void mentorLoginProcess(String id) {
 
-        Mentor createdMentor = getMentor(id);
+        User user = getMentor(id);
 
-        if (createdMentor != null) {
-            MentorController.startController(createdMentor);
-             }else{
-                 ApplicationView.failedLoginMsg();
-             }
+        if (user != null) {
+
+            MentorController.startController(user);
+
+        } else {
+            ApplicationView.failedLoginMsg();
         }
     }
+}
+
 
 
 

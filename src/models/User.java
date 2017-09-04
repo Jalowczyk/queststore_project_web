@@ -1,6 +1,6 @@
 package src.models;
 
-public abstract class AbstractUser {
+public abstract class User {
 
     protected String name;
     protected String surname;
@@ -8,9 +8,9 @@ public abstract class AbstractUser {
     protected String login;
     protected String mail;
 
-    public AbstractUser(){}
+    public User(){}
 
-    public AbstractUser(String name, String surname, String password, String login, String mail) {
+    public User(String name, String surname, String password, String login, String mail) {
 
         this.name = name;
         this.surname = surname;
@@ -20,9 +20,11 @@ public abstract class AbstractUser {
 
     }
 
-    public void showInfo(){
+    @Override
+    public String toString(){
 
         String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", this.name, this.surname, this.login);
+        return info;
     }
 
     public void setName(String name){
