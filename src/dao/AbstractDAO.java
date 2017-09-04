@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.FileWriter;
 
-public abstract class AbstractDAO implements DaoInterface {
+public abstract class AbstractDAO implements DAOInterface {
 
     private final String path;
     private User person;
