@@ -13,6 +13,7 @@ public class AdminController {
     }
     
     public static Mentor createMentor(String name, String surname, String password, String login, String mail) {
+
         Mentor mentor = new Mentor(name, surname, password, login, mail);
         DAOMentor DaoMentor = new DAOMentor();
         DaoMentor.save(mentor);

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 
-public class DAOMentor implements MentorDAO {
+public class DAOMentor implements mentorDaoInterface {
 
     private static final File f = new File("src/csv/Mentors.csv");
     private static final String path = f.getAbsolutePath();
