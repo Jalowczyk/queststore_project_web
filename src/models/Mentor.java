@@ -1,6 +1,6 @@
 package src.models;
 
-public class Mentor extends AbstractUser {
+public class Mentor extends User {
 
   public Mentor(){}
 

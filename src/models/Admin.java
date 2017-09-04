@@ -1,8 +1,6 @@
 package src.models;
 
-import src.models.AbstractUser;
-
-public class Admin extends AbstractUser{
+public class Admin extends User {
 
 
     public Admin(){}
