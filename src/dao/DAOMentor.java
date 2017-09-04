@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public class DAOMentor implements MentorDAO {
 
-    private static final String FILE_NAME = "Mentors.csv";
+    private static final File f = new File("src/csv/Mentors.csv");
+    private static final String path = f.getAbsolutePath();
 
     public DAOMentor() {
     }
@@ -18,7 +19,7 @@ public class DAOMentor implements MentorDAO {
 
         try {
 
-            File csvFile = new File("/Users/valik/Desktop/queststore-system-team_power/src/csv/Mentors.csv");
+            File csvFile = new File(path);
             Scanner scanner = new Scanner(new BufferedReader(new FileReader(csvFile)));
 
             while(scanner.hasNextLine()){
@@ -42,9 +43,8 @@ public class DAOMentor implements MentorDAO {
     public void save(Mentor mentor) {
 
         try {
-            FileWriter fw = new FileWriter("/Users/valik/Desktop/queststore-system-team_power/src/csv/Mentors.csv",true);
-
-            String line = String.format("\n%s,%s,%s,%s", mentor.getName(),mentor.getSurname(),
+            FileWriter fw = new FileWriter(path, true);
+            String line = String.format("%s,%s,%s,%s,%s\n", mentor.getName(),mentor.getSurname(), mentor.getPassword(),
                                                              mentor.getLogin(), mentor.getMail());
 
             fw.append(line);
