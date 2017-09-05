@@ -1,24 +1,52 @@
 package src.controllers;
 
-import src.models.Admin;
 import src.models.Mentor;
 import src.dao.DAOMentor;
 import src.models.User;
+import src.views.AdminView;
 
 public class AdminController {
 
-
     public static void startController(User admin) {
-        System.out.println(admin.getName());
-        Mentor mentor = createMentor("Masha", "Bes", "1122", "mabes", "www.mail.com");
+
+        AdminView.welcomeMsg(admin.getName());
+        AdminView.showMenu();
+
+        String choice = AdminView.getChoice();
+        startRequestProcess(choice);
+
     }
 
-    public static Mentor createMentor(String name, String surname, String password, String login, String mail) {
+    public static void startRequestProcess(String choice){
 
-        Mentor mentor = new Mentor(name, surname, password, login, mail);
-        DAOMentor DaoMentor = new DAOMentor();
-        DaoMentor.save(mentor);
+        if(choice.equals("1")){
+            createMentor();
+
+        }if(choice.equals("2")){
+
+        }
+    }
+    
+    public static Mentor createMentor(){
+
+        String name = AdminView.typeMentorName();
+        String surname = AdminView.typeMentorSurname();
+        String password = AdminView.typeMentorPassword();
+        String id = AdminView.typeMentorId();
+        String mail = AdminView.typeMentorMail();
+
+        Mentor mentor = new Mentor(name, surname, password, id, mail);
+
+        saveMentor(mentor);
+
         return mentor;
 
     }
+
+    public static void saveMentor(Mentor mentor){
+
+        DAOMentor DaoMentor = new DAOMentor();
+        DaoMentor.save(mentor);
+    }
+
 }
