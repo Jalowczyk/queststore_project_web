@@ -8,7 +8,7 @@ import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
 
 public class Application {
-
+    
     public static void main(String[] args) {
         mainController();
     }
@@ -27,7 +27,6 @@ public class Application {
     public static void startLoginProcess(String choice, String id) {
 
         if (choice.equals("1")) {
-
             adminLoginProcess(id);
 
         } else if (choice.equals("2")) {
@@ -58,7 +57,7 @@ public class Application {
             ApplicationView.failedLoginMsg();
         }
     }
-
+        
     public static void mentorLoginProcess(String id) {
 
         User user = getMentor(id);
@@ -72,6 +71,8 @@ public class Application {
         }
     }
 }
+
+
 
 
 

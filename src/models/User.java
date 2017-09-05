@@ -5,16 +5,16 @@ public abstract class User {
     protected String name;
     protected String surname;
     protected String password;
-    protected String login;
+    protected String id;
     protected String mail;
 
     public User(){}
 
-    public User(String name, String surname, String password, String login, String mail) {
+    public User(String name, String surname, String password, String id, String mail) {
 
         this.name = name;
         this.surname = surname;
-        this.login = login;
+        this.id = id;
         this.mail = mail;
         this.password = password;
 
@@ -23,7 +23,7 @@ public abstract class User {
     @Override
     public String toString(){
 
-        String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", this.name, this.surname, this.login);
+        String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", this.name, this.surname, this.id);
         return info;
     }
 
@@ -39,8 +39,8 @@ public abstract class User {
         return this.surname;
     }
 
-    public String getLogin(){
-        return this.login;
+    public String getId(){
+        return this.id;
     }
 
     public void setSurname(String surname){
@@ -55,8 +55,8 @@ public abstract class User {
         return this.password;
     }
 
-    public void setLogin(String login){
-        this.login = login;
+    public void setId(String id){
+        this.id = id;
     }
 
     public void setMail(String mail){

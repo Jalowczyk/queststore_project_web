@@ -23,7 +23,7 @@ public abstract class AbstractDAO implements DAOInterface {
     public User load(String id) {
 
         User user = null;
-        
+
         try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(new File(path))))){
 
 
@@ -57,7 +57,7 @@ public abstract class AbstractDAO implements DAOInterface {
         String mail = nLine[4];
 
         user.setName(name);
-        user.setLogin(id);
+        user.setId(id);
         user.setSurname(surname);
         user.setPassword(password);
         user.setMail(mail);
@@ -71,7 +71,7 @@ public abstract class AbstractDAO implements DAOInterface {
         try(FileWriter fw = new FileWriter(path, true)){
 
             String line = String.format("\n%s,%s,%s,%s,%s", user.getName(), user.getSurname(),
-                    user.getPassword(), user.getLogin(), user.getLogin());
+                    user.getPassword(), user.getId(), user.getId());
 
             fw.append(line);
             fw.close();
