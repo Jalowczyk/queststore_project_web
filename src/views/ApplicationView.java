@@ -38,7 +38,7 @@ public class ApplicationView {
     }
 
     public static void failedLoginMsg(){
-        System.out.println("Wrong login or password");
+        System.out.println("Wrong id or password");
     }
 
 
