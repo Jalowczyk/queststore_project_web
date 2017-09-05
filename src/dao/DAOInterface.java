@@ -8,5 +8,5 @@ public interface DAOInterface {
 
     Object load(String id);
     void save(User object) throws IOException;
-    Object createFromRow(String[] line);
+    Object createFromRow(String name, String surname, String password, String id, String mail);
 }
