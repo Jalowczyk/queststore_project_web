@@ -27,7 +27,6 @@ public class Application {
     public static void startLoginProcess(String choice, String id) {
 
         if (choice.equals("1")) {
-
             adminLoginProcess(id);
 
         } else if (choice.equals("2")) {
