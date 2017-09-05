@@ -22,5 +22,6 @@
 hs_err_pid*
 
 **/.DS_Store
-/.idea/
-.idea/workspace.xml
+
+**/.idea/
+**.idea/workspace.xml
