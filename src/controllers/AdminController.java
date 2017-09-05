@@ -21,8 +21,8 @@ public class AdminController {
 
         if(choice.equals("1")){
             createMentor();
-
-        }if(choice.equals("2")){
+        }
+        if(choice.equals("2")){
 
         }
     }
