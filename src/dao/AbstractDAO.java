@@ -15,6 +15,7 @@ public abstract class AbstractDAO implements DAOInterface {
     private static ResultSet rs;
 
     public AbstractDAO(String dataBaseName, String path, User person) {
+
         this.person = person;
         this.dataBasePath = path;
         this.dataBaseName = dataBaseName;
@@ -103,7 +104,6 @@ public abstract class AbstractDAO implements DAOInterface {
         } catch (SQLException e) {
 
             e.printStackTrace();
-            System.out.println("no connectToDataBase");
         }
     }
 }
