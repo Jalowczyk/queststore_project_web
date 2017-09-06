@@ -7,17 +7,17 @@ import java.sql.*;
 public abstract class AbstractDAO implements DAOInterface {
 
     private final String dataBasePath;
-    private final String dataBaseName;
+    private final String dataBaseNameToSave;
     private Connection con;
     private User person;
 
     private static Statement st;
     private static ResultSet rs;
 
-    public AbstractDAO(String BaseName, String path, User person) {
+    public AbstractDAO(String dataBaseNameToSave, String path, User person) {
         this.person = person;
         this.dataBasePath = path;
-        this.dataBaseName = BaseName;
+        this.dataBaseNameToSave = dataBaseNameToSave;
     }
 
     @Override
@@ -91,7 +91,7 @@ public abstract class AbstractDAO implements DAOInterface {
 
         try {
 
-            String query = dataBaseName +
+            String query = dataBaseNameToSave +
                     "VALUES ( '" + user.getName() + "','" + user.getSurname() + "', " +
                     "'" + user.getPassword() + "', '" + user.getId() + "', '" + user.getMail() + "')";
 
