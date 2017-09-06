@@ -5,10 +5,11 @@ import src.models.Admin;
 public class DAOAdmin extends AbstractDAO {
 
     private static final String dataBasePath = "jdbc:sqlite:src/sql/admins.db";
-    private static final String dataBaseNameToSave = "INSERT INTO `admins`(name,surname,password,login,mail)";
+    private static final String sqlName = "admins";
+
     private static Admin admin = new Admin();
 
     public DAOAdmin() {
-        super(dataBaseNameToSave, dataBasePath, admin);
+        super(sqlName, dataBasePath, admin);
     }
 }
