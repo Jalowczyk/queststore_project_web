@@ -1,44 +1,55 @@
 package src.dao;
 
 import src.models.User;
+import java.sql.*;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Scanner;
-import java.io.FileWriter;
 
 public abstract class AbstractDAO implements DAOInterface {
 
-    private final String path;
+    private final String dataBasePath;
+    private final String dataBaseName;
+    private Connection con;
     private User person;
 
-    public AbstractDAO(User person, String path) {
+    private static Statement st;
+    private static ResultSet rs;
+
+    public AbstractDAO(String dataBaseName, String path, User person) {
         this.person = person;
-        this.path = path;
+        this.dataBasePath = path;
+        this.dataBaseName = dataBaseName;
     }
 
     @Override
     public User load(String id) {
 
+        Connection con = connectToDataBase();
         User user = null;
 
-        try(Scanner scanner = new Scanner(new BufferedReader(new FileReader(new File(path))))){
+        try {
 
+            st = con.createStatement();
+            String query = String.format("SELECT name, surname, password, login, mail FROM %s", dataBaseName);
 
-            while (scanner.hasNextLine()) {
+            rs = st.executeQuery(query);
 
-                String line = scanner.nextLine();
-                String nLine[] = line.split(",");
+            while(rs.next()) {
 
-                if (nLine[3].equals(id)) {
-                    user = createFromRow(nLine);
+                String name = rs.getString("name");
+                String surname = rs.getString("surname");
+                String password = rs.getString("password");
+                String idNum = rs.getString("login");
+                String mail = rs.getString("mail");
+
+                if (idNum.equals(id)) {
+                    user = createFromRow(name, surname, password, idNum, mail);
                 }
-            }
-            scanner.close();
 
-        } catch (IOException e) {
+            rs.close();
+            st.close();
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -46,39 +57,54 @@ public abstract class AbstractDAO implements DAOInterface {
     }
 
     @Override
-    public User createFromRow(String[] nLine) {
+    public User createFromRow(String name, String surname, String password, String id, String mail) {
 
         User user = this.person;
 
-        String name = nLine[0];
-        String surname = nLine[1];
-        String password = nLine[2];
-        String id = nLine[3];
-        String mail = nLine[4];
-
         user.setName(name);
-        user.setId(id);
         user.setSurname(surname);
         user.setPassword(password);
+        user.setId(id);
         user.setMail(mail);
 
         return user;
     }
 
+    public Connection connectToDataBase() {
+
+        try {
+
+            Class.forName("org.sqlite.JDBC");
+
+            con = DriverManager.getConnection(dataBasePath);
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return con;
+    }
+
     @Override
     public void save(User user) {
 
-        try(FileWriter fw = new FileWriter(path, true)){
+        Connection con = connectToDataBase();
 
-            String line = String.format("\n%s,%s,%s,%s,%s", user.getName(), user.getSurname(),
-                    user.getPassword(), user.getId(), user.getId());
+        try {
 
-            fw.append(line);
-            fw.close();
+            String query = String.format("INSERT INTO %s (name,surname,password,login,mail)" +
+                    "VALUES ( '" + user.getName() + "','" + user.getSurname() + "', " +
+                    "'" + user.getPassword() + "', '" + user.getId() + "', '" + user.getMail() + "')",dataBaseName);
 
-        } catch (IOException e) {
+            Statement statement = con.createStatement();
+            statement.executeUpdate(query);
+
+            statement.close();
+
+        } catch (SQLException e) {
+
             e.printStackTrace();
-
+            System.out.println("no connectToDataBase");
         }
     }
 }
+

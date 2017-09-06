@@ -2,15 +2,14 @@ package src.dao;
 
 import src.models.Mentor;
 
-import java.io.*;
-
 public class DAOMentor extends AbstractDAO {
 
-    private static final File f = new File("src/csv/Mentors.csv");
-    private static final String path = f.getAbsolutePath();
+    private static final String dataBasePath = "jdbc:sqlite:src/sql/mentors.db";
+    private static final String sqlName = "mentors";
+
     private static Mentor mentor = new Mentor();
 
     public DAOMentor() {
-        super(mentor, path);
+        super(sqlName, dataBasePath, mentor);
     }
 }
