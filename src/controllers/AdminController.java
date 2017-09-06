@@ -5,7 +5,7 @@ import src.dao.DAOMentor;
 import src.models.User;
 import src.views.AdminView;
 
-public class AdminController implements ControllerInterface {
+public class AdminController {
 
     public static void startController(User admin) {
 
