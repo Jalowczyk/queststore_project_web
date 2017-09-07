@@ -1,11 +1,11 @@
 package src.controllers;
 
-import src.controllers.AdminController;
-import src.controllers.MentorController;
 import src.models.User;
+import src.models.Mentor;
 import src.views.ApplicationView;
 import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
+import src.models.Admin;
 
 public class LoginController {
 
@@ -31,13 +31,13 @@ public class LoginController {
     }
 
     public static User getAdmin(String id) {
-        DAOAdmin admin = new DAOAdmin();
+        DAOAdmin admin = new DAOAdmin(new Admin());
         User createdAdmin = admin.load(id);
         return createdAdmin;
     }
 
     public static User getMentor(String id) {
-        DAOMentor mentor = new DAOMentor();
+        DAOMentor mentor = new DAOMentor(new Mentor());
         User createdMentor = mentor.load(id);
         return createdMentor;
     }
