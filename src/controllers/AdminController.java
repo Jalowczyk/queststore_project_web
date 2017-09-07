@@ -1,6 +1,7 @@
 package src.controllers;
 
 import src.models.Mentor;
+import src.models.Admin;
 import src.dao.DAOMentor;
 import src.models.User;
 import src.views.AdminView;
@@ -45,7 +46,7 @@ public class AdminController {
 
     public static void saveMentor(Mentor mentor){
 
-        DAOMentor DaoMentor = new DAOMentor();
+        DAOMentor DaoMentor = new DAOMentor(new Mentor());
         DaoMentor.save(mentor);
     }
 
