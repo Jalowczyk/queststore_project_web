@@ -2,7 +2,7 @@ package src.views;
 
 import java.util.Scanner;
 
-public class ApplicationView {
+public class LoginView {
 
     private static Scanner scan = new Scanner(System.in);
     private static int inputNum;
@@ -27,8 +27,8 @@ public class ApplicationView {
     public static void setUserLoginMsg(){
 
         String loginMenu = "\n 1. Admin\n"
-                + " 2. Mentor\n"
-                + " 3. Student\n";
+                            + " 2. Mentor\n"
+                            + " 3. Student\n";
 
         System.out.println(loginMenu);
     }
