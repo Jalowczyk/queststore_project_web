@@ -19,8 +19,14 @@ public class AdminView extends AbstractView{
 
     public static void showMenu() {
         String menu = "\n1. Create mentor"
-                        + "\n2. Show info about yourself";
-        System.out.println(menu);    
+                        + "\n2. Create new Course"
+                        + "\n3. Edit chosen Mentor profile"
+                        + "\n4. Show info about chosen Course"
+                        + "\n5. Show info about chosen Mentor"
+                        + "\n6. Set level of Experience"
+                        + "\n0. Exit";
+                        
+        System.out.println(menu);
     }
 
     public static String typeMentorName() {

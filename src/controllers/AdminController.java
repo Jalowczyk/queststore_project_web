@@ -21,10 +21,27 @@ public class AdminController {
 
         if(choice.equals("1")){
             createMentor();
-        }
-        if(choice.equals("2")){
+        
+        } else if(choice.equals("2")){
+            createCourse();
 
+        } else if(choice.equals("3")){
+            editMentorProfile();
+
+        } else if(choice.equals("4")){
+            showCourseInfo();
+
+        } else if(choice.equals("5")){
+            showMentorProfile();
+
+        } else if(choice.equals("6")){
+            setLvlExperience();
+        
+        } else if(choice.equals("0")){
+            System.exit(0);
         }
+
+
     }
     
     public static Mentor createMentor(){
@@ -48,5 +65,31 @@ public class AdminController {
         DAOMentor DaoMentor = new DAOMentor();
         DaoMentor.save(mentor);
     }
+
+    public static void createCourse(){
+
+        System.out.println("To be implemented");
+    }
+
+    public static void editMentorProfile(){
+
+        System.out.println("To be implemented");
+    }
+
+    public static void showCourseInfo(){
+
+        System.out.println("To be implemented");
+    }
+
+    public static void showMentorProfile(){
+
+        System.out.println("To be implemented");
+    }
+
+    public static void setLvlExperience(){
+
+        System.out.println("To be implemented");
+    }
+
 
 }
