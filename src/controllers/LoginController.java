@@ -3,7 +3,6 @@ package src.controllers;
 import src.models.User;
 
 import src.models.Mentor;
-import src.views.ApplicationView;
 import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
 import src.models.Admin;
@@ -40,7 +39,7 @@ public class LoginController {
 
         DAOAdmin admin = new DAOAdmin(new Admin());
         User loadedAdmin = admin.load(id);
-        return createdAdmin;
+        return loadedAdmin;
     }
 
     public static User getMentor(String id) {
