@@ -3,19 +3,20 @@ package src.controllers;
 import src.controllers.AdminController;
 import src.controllers.MentorController;
 import src.models.User;
-import src.views.ApplicationView;
+import src.views.LoginView;
 import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
+// import src.dao.DAOStudent;
 
 public class LoginController {
 
     public static void roleSetting() {
 
-        ApplicationView.setUserLoginMsg();
-        String choice = ApplicationView.getUserChoiceInput();
+        LoginView.setUserLoginMsg();
+        String choice = LoginView.getUserChoiceInput();
 
-        ApplicationView.setUserId();
-        String id = ApplicationView.getInput();
+        LoginView.setUserId();
+        String id = LoginView.getInput();
 
         startLoginProcess(choice, id);
     }
@@ -27,20 +28,29 @@ public class LoginController {
 
         } else if (choice.equals("2")) {
             mentorLoginProcess(id);
+
+        // } else if (choice.equals("3")) {
+        //     studentLoginProcess(id);
         }
     }
 
     public static User getAdmin(String id) {
         DAOAdmin admin = new DAOAdmin();
-        User createdAdmin = admin.load(id);
-        return createdAdmin;
+        User loadedAdmin = admin.load(id);
+        return loadedAdmin;
     }
 
     public static User getMentor(String id) {
         DAOMentor mentor = new DAOMentor();
-        User createdMentor = mentor.load(id);
-        return createdMentor;
+        User loadedMentor = mentor.load(id);
+        return loadedMentor;
     }
+
+    // public static User getStudent(String id) {
+    //     DAOStudent student = new DAOStudent();
+    //     User loadedStudent = student.load(id);
+    //     return loadedStudent;
+    // }
 
     public static void adminLoginProcess(String id) {
 
@@ -50,7 +60,7 @@ public class LoginController {
 
             AdminController.startController(user);
         } else {
-            ApplicationView.failedLoginMsg();
+            LoginView.failedLoginMsg();
         }
     }
         
@@ -63,7 +73,20 @@ public class LoginController {
             MentorController.startController(user);
 
         } else {
-            ApplicationView.failedLoginMsg();
+            LoginView.failedLoginMsg();
         }
     }
+
+    // public static void studentLoginProcess(String id) {
+
+    //     User user = getStudent(id);
+
+    //     if (user != null) {
+
+    //         StudentController.startController(user);
+
+    //     } else {
+    //         LoginView.failedLoginMsg();
+    //     }
+    // }
 }
