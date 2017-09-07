@@ -21,7 +21,7 @@ public abstract class AbstractDAO implements DAOInterface {
         this.dataBasePath = path;
         this.dataBaseName = dataBaseName;
 
-        connection = connectToDataBase(this.dataBasePath);
+        this.connection = connectToDataBase(this.dataBasePath);
 
     }
 
