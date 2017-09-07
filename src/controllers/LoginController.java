@@ -1,12 +1,14 @@
 package src.controllers;
 
-import src.controllers.AdminController;
-import src.controllers.MentorController;
 import src.models.User;
-import src.views.LoginView;
+
+import src.models.Mentor;
+import src.views.ApplicationView;
 import src.dao.DAOAdmin;
 import src.dao.DAOMentor;
-// import src.dao.DAOStudent;
+import src.models.Admin;
+import src.views.LoginView;
+
 
 public class LoginController {
 
@@ -35,22 +37,17 @@ public class LoginController {
     }
 
     public static User getAdmin(String id) {
-        DAOAdmin admin = new DAOAdmin();
+
+        DAOAdmin admin = new DAOAdmin(new Admin());
         User loadedAdmin = admin.load(id);
-        return loadedAdmin;
+        return createdAdmin;
     }
 
     public static User getMentor(String id) {
-        DAOMentor mentor = new DAOMentor();
+        DAOMentor mentor = new DAOMentor(new Mentor());
         User loadedMentor = mentor.load(id);
         return loadedMentor;
     }
-
-    // public static User getStudent(String id) {
-    //     DAOStudent student = new DAOStudent();
-    //     User loadedStudent = student.load(id);
-    //     return loadedStudent;
-    // }
 
     public static void adminLoginProcess(String id) {
 

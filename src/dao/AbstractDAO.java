@@ -6,11 +6,12 @@ import java.sql.*;
 
 public abstract class AbstractDAO implements DAOInterface {
 
-    private final String dataBasePath;
-    private final String dataBaseName;
-    private Connection con;
     private User person;
 
+    private final String dataBasePath;
+    private final String dataBaseName;
+
+    private static Connection connection;
     private static Statement st;
     private static ResultSet rs;
 
@@ -19,17 +20,19 @@ public abstract class AbstractDAO implements DAOInterface {
         this.person = person;
         this.dataBasePath = path;
         this.dataBaseName = dataBaseName;
+
+        connection = connectToDataBase(this.dataBasePath);
+
     }
 
     @Override
     public User load(String id) {
 
-        Connection con = connectToDataBase();
         User user = null;
 
         try {
 
-            st = con.createStatement();
+            st = connection.createStatement();
             String query = String.format("SELECT name, surname, password, login, mail FROM %s", dataBaseName);
 
             rs = st.executeQuery(query);
@@ -71,24 +74,22 @@ public abstract class AbstractDAO implements DAOInterface {
         return user;
     }
 
-    public Connection connectToDataBase() {
+    public static Connection connectToDataBase(String dataBasePath) {
 
         try {
 
             Class.forName("org.sqlite.JDBC");
 
-            con = DriverManager.getConnection(dataBasePath);
+            connection = DriverManager.getConnection(dataBasePath);
 
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return con;
+        return connection;
     }
 
     @Override
     public void save(User user) {
-
-        Connection con = connectToDataBase();
 
         try {
 
@@ -96,7 +97,7 @@ public abstract class AbstractDAO implements DAOInterface {
                     "VALUES ( '" + user.getName() + "','" + user.getSurname() + "', " +
                     "'" + user.getPassword() + "', '" + user.getId() + "', '" + user.getMail() + "')",dataBaseName);
 
-            Statement statement = con.createStatement();
+            Statement statement = connection.createStatement();
             statement.executeUpdate(query);
 
             statement.close();
