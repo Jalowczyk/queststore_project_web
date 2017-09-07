@@ -7,9 +7,7 @@ public class DAOAdmin extends AbstractDAO {
     private static final String dataBasePath = "jdbc:sqlite:src/sql/admins.db";
     private static final String sqlName = "admins";
 
-    private static Admin admin = new Admin();
-
-    public DAOAdmin() {
+    public DAOAdmin(Admin admin) {
         super(sqlName, dataBasePath, admin);
     }
 }
