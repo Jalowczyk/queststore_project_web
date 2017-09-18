@@ -1,10 +1,10 @@
-package com.school.controllers;
+package src.controllers;
 
-import com.school.models.Mentor;
-import com.school.models.Admin;
-import com.school.dao.DAOMentor;
-import com.school.models.User;
-import com.school.views.AdminView;
+import src.models.Mentor;
+import src.models.Admin;
+import src.dao.DAOMentor;
+import src.models.User;
+import src.views.AdminView;
 
 public class AdminController {
 

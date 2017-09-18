@@ -1,6 +1,6 @@
-package com.school.dao;
+package src.dao;
 
-import com.school.models.Mentor;
+import src.models.Mentor;
 
 public class DAOMentor extends AbstractDAO {
 

@@ -1,6 +1,6 @@
-package com.school.dao;
+package src.dao;
 
-import com.school.models.User;
+import src.models.User;
 
 import java.io.IOException;
 

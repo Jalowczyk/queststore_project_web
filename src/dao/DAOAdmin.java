@@ -1,6 +1,6 @@
-package com.school.dao;
+package src.dao;
 
-import com.school.models.Admin;
+import src.models.Admin;
 
 public class DAOAdmin extends AbstractDAO {
 
