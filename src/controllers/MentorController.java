@@ -1,10 +1,10 @@
-package src.controllers;
+package com.school.controllers;
 
 // import src.models.Student;
 // import src.dao.DAOStudent;
-import src.models.Mentor;
-import src.models.User;
-import src.views.MentorView;
+import com.school.models.Mentor;
+import com.school.models.User;
+import com.school.views.MentorView;
 
 public class MentorController {
 

@@ -1,14 +1,13 @@
-package src.dao;
+package com.school.dao;
 
-import src.models.Mentor;
+import com.school.models.Mentor;
 
 public class DAOMentor extends AbstractDAO {
 
-    private static final String dataBasePath = "jdbc:sqlite:src/sql/mentors.db";
     private static final String sqlName = "mentors";
 
     public DAOMentor(Mentor mentor) {
-        super(sqlName, dataBasePath, mentor);
+        super(sqlName, mentor);
     }
 
     

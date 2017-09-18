@@ -1,12 +1,12 @@
-package src.dao;
+package com.school.dao;
 
-import src.models.User;
+import com.school.models.User;
 
 import java.io.IOException;
 
 public interface DAOInterface {
 
-    Object load(String id);
+    User load(String id);
     void save(User object) throws IOException;
     Object createFromRow(String name, String surname, String password, String id, String mail);
 }

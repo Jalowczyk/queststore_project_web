@@ -1,12 +1,12 @@
-package src.controllers;
+package com.school.controllers;
 
-import src.models.User;
+import com.school.models.User;
 
-import src.models.Mentor;
-import src.dao.DAOAdmin;
-import src.dao.DAOMentor;
-import src.models.Admin;
-import src.views.LoginView;
+import com.school.models.Mentor;
+import com.school.dao.DAOAdmin;
+import com.school.dao.DAOMentor;
+import com.school.models.Admin;
+import com.school.views.LoginView;
 
 
 public class LoginController {

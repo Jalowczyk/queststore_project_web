@@ -1,10 +1,10 @@
-package src.controllers;
+package com.school.controllers;
 
-import src.models.Mentor;
-import src.models.Admin;
-import src.dao.DAOMentor;
-import src.models.User;
-import src.views.AdminView;
+import com.school.models.Mentor;
+import com.school.models.Admin;
+import com.school.dao.DAOMentor;
+import com.school.models.User;
+import com.school.views.AdminView;
 
 public class AdminController {
 
@@ -46,6 +46,7 @@ public class AdminController {
     }
     
     public static Mentor createMentor(){
+
 
         String name = AdminView.typeMentorName();
         String surname = AdminView.typeMentorSurname();

@@ -1,6 +1,6 @@
-package src.dao;
+package com.school.dao;
 
-import src.models.User;
+import com.school.models.User;
 import java.sql.*;
 
 
@@ -9,58 +9,40 @@ public abstract class AbstractDAO implements DAOInterface {
     private User person;
 
     private final String dataBasePath;
-    private final String dataBaseName;
+    private static Connection conn;
 
-    private static Connection connection;
-    private static Statement st;
-    private static ResultSet rs;
-
-    public AbstractDAO(String dataBaseName, String path, User person) {
+    public AbstractDAO(String path, User person) {
 
         this.person = person;
         this.dataBasePath = path;
-        this.dataBaseName = dataBaseName;
 
-        connection = connectToDataBase(this.dataBasePath);
+        conn = connectToDataBase(this.dataBasePath);
 
     }
 
-    @Override
     public User load(String id) {
 
         User user = null;
 
+        String query = "SELECT first_name, last_name, password, id_number, email FROM '" + dataBasePath + "'" +
+                       " WHERE id_number = '" + id + "' ";
+
         try {
 
-            st = connection.createStatement();
-            String query = String.format("SELECT name, surname, password, login, mail FROM %s", dataBaseName);
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(query);
 
-            rs = st.executeQuery(query);
-
-            while(rs.next()) {
-
-                String name = rs.getString("name");
-                String surname = rs.getString("surname");
-                String password = rs.getString("password");
-                String idNum = rs.getString("login");
-                String mail = rs.getString("mail");
-
-                if (idNum.equals(id)) {
-                    user = createFromRow(name, surname, password, idNum, mail);
-                }
-
-            rs.close();
-            st.close();
+            if (rs.next()) {
+                return createUser(rs);
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-        }
 
+        }
         return user;
     }
 
-    @Override
     public User createFromRow(String name, String surname, String password, String id, String mail) {
 
         User user = this.person;
@@ -80,32 +62,52 @@ public abstract class AbstractDAO implements DAOInterface {
 
             Class.forName("org.sqlite.JDBC");
 
-            connection = DriverManager.getConnection(dataBasePath);
+            conn = DriverManager.getConnection("jdbc:sqlite:com/sql/school.db");
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        return connection;
+        return conn;
     }
 
-    @Override
     public void save(User user) {
+
+        String query = "INSERT INTO '" + dataBasePath + "' " +
+                "(first_name, last_name, password, id_number, email)" +
+                " VALUES(?,?,?,?,?)";
+
 
         try {
 
-            String query = String.format("INSERT INTO %s (name,surname,password,login,mail)" +
-                    "VALUES ( '" + user.getName() + "','" + user.getSurname() + "', " +
-                    "'" + user.getPassword() + "', '" + user.getId() + "', '" + user.getMail() + "')",dataBaseName);
+            PreparedStatement statement = conn.prepareStatement(query);
 
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(query);
 
-            statement.close();
+            statement.setString(1, user.getName());
+            statement.setString(2, user.getSurname());
+            statement.setString(3, user.getPassword());
+            statement.setString(4, user.getId());
+            statement.setString(5, user.getMail());
+
+            statement.executeUpdate();
 
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
     }
-}
 
+    public User createUser(ResultSet rs) throws SQLException{
+
+        String name = rs.getString("first_name");
+        String surname = rs.getString("last_name");
+        String password = rs.getString("password");
+        String idNum = rs.getString("id_number");
+        String mail = rs.getString("email");
+
+        return createFromRow(name, surname, password, idNum, mail);
+
+    }
+}
