@@ -5,22 +5,34 @@ public abstract class User {
     protected String name;
     protected String surname;
     protected String password;
-    protected String id;
+    protected Integer id;
     protected String mail;
+    protected String status;
 
     public User(){}
 
-    public User(String name, String surname, String password, String id, String mail) {
+    public User(String name, String surname, String password, String mail, String status) {
 
         this.name = name;
         this.surname = surname;
-        this.id = id;
         this.mail = mail;
         this.password = password;
+        this.status = status;
 
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
+
     public String toString(){
 
         String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", this.name, this.surname, this.id);
@@ -39,7 +51,7 @@ public abstract class User {
         return this.surname;
     }
 
-    public String getId(){
+    public Integer getId(){
         return this.id;
     }
 
@@ -55,7 +67,7 @@ public abstract class User {
         return this.password;
     }
 
-    public void setId(String id){
+    public void setId(Integer id){
         this.id = id;
     }
 
@@ -65,6 +77,9 @@ public abstract class User {
 
     public String getMail(){
         return this.mail;
+    }
+
+    public void startController(){
     }
 
 }

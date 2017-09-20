@@ -1,8 +1,7 @@
 package com.school.controllers;
 
+import com.school.dao.DaoMentor;
 import com.school.models.Mentor;
-import com.school.models.Admin;
-import com.school.dao.DAOMentor;
 import com.school.models.User;
 import com.school.views.AdminView;
 
@@ -51,10 +50,10 @@ public class AdminController {
         String name = AdminView.typeMentorName();
         String surname = AdminView.typeMentorSurname();
         String password = AdminView.typeMentorPassword();
-        String id = AdminView.typeMentorId();
         String mail = AdminView.typeMentorMail();
+        String status = "mentor";
 
-        Mentor mentor = new Mentor(name, surname, password, id, mail);
+        Mentor mentor = new Mentor(name, surname, password, mail, status);
 
         saveMentor(mentor);
 
@@ -64,8 +63,8 @@ public class AdminController {
 
     public static void saveMentor(Mentor mentor){
 
-        DAOMentor DaoMentor = new DAOMentor(new Mentor());
-        DaoMentor.save(mentor);
+        DaoMentor myMentor = new DaoMentor(mentor);
+        myMentor.save();
     }
 
     public static void createCourse(){

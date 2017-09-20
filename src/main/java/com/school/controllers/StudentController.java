@@ -1,8 +1,12 @@
 package com.school.controllers;
 
 import com.school.models.Student;
+import com.school.models.User;
 
-public class StudentController{
+public class StudentController {
+
+    public static void startController(User student) {
+    }
 }
 //
 //  public static String vievWallet(){

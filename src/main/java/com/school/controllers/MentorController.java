@@ -1,8 +1,5 @@
 package com.school.controllers;
 
-// import src.models.Student;
-// import src.dao.DAOStudent;
-import com.school.models.Mentor;
 import com.school.models.User;
 import com.school.views.MentorView;
 
