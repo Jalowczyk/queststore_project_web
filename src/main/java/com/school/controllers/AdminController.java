@@ -92,7 +92,7 @@ public class AdminController {
         for(String mentor : mentorsList){
             System.out.println(mentor);
         }
-        String mentor = AdminView.chooseMentor();
+        String mentor = AdminView.typeMentorName();
         ArrayList<String> mentorList = new UserDao().getMentorDetails(mentor);
         for(String mentor1 : mentorList){
             System.out.println(mentor1);
