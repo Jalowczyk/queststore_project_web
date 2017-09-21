@@ -55,7 +55,7 @@ public class UserDao extends AbstractDao {
                 recordFound = String.format("%s - %s - %s - %s",
                         rs.getString("first_name"),
                         rs.getString("last_name"),
-                        rs.getString("id_number8"),
+                        rs.getString("id_number"),
                         rs.getString("email"));
 
                 foundUsers.add(recordFound);
@@ -125,6 +125,53 @@ public class UserDao extends AbstractDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public ArrayList<String> getAllMentors (String status){
+        ArrayList<String> foundMentors = new ArrayList<>();
+
+        String query = "SELECT * FROM users WHERE status = '" + status + "' ";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                String recordFound;
+                recordFound = String.format("%s - %s ",
+                        rs.getString("first_name"),
+                        rs.getString("last_name"));
+
+                foundMentors.add(recordFound);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return foundMentors;
+    }
+    public ArrayList<String> getMentorDetails (String mentorName){
+        ArrayList<String> foundMentor = new ArrayList<>();
+
+        String query = "SELECT * FROM users WHERE first_name = '" + mentorName + "' ";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                String recordFound;
+                recordFound = String.format("%s - %s - %s - %s",
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("id_number"),
+                        rs.getString("email"));
+                foundMentor.add(recordFound);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return foundMentor;
     }
 }
 
