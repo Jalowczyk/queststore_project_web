@@ -7,6 +7,7 @@ import java.io.IOException;
 public interface DAOUserInterface {
 
     User load(String id);
-    void save(User user) throws IOException;
-    User createFromRow(String status, String name, String surname, String password, Integer id, String mail);
+    void save(User user);
+    User createFromRow(Integer id, String... values);
+
 }

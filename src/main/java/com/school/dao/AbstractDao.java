@@ -5,6 +5,7 @@ import java.sql.*;
 
 public abstract class AbstractDao implements DAOUserInterface {
 
+
     private final String tableName;
     protected static Connection conn;
 
