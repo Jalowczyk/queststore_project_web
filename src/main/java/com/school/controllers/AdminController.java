@@ -1,9 +1,12 @@
 package com.school.controllers;
 
 import com.school.dao.DaoMentor;
+import com.school.dao.UserDao;
 import com.school.models.Mentor;
 import com.school.models.User;
 import com.school.views.AdminView;
+
+import java.util.ArrayList;
 
 public class AdminController {
 
@@ -84,7 +87,16 @@ public class AdminController {
 
     public static void showMentorProfile(){
 
-        System.out.println("To be implemented");
+        String status = "mentor";
+        ArrayList<String> mentorsList = new UserDao().getAllMentors(status);
+        for(String mentor : mentorsList){
+            System.out.println(mentor);
+        }
+        String mentor = AdminView.typeMentorName();
+        ArrayList<String> mentorList = new UserDao().getMentorDetails(mentor);
+        for(String mentor1 : mentorList){
+            System.out.println(mentor1);
+        }
     }
 
     public static void setLvlExperience(){
