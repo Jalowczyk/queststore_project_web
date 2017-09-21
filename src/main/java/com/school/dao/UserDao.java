@@ -42,8 +42,8 @@ public class UserDao extends AbstractDao {
         return null;
     }
 
-    public listSpecifiedUsers (String status){
-        ArrayList<String> foundUsers = new ArrayList<String>;
+    public ArrayList<String> listSpecifiedUsers (String status){
+        ArrayList<String> foundUsers = new ArrayList<String>();
 
         String query = "SELECT * FROM users WHERE status = '" + status + "' ";
 
