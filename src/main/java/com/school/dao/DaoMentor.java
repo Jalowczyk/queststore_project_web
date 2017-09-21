@@ -26,18 +26,5 @@ public class DaoMentor extends UserDao {
     public void save() {
 
         save(mentor);
-
-//        String query = "INSERT INTO mentors" +
-//                       "(courses)" +
-//                       " VALUES(?)";
-//
-//        try (PreparedStatement statement = conn.prepareStatement(query)) {
-//
-//            statement.setString(1, mentor.getName());
-//            statement.executeUpdate();
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 }
