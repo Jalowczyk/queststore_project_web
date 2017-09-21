@@ -9,9 +9,7 @@ public class DaoMentor extends UserDao {
 
     private User mentor;
 
-    public DaoMentor(User mentor) {
-        this.mentor = mentor;
-    }
+    public DaoMentor(User mentor) { this.mentor = mentor; }
 
     public void save() {
 
