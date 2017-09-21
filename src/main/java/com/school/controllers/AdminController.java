@@ -4,6 +4,9 @@ import com.school.dao.DaoMentor;
 import com.school.models.Mentor;
 import com.school.models.User;
 import com.school.views.AdminView;
+import com.school.views.MentorView;
+
+import java.sql.SQLException;
 
 public class AdminController {
 
@@ -74,7 +77,11 @@ public class AdminController {
 
     public static void editMentorProfile(){
 
-        System.out.println("To be implemented");
+        Integer id = MentorView.getMentorId();
+        String name = MentorView.typeStudentName();
+
+        DaoMentor.editMentor(name, id);
+        System.out.println("details have changed");
     }
 
     public static void showCourseInfo(){
