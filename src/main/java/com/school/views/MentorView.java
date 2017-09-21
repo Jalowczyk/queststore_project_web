@@ -22,7 +22,7 @@ public class MentorView extends AbstractView{
                         + "\n2. Show info about chosen Course"
                         + "\n3. Manage Quests"
                         + "\n4. Manage Artefacts"
-                        + "\n5. Show info about chosen Student"
+                        + "\n5. Show info about all Students"
                         + "\n6. Mark Student's Artefacts"
                         + "\n6. Mark Student's Quests"
                         + "\n0. Exit";
@@ -51,17 +51,14 @@ public class MentorView extends AbstractView{
         return password;
     }
 
-    public static String typeStudentId() {
-
-        System.out.println("Please provide the id for student: ");
-        String id = scan.nextLine();
-        return id;
-    }
-
     public static String typeStudentMail(){
         System.out.println("Please provide the student's mail: ");
         String mail = scan.nextLine();
         return mail;
     }
+
+//    public static String showStudentInfo(){
+//
+//    }
 
 }   
