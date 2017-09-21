@@ -62,5 +62,4 @@ public class AdminView extends AbstractView{
         String mail = scan.nextLine();
         return mail;
     }
-
 }   

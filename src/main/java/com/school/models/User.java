@@ -18,14 +18,11 @@ public abstract class User {
         this.mail = mail;
         this.password = password;
         this.status = status;
-
     }
 
     public String getStatus() {
         return status;
     }
-
-
 
     public void setStatus(String status) {
         this.status = status;
@@ -81,5 +78,4 @@ public abstract class User {
 
     public void startController(){
     }
-
 }
