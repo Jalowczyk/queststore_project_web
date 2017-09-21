@@ -62,9 +62,4 @@ public class AdminView extends AbstractView{
         String mail = scan.nextLine();
         return mail;
     }
-    public static String chooseMentor(){
-        System.out.println("Choose mentor: ");
-        String choose = scan.nextLine();
-        return  choose;
-    }
 }   
