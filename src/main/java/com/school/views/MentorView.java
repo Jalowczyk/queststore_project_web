@@ -64,4 +64,10 @@ public class MentorView extends AbstractView{
         return mail;
     }
 
+    public static Integer getMentorId(){
+        System.out.println("Please provide mentor's id: ");
+        Integer id = scan.nextInt();
+        return id;
+    }
+
 }   
