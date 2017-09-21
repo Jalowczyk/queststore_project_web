@@ -4,6 +4,7 @@ import com.school.models.User;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DaoMentor extends UserDao {
 
