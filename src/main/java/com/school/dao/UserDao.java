@@ -51,12 +51,13 @@ public class UserDao extends AbstractDao {
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
-                String recordFound = String.format("%s - %s - %s - %s - %s - %s",
+                String recordFound;
+                recordFound = String.format("%s - %s - %s - %s",
                         rs.getString("first_name"),
                         rs.getString("last_name"),
-                        rs.getString("phone_number"),
-                        rs.getString("email"),
-                        rs.getString("application_code"));
+                        rs.getString("id_number8"),
+                        rs.getString("email"));
+
                 foundUsers.add(recordFound);
             }
 
