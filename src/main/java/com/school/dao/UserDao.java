@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UserDao extends AbstractDao {
+public class UserDao extends AbstractDao implements DAOUserInterface {
 
     private static final String tableName = "users";
     private static Map<String, User> usersDict = new HashMap<>();
@@ -42,7 +42,13 @@ public class UserDao extends AbstractDao {
     }
 
     @Override
-    public User createFromRow(String status, String name, String surname, String password, Integer id, String mail) {
+    public User createFromRow(Integer id, String...values) {
+
+        String status = values[0];
+        String name = values[1];
+        String surname = values[2];
+        String password = values[3];
+        String mail = values[4];
 
         User user;
 
@@ -67,7 +73,9 @@ public class UserDao extends AbstractDao {
         String mail = rs.getString("email");
         String status = rs.getString("status");
 
-        return createFromRow(status, name, surname, password, idNum, mail);
+        String values[] = {status, name, surname, password, mail};
+
+        return createFromRow(idNum, values);
 
     }
 
@@ -78,7 +86,6 @@ public class UserDao extends AbstractDao {
         usersDict.put("student", new Student());
     }
 
-    @Override
     public void save(User user) {
 
         String query = "INSERT INTO users" +
