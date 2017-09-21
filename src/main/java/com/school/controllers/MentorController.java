@@ -1,11 +1,15 @@
 package com.school.controllers;
 
+import com.school.dao.DaoMentor;
 import com.school.models.User;
 import com.school.views.MentorView;
 
 public class MentorController {
 
     public static void startController(User mentor){
+
+        DaoMentor myMentor = new DaoMentor(mentor);
+        //myMentor.loadAllAttributes();
 
         MentorView.welcomeMsg(mentor.getName());
         MentorView.showMenu();

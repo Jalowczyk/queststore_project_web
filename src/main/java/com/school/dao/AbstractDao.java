@@ -3,7 +3,7 @@ package com.school.dao;
 import java.sql.*;
 
 
-public abstract class AbstractDao implements DAOInterface {
+public abstract class AbstractDao{
 
     private final String tableName;
     protected static Connection conn;
