@@ -9,4 +9,5 @@ public interface DAOUserInterface {
     User load(String id);
     void save(User user);
     User createFromRow(Integer id, String... values);
+
 }
