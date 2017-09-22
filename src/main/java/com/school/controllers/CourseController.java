@@ -14,9 +14,7 @@ public class CourseController {
     }
 
     public static void listAllCourses() {
-        String table = "courses";
-        String status = "*";
-        ArrayList<String> coursesList = new CourseDAO().listSpecifiedData(table, status);
+        ArrayList<String> coursesList = new CourseDAO().listSpecifiedData();
         for (String course : coursesList) {
             System.out.println(course);
         }

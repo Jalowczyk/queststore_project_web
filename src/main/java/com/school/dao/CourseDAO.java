@@ -8,13 +8,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CourseDAO {
+public class CourseDAO extends AbstractDao {
 
+    private static final String tableName = "courses";
 
-    public ArrayList<String> listSpecifiedData(String table, String status) {
+    public CourseDAO() {
+
+        super(tableName);
+    }
+    public ArrayList<String> listSpecifiedData() {
         ArrayList<String> foundData = new ArrayList<>();
 
-        String query = "SELECT * FROM " + table + " WHERE id = '" + status + "' ";
+        String query = "SELECT * FROM " + tableName + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {

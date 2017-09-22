@@ -11,14 +11,15 @@ public class LoginController {
 
         LoginView.setUserId();
         String id = LoginView.getInput();
-        startLoginProcess(id);
+        LoginView.setUserPassword();
+        String password = LoginView.getInput();
+        startLoginProcess(id, password);
 
 }
-    public static void startLoginProcess(String id){
+    public static void startLoginProcess(String id, String password){
 
         UserDao dao = new UserDao();
-        User user = dao.load(id);
-
+        User user = dao.load(id, password);
         if(user != null) {
             user.startController();
         }else{

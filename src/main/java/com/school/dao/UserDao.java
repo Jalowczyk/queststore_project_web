@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UserDao extends AbstractDao {
+public class UserDao extends AbstractDao implements DAOUserInterface {
 
     private static final String tableName = "users";
     private static Map<String, User> usersDict = new HashMap<>();
@@ -23,10 +23,10 @@ public class UserDao extends AbstractDao {
     }
 
     @Override
-    public User load(String id) {
+    public User load(String id, String password) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
-                       " WHERE id_number = '" + id + "' ";
+                       " WHERE id_number = '" + id + "' AND password = '" + password + "'";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -52,7 +52,7 @@ public class UserDao extends AbstractDao {
 
             while (rs.next()) {
                 String recordFound;
-                recordFound = String.format("ID: %s - %s - %s - %s",
+                recordFound = String.format("ID: %s - Name: %s - Surname: %s - email: %s",
                         rs.getString("id_number"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
@@ -69,7 +69,13 @@ public class UserDao extends AbstractDao {
     }
 
     @Override
-    public User createFromRow(String status, String name, String surname, String password, Integer id, String mail) {
+    public User createFromRow(Integer id, String...values) {
+
+        String status = values[0];
+        String name = values[1];
+        String surname = values[2];
+        String password = values[3];
+        String mail = values[4];
 
         User user;
 
@@ -94,7 +100,9 @@ public class UserDao extends AbstractDao {
         String mail = rs.getString("email");
         String status = rs.getString("status");
 
-        return createFromRow(status, name, surname, password, idNum, mail);
+        String values[] = {status, name, surname, password, mail};
+
+        return createFromRow(idNum, values);
 
     }
 
@@ -105,7 +113,6 @@ public class UserDao extends AbstractDao {
         usersDict.put("student", new Student());
     }
 
-    @Override
     public void save(User user) {
 
         String query = "INSERT INTO users" +
@@ -126,7 +133,51 @@ public class UserDao extends AbstractDao {
             e.printStackTrace();
         }
     }
+    public ArrayList<String> getAllMentors (String status){
+        ArrayList<String> foundMentors = new ArrayList<>();
+
+        String query = "SELECT * FROM users WHERE status = '" + status + "' ";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                String recordFound;
+                recordFound = String.format("%s - %s ",
+                        rs.getString("first_name"),
+                        rs.getString("last_name"));
+
+                foundMentors.add(recordFound);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return foundMentors;
+    }
+    public ArrayList<String> getMentorDetails (String mentorName){
+        ArrayList<String> foundMentor = new ArrayList<>();
+
+        String query = "SELECT * FROM users WHERE first_name = '" + mentorName + "' ";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                String recordFound;
+                recordFound = String.format("%s - %s - %s - %s",
+                        rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("id_number"),
+                        rs.getString("email"));
+                foundMentor.add(recordFound);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return foundMentor;
+    }
 }
-
-
-
