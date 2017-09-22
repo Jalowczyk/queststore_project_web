@@ -42,6 +42,10 @@ public class LoginView {
     public static void setUserId(){
         System.out.println("Please provide your id: ");
     }
+    
+    public static void setUserPassword(){
+        System.out.println("Please provide your password: ");
+    }
 
     public static void failedLoginMsg(){
         System.out.println("Wrong id or password");
