@@ -68,8 +68,9 @@ public class MentorController {
     }
 
     public static void showStudentInfo(){
+        String table = "users";
         String status = "student";
-        ArrayList<String> studentsList = new UserDao().listSpecifiedUsers(status);
+        ArrayList<String> studentsList = new UserDao().listSpecifiedData(table, status);
         for(String student : studentsList){
             System.out.println(student);
         }
@@ -77,7 +78,7 @@ public class MentorController {
     }
     public static void showCourseInfo(){
 
-        System.out.println("To be implemented");
+        CourseController.listAllCourses();
     }
 
     public static void manageQuests(){
