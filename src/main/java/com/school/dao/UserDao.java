@@ -42,30 +42,30 @@ public class UserDao extends AbstractDao {
         return null;
     }
 
-    public ArrayList<String> listSpecifiedUsers (String status){
-        ArrayList<String> foundUsers = new ArrayList<String>();
+    public ArrayList<String> listSpecifiedData (String table, String status){
+        ArrayList<String> foundData = new ArrayList<>();
 
-        String query = "SELECT * FROM users WHERE status = '" + status + "' ";
+        String query = "SELECT * FROM " + table + " WHERE status = '" + status + "' ";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
                 String recordFound;
-                recordFound = String.format("%s - %s - %s - %s",
+                recordFound = String.format("ID: %s - %s - %s - %s",
+                        rs.getString("id_number"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
-                        rs.getString("id_number8"),
                         rs.getString("email"));
 
-                foundUsers.add(recordFound);
+                foundData.add(recordFound);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        return foundUsers;
+        return foundData;
     }
 
     @Override
