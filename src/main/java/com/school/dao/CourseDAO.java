@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CourseDAO extends AbstractDao {
+public class CourseDAO extends AbstractDao  {
 
     private static final String tableName = "courses";
 
@@ -16,7 +16,10 @@ public class CourseDAO extends AbstractDao {
 
         super(tableName);
     }
+
     public ArrayList<String> listSpecifiedData() {
+
+        String recordFound;
         ArrayList<String> foundData = new ArrayList<>();
 
         String query = "SELECT * FROM " + tableName + ";";
@@ -25,10 +28,9 @@ public class CourseDAO extends AbstractDao {
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
-                String recordFound;
                 recordFound = String.format("ID: %s - %s",
-                        rs.getString("id"),
-                        rs.getString("course_name"));
+                              rs.getString("id"),
+                              rs.getString("course_name"));
 
                 foundData.add(recordFound);
             }
@@ -55,7 +57,6 @@ public class CourseDAO extends AbstractDao {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
             statement.setString(1, course.getName());
-
 
             statement.executeUpdate();
 
