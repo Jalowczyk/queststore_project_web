@@ -23,11 +23,11 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
     }
 
     @Override
-    public User load(String id) {
+    public User load(String id, String password) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
                        " WHERE id_number = '" + id + "' AND password = '" + password + "'";
-        
+
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
@@ -42,30 +42,30 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
         return null;
     }
 
-    public ArrayList<String> listSpecifiedUsers (String status){
-        ArrayList<String> foundUsers = new ArrayList<String>();
+    public ArrayList<String> listSpecifiedData (String table, String status){
+        ArrayList<String> foundData = new ArrayList<>();
 
-        String query = "SELECT * FROM users WHERE status = '" + status + "' ";
+        String query = "SELECT * FROM " + table + " WHERE status = '" + status + "' ";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
                 String recordFound;
-                recordFound = String.format("%s - %s - %s - %s",
+                recordFound = String.format("ID: %s - Name: %s - Surname: %s - email: %s",
+                        rs.getString("id_number"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
-                        rs.getString("id_number"),
                         rs.getString("email"));
 
-                foundUsers.add(recordFound);
+                foundData.add(recordFound);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        return foundUsers;
+        return foundData;
     }
 
     @Override
@@ -181,6 +181,3 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
         return foundMentor;
     }
 }
-
-
-

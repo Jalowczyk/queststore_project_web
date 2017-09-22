@@ -19,7 +19,7 @@ public class MentorView extends AbstractView{
 
     public static void showMenu() {
         String menu = "\n1. Create student"
-                        + "\n2. Show info about chosen Course"
+                        + "\n2. Show all courses"
                         + "\n3. Manage Quests"
                         + "\n4. Manage Artefacts"
                         + "\n5. Show info about all Students"

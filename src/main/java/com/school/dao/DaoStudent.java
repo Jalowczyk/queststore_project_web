@@ -8,8 +8,6 @@ public class DaoStudent extends UserDao {
     public DaoStudent (User student) {this.student = student;}
 
 
-
-
     public void save(){
         save(student);
     }
