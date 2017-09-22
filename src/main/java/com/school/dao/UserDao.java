@@ -26,8 +26,8 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
     public User load(String id) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
-                       " WHERE id_number = '" + id + "' ";
-
+                       " WHERE id_number = '" + id + "' AND password = '" + password + "'";
+        
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
