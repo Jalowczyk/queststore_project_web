@@ -1,10 +1,13 @@
 package com.school.models;
 
 public class Course {
-    private String name;
 
-    public Course(String name) {
+    private String name;
+    private Integer id;
+
+    public Course(String name, Integer id) {
         this.name = name;
+        this.id = id;
     }
 
     public String getName() {
@@ -14,4 +17,16 @@ public class Course {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+
+
+
 }
