@@ -28,8 +28,8 @@ public class CourseDAO extends AbstractDao  {
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
-                recordFound = String.format("ID: %s - %s",
-                              rs.getString("id"),
+                recordFound = String.format("ID: %d - '%s'",
+                              rs.getInt("crs_id"),
                               rs.getString("course_name"));
 
                 foundData.add(recordFound);
@@ -42,11 +42,32 @@ public class CourseDAO extends AbstractDao  {
         return foundData;
     }
 
-    public Course createCourse(ResultSet rs) throws SQLException {
+    public static Course createCourseFromDatabase(Integer id) {
 
-        String name = rs.getString("name");
+        Course course = null;
 
-        return new Course(name);
+        String query = "SELECT * FROM courses WHERE crs_id = " + id + ";";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+             if(rs.next()){
+                 course = createCourseFromResultSet(rs);
+             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return course;
+    }
+
+
+    public static Course createCourseFromResultSet(ResultSet rs) throws SQLException {
+
+        Integer id = rs.getInt("crs_id");
+        String name = rs.getString("course_name");
+
+        return new Course(name, id);
 
     }
 
@@ -56,7 +77,7 @@ public class CourseDAO extends AbstractDao  {
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
-            statement.setString(1, course.getName());
+            statement.setString(2, course.getName());
 
             statement.executeUpdate();
 

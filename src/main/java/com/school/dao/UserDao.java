@@ -26,7 +26,7 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
     public User load(String id, String password) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
-                       " WHERE id_number = '" + id + "' AND password = '" + password + "'";
+                " WHERE id_number = '" + id + "' AND password = '" + password + "'";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -42,17 +42,17 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
         return null;
     }
 
-    public ArrayList<String> listSpecifiedData (String table, String status){
+    public ArrayList<String> listSpecifiedData(String table, String status) {
         ArrayList<String> foundData = new ArrayList<>();
 
-        String query = "SELECT * FROM " + table + " WHERE status = '" + status + "' ";
+        String query = "SELECT * FROM " + table + " WHERE status = '" + status + "';";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
                 String recordFound;
-                recordFound = String.format("ID: %s - Name: %s - Surname: %s - email: %s",
+                recordFound = String.format("ID: '%s' - Name: '%s' - Surname: '%s' - email: '%s'",
                         rs.getString("id_number"),
                         rs.getString("first_name"),
                         rs.getString("last_name"),
@@ -69,7 +69,7 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
     }
 
     @Override
-    public User createFromRow(Integer id, String...values) {
+    public User createFromRow(Integer id, String... values) {
 
         String status = values[0];
         String name = values[1];
@@ -116,8 +116,8 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
     public void save(User user) {
 
         String query = "INSERT INTO users" +
-                       "(first_name, last_name, password, email, status)" +
-                       " VALUES(?,?,?,?,?)";
+                "(first_name, last_name, password, email, status)" +
+                " VALUES(?,?,?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
@@ -133,7 +133,8 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
             e.printStackTrace();
         }
     }
-    public ArrayList<String> getAllMentors (String status){
+
+    public ArrayList<String> getAllMentors(String status) {
         ArrayList<String> foundMentors = new ArrayList<>();
 
         String query = "SELECT * FROM users WHERE status = '" + status + "' ";
@@ -156,7 +157,8 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
         }
         return foundMentors;
     }
-    public ArrayList<String> getMentorDetails (String mentorName){
+
+    public ArrayList<String> getMentorDetails(String mentorName) {
         ArrayList<String> foundMentor = new ArrayList<>();
 
         String query = "SELECT * FROM users WHERE first_name = '" + mentorName + "' ";
@@ -179,5 +181,22 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
 
         }
         return foundMentor;
+    }
+
+    public static Integer getLastId() {
+
+        Integer loadedStudentId = null;
+        String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number)  FROM users)";
+
+        try (Statement st = conn.createStatement()) {
+            ResultSet rs = st.executeQuery(lastId);
+
+            if (rs.next()) {
+                loadedStudentId = rs.getInt("id_number");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return loadedStudentId;
     }
 }

@@ -1,9 +1,11 @@
 package com.school.controllers;
 
 
+import com.school.dao.CourseDAO;
 import com.school.dao.DaoMentor;
 import com.school.dao.DaoStudent;
 import com.school.dao.UserDao;
+import com.school.models.Course;
 import com.school.models.Student;
 import com.school.models.User;
 import com.school.views.MentorView;
@@ -27,7 +29,7 @@ public class MentorController {
     public static void startRequestProcess(String choice){
 
         if(choice.equals("1")){
-            createStudent();
+            getNewStudentInfo();
 
         } else if(choice.equals("2")){
             showCourseInfo();
@@ -52,7 +54,7 @@ public class MentorController {
         }
     }
 
-    public static void createStudent(){
+    public static void getNewStudentInfo(){
 
         String name = MentorView.typeStudentName();
         String surname = MentorView.typeStudentSurname();
@@ -60,10 +62,24 @@ public class MentorController {
         String mail = MentorView.typeStudentMail();
         String status = "student";
 
-        Student student = new Student(name, surname, password, mail, status);
+        CourseController.listAllCourses();
+        Integer id = MentorView.getCourseId();
 
+        createNewStudent(name, surname, password, mail, status, id);
+    }
+
+    public static void createNewStudent(String name, String surname, String password,
+                                        String mail, String status, Integer id){
+
+        Student student = new Student(name, surname, password, mail, status);
+        assignStudentToCourse(student, CourseDAO.createCourseFromDatabase(id));
 
         saveStudent(student);
+    }
+
+    public static void assignStudentToCourse(Student student, Course course){
+
+        student.setCourse(course);
     }
 
     private static void saveStudent(Student student) {
