@@ -35,8 +35,6 @@ public class Wallet implements WalletInterface{
   public void setBalance(Integer bal){
     this.balance = bal;
   }
-//  public void calculateLevel(Integer bal){
-//    this.balance = bal;
-//  }
+
 }
 
