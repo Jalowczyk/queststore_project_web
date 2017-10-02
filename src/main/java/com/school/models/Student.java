@@ -6,15 +6,17 @@ import com.school.controllers.StudentController;
 public class Student extends User {
 
     private Wallet wallet;
+    private Course course;
 
     public Student(){
     }
 
     public Student(String name, String surname, String mail, String password, String status){
         super(name, surname, password, mail, status);
+
         this.wallet = new Wallet();
     }
-    @Override
+
     public void startController(){
         StudentController.startController(this);
     }
@@ -25,5 +27,14 @@ public class Student extends User {
 
     public Wallet getWallet() {
         return wallet;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+
     }
 }
