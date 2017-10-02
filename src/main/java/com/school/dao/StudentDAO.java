@@ -34,7 +34,5 @@ public class StudentDAO extends UserDAO {
             e.printStackTrace();
         }
     }
-
-    public void getAllStudents
 }
 
