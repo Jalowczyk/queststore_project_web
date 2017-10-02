@@ -2,9 +2,9 @@ package com.school.controllers;
 
 
 import com.school.dao.CourseDAO;
-import com.school.dao.DaoMentor;
-import com.school.dao.DaoStudent;
-import com.school.dao.UserDao;
+import com.school.dao.MentorDAO;
+import com.school.dao.StudentDAO;
+import com.school.dao.UserDAO;
 import com.school.models.Course;
 import com.school.models.Student;
 import com.school.models.User;
@@ -16,7 +16,7 @@ public class MentorController {
 
     public static void startController(User mentor){
 
-        DaoMentor myMentor = new DaoMentor(mentor);
+        MentorDAO myMentor = new MentorDAO(mentor);
         //myMentor.loadAllAttributes();
 
         MentorView.welcomeMsg(mentor.getName());
@@ -84,14 +84,14 @@ public class MentorController {
 
     private static void saveStudent(Student student) {
 
-        DaoStudent myStudent = new DaoStudent(student);
+        StudentDAO myStudent = new StudentDAO(student);
         myStudent.save();
     }
 
     public static void showStudentInfo(){
         String table = "users";
         String status = "student";
-        ArrayList<String> studentsList = new UserDao().listSpecifiedData(table, status);
+        ArrayList<String> studentsList = new UserDAO().listSpecifiedData(table, status);
         for(String student : studentsList){
             System.out.println(student);
         }
@@ -121,5 +121,11 @@ public class MentorController {
 
         System.out.println("To be implemented");
     }
+
+    public static void setLvlExperience(){
+
+        System.out.println("To be implemented");
+    }
+
 
 }

@@ -1,6 +1,6 @@
 package com.school.controllers;
 
-import com.school.dao.UserDao;
+import com.school.dao.UserDAO;
 import com.school.models.User;
 import com.school.views.LoginView;
 
@@ -18,7 +18,7 @@ public class LoginController {
 }
     public static void startLoginProcess(String id, String password){
 
-        UserDao dao = new UserDao();
+        UserDAO dao = new UserDAO();
         User user = dao.load(id, password);
         if(user != null) {
             user.startController();

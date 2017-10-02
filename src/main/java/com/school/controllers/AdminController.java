@@ -1,13 +1,11 @@
 package com.school.controllers;
 
-import com.school.dao.DaoMentor;
-import com.school.dao.UserDao;
+import com.school.dao.MentorDAO;
+import com.school.dao.UserDAO;
 import com.school.models.Mentor;
 import com.school.models.User;
 import com.school.views.AdminView;
 import com.school.views.MentorView;
-
-import java.sql.SQLException;
 
 import java.util.ArrayList;
 
@@ -40,9 +38,6 @@ public class AdminController {
         } else if(choice.equals("5")){
             showMentorProfile();
 
-        } else if(choice.equals("6")){
-            setLvlExperience();
-
         } else if(choice.equals("0")){
             System.exit(0);
         }
@@ -69,7 +64,7 @@ public class AdminController {
 
     public static void saveMentor(Mentor mentor){
 
-        DaoMentor myMentor = new DaoMentor(mentor);
+        MentorDAO myMentor = new MentorDAO(mentor);
         myMentor.save();
     }
 
@@ -83,7 +78,7 @@ public class AdminController {
         Integer id = MentorView.getMentorId();
         String name = MentorView.typeStudentName();
 
-        DaoMentor.editMentor(name, id);
+        MentorDAO.editMentor(name, id);
         System.out.println("details have changed");
     }
 
@@ -95,21 +90,14 @@ public class AdminController {
     public static void showMentorProfile(){
 
         String status = "mentor";
-        ArrayList<String> mentorsList = new UserDao().getAllMentors(status);
+        ArrayList<String> mentorsList = new UserDAO().getAllMentors(status);
         for(String mentor : mentorsList){
             System.out.println(mentor);
         }
         String mentor = AdminView.typeMentorName();
-        ArrayList<String> mentorList = new UserDao().getMentorDetails(mentor);
+        ArrayList<String> mentorList = new UserDAO().getMentorDetails(mentor);
         for(String mentor1 : mentorList){
             System.out.println(mentor1);
         }
     }
-
-    public static void setLvlExperience(){
-
-        System.out.println("To be implemented");
-    }
-
-
 }
