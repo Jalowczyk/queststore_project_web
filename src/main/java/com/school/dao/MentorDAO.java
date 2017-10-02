@@ -2,15 +2,14 @@ package com.school.dao;
 
 import com.school.models.User;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DaoMentor extends UserDao {
+public class MentorDAO extends UserDAO {
 
     private User mentor;
 
-    public DaoMentor(User mentor) { this.mentor = mentor; }
+    public MentorDAO(User mentor) { this.mentor = mentor; }
     
     public static void editMentor(String first_name, Integer id) {
 

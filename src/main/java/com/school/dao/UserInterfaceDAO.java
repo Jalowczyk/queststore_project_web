@@ -4,7 +4,7 @@ import com.school.models.User;
 
 import java.io.IOException;
 
-public interface DAOUserInterface {
+public interface UserInterfaceDAO {
 
     User load(String id, String password);
     void save(User user);
