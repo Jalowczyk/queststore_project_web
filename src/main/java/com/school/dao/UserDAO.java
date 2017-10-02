@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class UserDao extends AbstractDao implements DAOUserInterface {
+public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
 
     private static final String tableName = "users";
     private static Map<String, User> usersDict = new HashMap<>();
 
-    public UserDao() {
+    public UserDAO() {
 
         super(tableName);
         setUsersDict();
@@ -183,10 +183,10 @@ public class UserDao extends AbstractDao implements DAOUserInterface {
         return foundMentor;
     }
 
-    public static Integer getLastId() {
+    public static Integer getLastCreatedId() {
 
         Integer loadedStudentId = null;
-        String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number)  FROM users)";
+        String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number) FROM users)";
 
         try (Statement st = conn.createStatement()) {
             ResultSet rs = st.executeQuery(lastId);

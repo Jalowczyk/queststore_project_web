@@ -3,12 +3,12 @@ package com.school.dao;
 import java.sql.*;
 
 
-public abstract class AbstractDao{
+public abstract class AbstractDAO {
 
     private final String tableName;
     protected static Connection conn;
 
-    public AbstractDao(String tableName) {
+    public AbstractDAO(String tableName) {
 
         this.tableName = tableName;
         conn = connectToDataBase(this.tableName);

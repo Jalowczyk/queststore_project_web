@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CourseDAO extends AbstractDao  {
+public class CourseDAO extends AbstractDAO {
 
     private static final String tableName = "courses";
 
@@ -78,7 +78,6 @@ public class CourseDAO extends AbstractDao  {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
             statement.setString(2, course.getName());
-
             statement.executeUpdate();
 
         } catch (SQLException e) {

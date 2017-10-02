@@ -1,17 +1,14 @@
 package com.school.dao;
 import com.school.models.Student;
-import com.school.models.User;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-public class DaoStudent extends UserDao {
+public class StudentDAO extends UserDAO {
 
     private Student student;
 
-    public DaoStudent(Student student) {
+    public StudentDAO(Student student) {
         this.student = student;
     }
 
@@ -28,7 +25,7 @@ public class DaoStudent extends UserDao {
 
         try(PreparedStatement statement = conn.prepareStatement(query)){
 
-            statement.setInt(1, UserDao.getLastId());
+            statement.setInt(1, UserDAO.getLastCreatedId());
             statement.setInt(2, student.getCourse().getId());
 
             statement.executeUpdate();
@@ -37,5 +34,7 @@ public class DaoStudent extends UserDao {
             e.printStackTrace();
         }
     }
+
+    public void getAllStudents
 }
 
