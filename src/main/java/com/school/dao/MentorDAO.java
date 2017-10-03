@@ -25,6 +25,6 @@ public class MentorDAO extends UserDAO {
 
     public void save() {
 
-        saveUser(mentor);
+        save(mentor);
     }
 }

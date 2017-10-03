@@ -12,7 +12,7 @@ public class MentorView extends AbstractView{
         do {
             System.out.println("Please choose an option: ");
             inputNum = scanForNumbers.nextInt();
-        } while (inputNum <0 | inputNum >8);
+        } while (inputNum <0 | inputNum >7);
 
         return Integer.toString(inputNum);
     }
@@ -24,8 +24,7 @@ public class MentorView extends AbstractView{
                         + "\n4. Manage Artefacts"
                         + "\n5. Show info about all Students"
                         + "\n6. Mark Student's Artefacts"
-                        + "\n7. Mark Student's Quests"
-                        + "\n8. Set level experience"
+                        + "\n6. Mark Student's Quests"
                         + "\n0. Exit";
                         
         System.out.println(menu);    
@@ -69,8 +68,6 @@ public class MentorView extends AbstractView{
         Integer id = scan.nextInt();
         return id;
     }
-
-
 
 
 }   
