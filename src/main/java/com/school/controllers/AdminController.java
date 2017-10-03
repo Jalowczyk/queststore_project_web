@@ -92,16 +92,12 @@ public class AdminController {
         ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("mentor");
 
         for(User mentor : mentorsList){
-            System.out.println(mentor.getId());
-            System.out.println(mentor.getName());
-            System.out.println(mentor.getSurname());
-
+            MentorView.showStudent(mentor);
         }
         Integer id = AdminView.typeMentorId();
         User user = new UserDAO().getUserById(id);
 
-        System.out.println(user.getName());
-        System.out.println(user.getSurname());
+        MentorView.showStudent(user);
         }
     }
 
