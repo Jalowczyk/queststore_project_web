@@ -15,7 +15,6 @@ public class MentorController {
     public static void startController(User mentor) {
 
         MentorDAO myMentor = new MentorDAO(mentor);
-        //myMentor.loadAllAttributes();
 
         MentorView.welcomeMsg(mentor.getName());
         MentorView.showMenu();
@@ -26,13 +25,12 @@ public class MentorController {
 
     public static void startRequestProcess(String choice) {
 
-        if (choice.equals("1")) {
-
-            getNewStudentInfo();
+        if(choice.equals("1")) {
+            createNewStudentProcess();
         }
 
         if (choice.equals("2")) {
-            showCourseInfo();
+            showAvailableCourses();
         }
         if (choice.equals("3")) {
             manageQuests(); //start QuestController
@@ -61,7 +59,7 @@ public class MentorController {
         }
     }
 
-    public static void getNewStudentInfo() {
+    public static void createNewStudentProcess(){
 
         String name = MentorView.typeStudentName();
         String surname = MentorView.typeStudentSurname();
@@ -69,17 +67,17 @@ public class MentorController {
         String mail = MentorView.typeStudentMail();
         String status = "student";
 
-        CourseController.listAllCourses();
+        showAvailableCourses();
         Integer id = MentorView.getCourseId();
 
-        createNewStudent(name, surname, password, mail, status, id);
+        createNewStudentObject(name, surname, password, mail, status, id);
     }
 
-    public static void createNewStudent(String name, String surname, String password,
-                                        String mail, String status, Integer id) {
+    static void createNewStudentObject(String name, String surname, String password,
+                                              String mail, String status, Integer id){
 
         Student student = new Student(name, surname, password, mail, status);
-        assignStudentToCourse(student, CourseDAO.createCourseFromDatabase(id));
+        assignStudentToCourse(student, CourseDAO.getCourseById(id));
 
         saveStudent(student);
     }
@@ -102,15 +100,14 @@ public class MentorController {
 
         String status = "student";
         ArrayList<User> studentsList = new UserDAO().getAllUsersByStatus(status);
-        for (User student : studentsList) {
-            System.out.println(student);
-        }
+        MentorView.showAllStudents(studentsList);
 
     }
 
-    public static void showCourseInfo() {
+    public static void showAvailableCourses() {
 
-        CourseController.listAllCourses();
+        ArrayList<Course> courses = new CourseDAO().getAllCourses();
+        MentorView.showAllCourses(courses);
     }
 
     public static void manageQuests() {

@@ -25,32 +25,16 @@ public class Quest {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     public Integer getPrize() {
         return prize;
-    }
-
-    public void setPrize(Integer prize) {
-        this.prize = prize;
     }
 
     public String getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Integer getId() {

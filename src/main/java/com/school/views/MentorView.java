@@ -1,5 +1,6 @@
 package com.school.views;
 
+import com.school.models.Course;
 import com.school.models.User;
 
 import java.util.ArrayList;
@@ -110,6 +111,21 @@ public class MentorView extends AbstractView {
         String category = scan.nextLine();
 
         return category;
+    }
+
+    public static void showAllCourses(ArrayList<Course> courses) {
+
+        for (Course course : courses) {
+            System.out.println(course.getId() + " " + course.getName());
+        }
+    }
+
+    public static void showAllStudents(ArrayList<User> students){
+
+        for (User student: students) {
+            System.out.println(student.getName() + " " + student.getSurname());
+
+        }
     }
 }
 

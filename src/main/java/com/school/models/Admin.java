@@ -12,9 +12,6 @@ public class Admin extends User {
     }
 
     @Override
-    boolean hasStudentRole() {return false;}
-
-    @Override
     public void startController(){
         AdminController.startController(this);
     }

@@ -11,9 +11,6 @@ public class Mentor extends User {
     }
 
     @Override
-    boolean hasStudentRole() {return false;}
-
-    @Override
     public void startController(){
         MentorController.startController(this);
     }

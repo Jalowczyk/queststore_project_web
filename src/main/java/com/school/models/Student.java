@@ -20,8 +20,6 @@ public class Student extends User {
 
     }
 
-    boolean hasStudentRole() {return true;}
-
     public void startController(){
         StudentController.startController(this);
     }

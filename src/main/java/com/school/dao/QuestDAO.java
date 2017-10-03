@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 public class QuestDAO extends DBConnection {
 
@@ -18,7 +17,7 @@ public class QuestDAO extends DBConnection {
         super(tableName);
     }
 
-    public static Quest createCourseFromDatabase(Integer id) {
+    public static Quest createQuestFromDatabase(Integer id) {
 
         Quest course = null;
 
@@ -27,7 +26,7 @@ public class QuestDAO extends DBConnection {
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
-            if(rs.next()){
+            if (rs.next()) {
                 course = createQuestFromResultSet(rs);
             }
 
@@ -52,7 +51,7 @@ public class QuestDAO extends DBConnection {
         return quest;
     }
 
-    public void saveQuest(Quest quest){
+    public void saveQuest(Quest quest) {
 
         String query = "INSERT INTO quests (title, info, prize, quest_category) VALUES(?,?,?,?)";
 
@@ -70,8 +69,5 @@ public class QuestDAO extends DBConnection {
             e.printStackTrace();
         }
     }
-
-//    public ArrayList<Quest> getAllQuests(){
-
-    }
+}
 

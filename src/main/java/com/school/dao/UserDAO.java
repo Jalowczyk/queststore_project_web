@@ -22,7 +22,7 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
     public User load(String id, String password) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
-                " WHERE id_number = '" + id + "' AND password = '" + password + "'";
+                       " WHERE id_number = '" + id + "' AND password = '" + password + "'";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -132,18 +132,18 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
 
     public static Integer getLastUserCreatedId() {
 
-        Integer loadedStudentId = null;
+        Integer loadedUserId = null;
         String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number) FROM users)";
 
         try (Statement st = conn.createStatement()) {
             ResultSet rs = st.executeQuery(lastId);
 
             if (rs.next()) {
-                loadedStudentId = rs.getInt("id_number");
+                loadedUserId = rs.getInt("id_number");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return loadedStudentId;
+        return loadedUserId;
     }
 }

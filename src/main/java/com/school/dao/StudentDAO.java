@@ -1,12 +1,10 @@
 package com.school.dao;
 import com.school.models.Student;
 
-import javax.swing.plaf.nimbus.State;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
 
 public class StudentDAO extends UserDAO {
 
@@ -17,6 +15,7 @@ public class StudentDAO extends UserDAO {
     }
 
     public void save() {
+
         saveUser(student);
         saveStudentRecords();
     }
@@ -27,8 +26,6 @@ public class StudentDAO extends UserDAO {
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
-
-            // System.out.println()
             statement.setInt(1, UserDAO.getLastUserCreatedId());
             statement.setInt(2, student.getCourse().getId());
             statement.setInt(3, WalletDAO.getLastWalletCreatedId());

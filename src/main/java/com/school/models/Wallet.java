@@ -54,6 +54,7 @@ public class Wallet implements WalletInterface{
   }
 
   private void calculateLevel() {
+
     System.out.println("To be implemented");
   }
 

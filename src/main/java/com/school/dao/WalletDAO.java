@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 import com.school.models.Wallet;
 
-
 public class WalletDAO extends DBConnection {
+
 
     private static final String tableName = "wallets";
 
@@ -48,7 +48,6 @@ public class WalletDAO extends DBConnection {
 
             if(rs.next()) {
                 wallet = createWalletFromResultSet(rs);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,6 +75,7 @@ public class WalletDAO extends DBConnection {
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setInt(1, wallet.getExperience());
             statement.setInt(2, wallet.getBalance());
+
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -100,4 +100,3 @@ public class WalletDAO extends DBConnection {
         return loadedWalletId;
     }
 }
-

@@ -17,10 +17,10 @@ public class CourseDAO extends DBConnection {
         super(tableName);
     }
 
-    public ArrayList<String> listSpecifiedData() {
+    public ArrayList<Course> getAllCourses() {
 
-        String recordFound;
-        ArrayList<String> foundData = new ArrayList<>();
+        Course course = null;
+        ArrayList<Course> courses = new ArrayList<>();
 
         String query = "SELECT * FROM " + tableName + ";";
 
@@ -28,25 +28,25 @@ public class CourseDAO extends DBConnection {
              ResultSet rs = st.executeQuery(query)) {
 
             while (rs.next()) {
-                recordFound = String.format("ID: %d - '%s'",
-                              rs.getInt("crs_id"),
-                              rs.getString("course_name"));
 
-                foundData.add(recordFound);
+                course = createCourseFromResultSet(rs);
+
+                courses.add(course);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
 
+        } finally {
+            return courses;
         }
-        return foundData;
     }
 
-    public static Course createCourseFromDatabase(Integer id) {
+    public static Course getCourseById(Integer id) {
 
         Course course = null;
 
-        String query = "SELECT * FROM courses WHERE crs_id = " + id + ";";
+        String query = "SELECT * FROM courses WHERE id = " + id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -57,23 +57,27 @@ public class CourseDAO extends DBConnection {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            return course;
         }
-        return course;
     }
 
 
     public static Course createCourseFromResultSet(ResultSet rs) throws SQLException {
 
-        Integer id = rs.getInt("crs_id");
+        Integer id = rs.getInt("id");
         String name = rs.getString("course_name");
 
-        return new Course(name, id);
+        Course course = new Course(name);
+        course.setId(id);
+
+        return course;
 
     }
 
     public void saveCourse(Course course) {
 
-        String query = "INSERT INTO course (course_name) VALUES(?)";
+        String query = "INSERT INTO courses (course_name) VALUES(?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
