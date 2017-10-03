@@ -77,7 +77,8 @@ public class MentorController {
                                               String mail, String status, Integer id){
 
         Student student = new Student(name, surname, password, mail, status);
-        assignStudentToCourse(student, CourseDAO.getCourseById(id));
+        CourseDAO courseDAO = new CourseDAO();
+        assignStudentToCourse(student, courseDAO.getCourseById(id));
 
         saveStudent(student);
     }
