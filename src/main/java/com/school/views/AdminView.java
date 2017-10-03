@@ -50,19 +50,16 @@ public class AdminView extends AbstractView{
         return password;
     }
 
-    public static Integer typeMentorId() {
+    public static String typeMentorId() {
 
         System.out.println("Please provide the id for mentor: ");
-        Integer id = scan.nextInt();
+        String id = scan.nextLine();
         return id;
     }
 
-    public static String typeMentorEmail(){
-
-        System.out.println("Please provide the mail of mentor: ");
-        String email = scan.nextLine();
-        return email;
+    public static String typeMentorMail(){
+        System.out.println("Please provide the mentor's mail: ");
+        String mail = scan.nextLine();
+        return mail;
     }
-
-
 }   

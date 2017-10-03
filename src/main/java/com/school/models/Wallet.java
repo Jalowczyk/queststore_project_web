@@ -11,7 +11,6 @@ public class Wallet implements WalletInterface{
   Integer balance = 0;
 
   public Wallet(){
-
   }
 
   public String vievWallet(){

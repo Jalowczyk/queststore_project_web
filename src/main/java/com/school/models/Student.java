@@ -8,7 +8,6 @@ public class Student extends User {
     private Wallet wallet;
     private Course course;
 
-
     public Student(){
     }
 
@@ -36,6 +35,6 @@ public class Student extends User {
 
     public void setCourse(Course course) {
         this.course = course;
-    }
 
+    }
 }

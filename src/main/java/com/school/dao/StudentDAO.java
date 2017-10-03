@@ -15,7 +15,7 @@ public class StudentDAO extends UserDAO {
 
     public void save() {
 
-        saveUser(student);
+        save(student);
         saveCourse();
     }
 
@@ -34,6 +34,7 @@ public class StudentDAO extends UserDAO {
             e.printStackTrace();
         }
     }
-    }
 
+    public void getAllStudents
+}
 
