@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CourseDAO extends AbstractDAO {
+public class CourseDAO extends DBConnection {
 
     private static final String tableName = "courses";
 
