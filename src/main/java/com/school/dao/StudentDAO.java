@@ -12,21 +12,20 @@ public class StudentDAO extends UserDAO {
         this.student = student;
     }
 
-
     public void save() {
-
         save(student);
-        saveCourse();
+
     }
 
-    public void saveCourse() {
+    public void saveStudentRecords() {
 
-        String query = "INSERT INTO students (student_id, course_id) VALUES(?,?)";
+        String query = "INSERT INTO students (student_id, course_id, wallet_id) VALUES(?,?,?)";
 
         try(PreparedStatement statement = conn.prepareStatement(query)){
 
-            statement.setInt(1, UserDAO.getLastCreatedId());
+            statement.setInt(1, UserDAO.getLastUserCreatedId());
             statement.setInt(2, student.getCourse().getId());
+            statement.setInt(3, WalletDAO.getLastWalletCreatedId());
 
             statement.executeUpdate();
 
@@ -35,6 +34,6 @@ public class StudentDAO extends UserDAO {
         }
     }
 
-    public void getAllStudents
+
 }
 
