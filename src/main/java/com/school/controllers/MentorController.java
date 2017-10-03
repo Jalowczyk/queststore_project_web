@@ -1,13 +1,11 @@
 package com.school.controllers;
 
 
-import com.school.dao.CourseDAO;
-import com.school.dao.MentorDAO;
-import com.school.dao.StudentDAO;
-import com.school.dao.UserDAO;
+import com.school.dao.*;
 import com.school.models.Course;
 import com.school.models.Student;
 import com.school.models.User;
+import com.school.models.Quest;
 import com.school.views.MentorView;
 
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ public class MentorController {
         }
 
         if (choice.equals("2")) {
-
             showCourseInfo();
         }
         if (choice.equals("3")) {
@@ -95,6 +92,9 @@ public class MentorController {
     private static void saveStudent(Student student) {
 
         StudentDAO myStudent = new StudentDAO(student);
+        WalletDAO myWallet = new WalletDAO();
+
+        myWallet.saveWallet(student.getWallet());
         myStudent.save();
     }
 
@@ -115,7 +115,15 @@ public class MentorController {
 
     public static void manageQuests() {
 
-        System.out.println("To be implemented");
+        String title = MentorView.getQuestTitle();
+        String info = MentorView.getQuestInfo();
+        Integer prize = MentorView.getQuestPrize();
+        String category = MentorView.getQuestCategory();
+
+        Quest quest = new Quest(title, info, prize, category);
+        QuestDAO questDAO = new QuestDAO();
+
+        questDAO.saveQuest(quest);
     }
 
     public static void manageArtefacts() {
