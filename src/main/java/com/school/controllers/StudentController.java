@@ -1,12 +1,18 @@
 package com.school.controllers;
 
+import com.school.dao.StudentDAO;
+import com.school.dao.WalletDAO;
 import com.school.models.Student;
-import com.school.models.User;
+import com.school.models.Wallet;
 import com.school.views.StudentView;
+
+import java.util.HashMap;
 
 public class StudentController {
 
     public static void startController(Student student) {
+
+        setUpAttributes(student);
 
         StudentView.welcomeMsg(student.getName());
         StudentView.showMenu();
@@ -48,6 +54,15 @@ public class StudentController {
     public static void goToStore() {
 
         System.out.println("To be implemented.");
+    }
+
+    public static void setUpAttributes(Student student){
+
+        StudentDAO studentDAO = new StudentDAO(student);
+        WalletDAO walletDAO = new WalletDAO();
+
+        Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
+        student.setWallet(myWallet);
     }
 
 }
