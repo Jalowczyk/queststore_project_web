@@ -1,10 +1,7 @@
 package com.school.controllers;
 
 
-import com.school.dao.CourseDAO;
-import com.school.dao.MentorDAO;
-import com.school.dao.StudentDAO;
-import com.school.dao.UserDAO;
+import com.school.dao.*;
 import com.school.models.Course;
 import com.school.models.Student;
 import com.school.models.User;
@@ -29,7 +26,7 @@ public class MentorController {
     public static void startRequestProcess(String choice){
 
         if(choice.equals("1")){
-            getNewStudentInfo();
+            createNewStudentProcess();
 
         } else if(choice.equals("2")){
             showCourseInfo();
@@ -54,7 +51,7 @@ public class MentorController {
         }
     }
 
-    public static void getNewStudentInfo(){
+    public static void createNewStudentProcess(){
 
         String name = MentorView.typeStudentName();
         String surname = MentorView.typeStudentSurname();
@@ -65,14 +62,14 @@ public class MentorController {
         CourseController.listAllCourses();
         Integer id = MentorView.getCourseId();
 
-        createNewStudent(name, surname, password, mail, status, id);
+        createNewStudentObject(name, surname, password, mail, status, id);
     }
 
-    public static void createNewStudent(String name, String surname, String password,
-                                        String mail, String status, Integer id){
+    public static void createNewStudentObject(String name, String surname, String password,
+                                              String mail, String status, Integer id){
 
         Student student = new Student(name, surname, password, mail, status);
-        assignStudentToCourse(student, CourseDAO.createCourseFromDatabase(id));
+        assignStudentToCourse(student, CourseDAO.getCourseById(id));
 
         saveStudent(student);
     }
@@ -85,7 +82,11 @@ public class MentorController {
     private static void saveStudent(Student student) {
 
         StudentDAO myStudent = new StudentDAO(student);
+        WalletDAO myWallet = new WalletDAO();
         myStudent.save();
+        myWallet.saveWallet(student.getWallet());
+        myStudent.saveStudentRecords();
+
     }
 
     public static void showStudentInfo(){
