@@ -15,8 +15,12 @@ public class Student extends User {
     public Student(String name, String surname, String mail, String password, String status){
         super(name, surname, password, mail, status);
 
+
         this.wallet = new Wallet();
+
     }
+
+    boolean hasStudentRole() {return true;}
 
     public void startController(){
         StudentController.startController(this);
