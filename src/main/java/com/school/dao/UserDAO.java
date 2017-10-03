@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
+public class UserDAO extends DBConnection implements UserInterfaceDAO {
 
     private static final String tableName = "users";
 
@@ -75,8 +75,8 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
     public void saveUser(User user) {
 
         String query = "INSERT INTO users" +
-                "(first_name, last_name, password, email, status)" +
-                " VALUES(?,?,?,?,?)";
+                       "(first_name, last_name, password, email, status)" +
+                       " VALUES(?,?,?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
@@ -130,7 +130,7 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
         return user;
     }
 
-    public static Integer getLastCreatedId() {
+    public static Integer getLastUserCreatedId() {
 
         Integer loadedStudentId = null;
         String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number) FROM users)";
