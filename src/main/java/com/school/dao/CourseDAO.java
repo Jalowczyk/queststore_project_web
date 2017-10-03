@@ -42,11 +42,11 @@ public class CourseDAO extends DBConnection {
         }
     }
 
-    public static Course getCourseById(Integer id) {
+    public Course getCourseById(Integer id) {
 
         Course course = null;
 
-        String query = "SELECT * FROM courses WHERE id = " + id + ";";
+        String query = "SELECT * FROM courses WHERE crs_id = " + id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -65,7 +65,7 @@ public class CourseDAO extends DBConnection {
 
     public static Course createCourseFromResultSet(ResultSet rs) throws SQLException {
 
-        Integer id = rs.getInt("id");
+        Integer id = rs.getInt("crs_id");
         String name = rs.getString("course_name");
 
         Course course = new Course(name);
@@ -81,7 +81,7 @@ public class CourseDAO extends DBConnection {
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
-            statement.setString(2, course.getName());
+            statement.setString(1, course.getName());
             statement.executeUpdate();
 
         } catch (SQLException e) {
