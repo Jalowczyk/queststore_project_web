@@ -7,32 +7,28 @@ import com.school.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
-public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
+public class UserDAO extends DBConnection implements UserInterfaceDAO {
 
     private static final String tableName = "users";
-    private static Map<String, User> usersDict = new HashMap<>();
 
     public UserDAO() {
 
         super(tableName);
-        setUsersDict();
     }
 
     @Override
     public User load(String id, String password) {
 
         String query = "SELECT first_name, last_name, password, id_number, email, status FROM users" +
-                " WHERE id_number = '" + id + "' AND password = '" + password + "'";
+                       " WHERE id_number = '" + id + "' AND password = '" + password + "'";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
             if (rs.next()) {
-                return createUser(rs);
+                return getUser(rs);
             }
 
         } catch (SQLException e) {
@@ -42,56 +38,7 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
         return null;
     }
 
-    public ArrayList<String> listSpecifiedData(String table, String status) {
-        ArrayList<String> foundData = new ArrayList<>();
-
-        String query = "SELECT * FROM " + table + " WHERE status = '" + status + "';";
-
-        try (Statement st = conn.createStatement();
-             ResultSet rs = st.executeQuery(query)) {
-
-            while (rs.next()) {
-                String recordFound;
-                recordFound = String.format("ID: '%s' - Name: '%s' - Surname: '%s' - email: '%s'",
-                        rs.getString("id_number"),
-                        rs.getString("first_name"),
-                        rs.getString("last_name"),
-                        rs.getString("email"));
-
-                foundData.add(recordFound);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        }
-        return foundData;
-    }
-
-    @Override
-    public User createFromRow(Integer id, String... values) {
-
-        String status = values[0];
-        String name = values[1];
-        String surname = values[2];
-        String password = values[3];
-        String mail = values[4];
-
-        User user;
-
-        user = usersDict.get(status);
-
-        user.setName(name);
-        user.setSurname(surname);
-        user.setPassword(password);
-        user.setMail(mail);
-        user.setId(id);
-
-        return user;
-    }
-
-
-    public User createUser(ResultSet rs) throws SQLException {
+    public User getUser(ResultSet rs) throws SQLException {
 
         String name = rs.getString("first_name");
         String surname = rs.getString("last_name");
@@ -100,24 +47,36 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
         String mail = rs.getString("email");
         String status = rs.getString("status");
 
-        String values[] = {status, name, surname, password, mail};
+        User user = getUserByStatus(status);
 
-        return createFromRow(idNum, values);
+        user.setName(name);
+        user.setSurname(surname);
+        user.setPassword(password);
+        user.setMail(mail);
+        user.setId(idNum);
 
+        return user;
     }
 
-    public static void setUsersDict() {
+    public User getUserByStatus(String status) {
 
-        usersDict.put("admin", new Admin());
-        usersDict.put("mentor", new Mentor());
-        usersDict.put("student", new Student());
+        if(status.equals("admin")){
+            return new Admin();
+        }
+        if(status.equals("mentor")){
+            return new Mentor();
+        }
+        if(status.equals("student")){
+            return new Student();
+        }
+        return null;
     }
 
-    public void save(User user) {
+    public void saveUser(User user) {
 
         String query = "INSERT INTO users" +
-                "(first_name, last_name, password, email, status)" +
-                " VALUES(?,?,?,?,?)";
+                       "(first_name, last_name, password, email, status)" +
+                       " VALUES(?,?,?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
@@ -134,69 +93,57 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
         }
     }
 
-    public ArrayList<String> getAllMentors(String status) {
-        ArrayList<String> foundMentors = new ArrayList<>();
+    public ArrayList<User> getAllUsersByStatus(String status) {
+
+        ArrayList<User> foundUsers = new ArrayList<>();
+        User user;
 
         String query = "SELECT * FROM users WHERE status = '" + status + "' ";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
-
-            while (rs.next()) {
-                String recordFound;
-                recordFound = String.format("%s - %s ",
-                        rs.getString("first_name"),
-                        rs.getString("last_name"));
-
-                foundMentors.add(recordFound);
+             while(rs.next()){
+                user = getUser(rs);
+                foundUsers.add(user);
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
-        return foundMentors;
+
+        return foundUsers;
     }
 
-    public ArrayList<String> getMentorDetails(String mentorName) {
-        ArrayList<String> foundMentor = new ArrayList<>();
+    public User getUserById(Integer userId) {
 
-        String query = "SELECT * FROM users WHERE first_name = '" + mentorName + "' ";
+        User user = null;
+        String query = "SELECT * FROM users WHERE id_number = '" + userId + "' ";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
-
-            while (rs.next()) {
-                String recordFound;
-                recordFound = String.format("%s - %s - %s - %s",
-                        rs.getString("first_name"),
-                        rs.getString("last_name"),
-                        rs.getString("id_number"),
-                        rs.getString("email"));
-                foundMentor.add(recordFound);
-            }
+             user = getUser(rs);
+             return user;
 
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        return foundMentor;
+        return user;
     }
 
-    public static Integer getLastCreatedId() {
+    public static Integer getLastUserCreatedId() {
 
-        Integer loadedStudentId = null;
+        Integer loadedUserId = null;
         String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number) FROM users)";
 
         try (Statement st = conn.createStatement()) {
             ResultSet rs = st.executeQuery(lastId);
 
             if (rs.next()) {
-                loadedStudentId = rs.getInt("id_number");
+                loadedUserId = rs.getInt("id_number");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return loadedStudentId;
+        return loadedUserId;
     }
 }

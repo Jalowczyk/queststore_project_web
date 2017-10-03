@@ -1,23 +1,20 @@
 package com.school.controllers;
 
 
-import com.school.dao.CourseDAO;
-import com.school.dao.MentorDAO;
-import com.school.dao.StudentDAO;
-import com.school.dao.UserDAO;
+import com.school.dao.*;
 import com.school.models.Course;
 import com.school.models.Student;
 import com.school.models.User;
+import com.school.models.Quest;
 import com.school.views.MentorView;
 
 import java.util.ArrayList;
 
 public class MentorController {
 
-    public static void startController(User mentor){
+    public static void startController(User mentor) {
 
         MentorDAO myMentor = new MentorDAO(mentor);
-        //myMentor.loadAllAttributes();
 
         MentorView.welcomeMsg(mentor.getName());
         MentorView.showMenu();
@@ -26,35 +23,43 @@ public class MentorController {
         startRequestProcess(choice);
     }
 
-    public static void startRequestProcess(String choice){
+    public static void startRequestProcess(String choice) {
 
-        if(choice.equals("1")){
-            getNewStudentInfo();
+        if(choice.equals("1")) {
+            createNewStudentProcess();
+        }
 
-        } else if(choice.equals("2")){
-            showCourseInfo();
-
-        } else if(choice.equals("3")){
+        if (choice.equals("2")) {
+            showAvailableCourses();
+        }
+        if (choice.equals("3")) {
             manageQuests(); //start QuestController
 
-        } else if(choice.equals("4")){
+        }
+        if (choice.equals("4")) {
             manageArtefacts(); //start ArtefactController
 
-        } else if(choice.equals("5")){
+        }
+        if (choice.equals("5")) {
             showStudentInfo(); //summary of student wallet, bought artefacts
 
-        } else if(choice.equals("6")){
+        }
+        if (choice.equals("6")) {
             markStudentArtefacts();
-
-        } else if(choice.equals("7")){
+        }
+        if (choice.equals("7")) {
             markStudentQuest();
-
-        } else if(choice.equals("0")){
+        }
+        if (choice.equals("8")) {
+            System.out.println("sads");
+            setLvlExperience();
+        }
+        if (choice.equals("0")) {
             System.exit(0);
         }
     }
 
-    public static void getNewStudentInfo(){
+    public static void createNewStudentProcess(){
 
         String name = MentorView.typeStudentName();
         String surname = MentorView.typeStudentSurname();
@@ -62,22 +67,22 @@ public class MentorController {
         String mail = MentorView.typeStudentMail();
         String status = "student";
 
-        CourseController.listAllCourses();
+        showAvailableCourses();
         Integer id = MentorView.getCourseId();
 
-        createNewStudent(name, surname, password, mail, status, id);
+        createNewStudentObject(name, surname, password, mail, status, id);
     }
 
-    public static void createNewStudent(String name, String surname, String password,
-                                        String mail, String status, Integer id){
+    static void createNewStudentObject(String name, String surname, String password,
+                                              String mail, String status, Integer id){
 
         Student student = new Student(name, surname, password, mail, status);
-        assignStudentToCourse(student, CourseDAO.createCourseFromDatabase(id));
+        assignStudentToCourse(student, CourseDAO.getCourseById(id));
 
         saveStudent(student);
     }
 
-    public static void assignStudentToCourse(Student student, Course course){
+    public static void assignStudentToCourse(Student student, Course course) {
 
         student.setCourse(course);
     }
@@ -85,47 +90,70 @@ public class MentorController {
     private static void saveStudent(Student student) {
 
         StudentDAO myStudent = new StudentDAO(student);
+        WalletDAO myWallet = new WalletDAO();
+
+        myWallet.saveWallet(student.getWallet());
         myStudent.save();
     }
 
-    public static void showStudentInfo(){
-        String table = "users";
+    public static void showStudentInfo() {
+
         String status = "student";
-        ArrayList<String> studentsList = new UserDAO().listSpecifiedData(table, status);
-        for(String student : studentsList){
-            System.out.println(student);
+        ArrayList<User> studentsList = new UserDAO().getAllUsersByStatus(status);
+        MentorView.showAllStudents(studentsList);
+
+    }
+
+    public static void showAvailableCourses() {
+
+        ArrayList<Course> courses = new CourseDAO().getAllCourses();
+        MentorView.showAllCourses(courses);
+    }
+
+    public static void manageQuests() {
+
+        String title = MentorView.getQuestTitle();
+        String info = MentorView.getQuestInfo();
+        Integer prize = MentorView.getQuestPrize();
+        String category = MentorView.getQuestCategory();
+
+        Quest quest = new Quest(title, info, prize, category);
+        QuestDAO questDAO = new QuestDAO();
+
+        questDAO.saveQuest(quest);
+    }
+
+    public static void manageArtefacts() {
+
+        System.out.println("To be implemented");
+    }
+
+    public static void markStudentArtefacts() {
+
+        System.out.println("To be implemented");
+    }
+
+    public static void markStudentQuest() {
+
+        System.out.println("To be implemented");
+    }
+
+    public static void setLvlExperience() {
+
+        UserDAO dao = new UserDAO();
+        ArrayList<User> students = dao.getAllUsersByStatus("student");
+        Integer id;
+
+        for (User student : students) {
+            System.out.println(student.getName());
+            System.out.println(student.getId());
         }
+           id = MentorView.typeUserId();
 
-    }
-    public static void showCourseInfo(){
+           User user = dao.getUserById(id);
 
-        CourseController.listAllCourses();
-    }
-
-    public static void manageQuests(){
-
-        System.out.println("To be implemented");
-    }
-
-    public static void manageArtefacts(){
-
-        System.out.println("To be implemented");
-    }
-
-    public static void markStudentArtefacts(){
-
-        System.out.println("To be implemented");
-    }
-
-    public static void markStudentQuest(){
-
-        System.out.println("To be implemented");
-    }
-
-    public static void setLvlExperience(){
-
-        System.out.println("To be implemented");
+        }
     }
 
 
-}
+

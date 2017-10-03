@@ -51,7 +51,7 @@ public class AdminController {
         String name = AdminView.typeMentorName();
         String surname = AdminView.typeMentorSurname();
         String password = AdminView.typeMentorPassword();
-        String mail = AdminView.typeMentorMail();
+        String mail = AdminView.typeMentorEmail();
         String status = "mentor";
 
         Mentor mentor = new Mentor(name, surname, password, mail, status);
@@ -89,15 +89,15 @@ public class AdminController {
 
     public static void showMentorProfile(){
 
-        String status = "mentor";
-        ArrayList<String> mentorsList = new UserDAO().getAllMentors(status);
-        for(String mentor : mentorsList){
-            System.out.println(mentor);
+        ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("mentor");
+
+        for(User mentor : mentorsList){
+            MentorView.showStudent(mentor);
         }
-        String mentor = AdminView.typeMentorName();
-        ArrayList<String> mentorList = new UserDAO().getMentorDetails(mentor);
-        for(String mentor1 : mentorList){
-            System.out.println(mentor1);
+        Integer id = AdminView.typeMentorId();
+        User user = new UserDAO().getUserById(id);
+
+        MentorView.showStudent(user);
         }
     }
-}
+

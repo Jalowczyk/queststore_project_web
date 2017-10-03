@@ -5,9 +5,9 @@ public class Course {
     private String name;
     private Integer id;
 
-    public Course(String name, Integer id) {
+    public Course(String name) {
         this.name = name;
-        this.id = id;
+
     }
 
     public String getName() {
@@ -25,8 +25,5 @@ public class Course {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
-
 
 }

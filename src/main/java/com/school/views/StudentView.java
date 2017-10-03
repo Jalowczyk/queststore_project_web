@@ -28,14 +28,14 @@ public class StudentView extends AbstractView{
 
     public static void showWalletInfo(Integer balance) {
 
-        String walletInfo = "\nYour actual experience is: %s", exp;
+        String walletInfo = "\nYour actual experience is: " + balance.toString();
 
         System.out.println(walletInfo);
     }
 
     public static void showMyLevel(Integer level) {
 
-        String levelInfo = "\nYour actural level is : %s", exp;
+        String levelInfo = "\nYour actural level is : " + level.toString();
 
         System.out.println(levelInfo);
     }
