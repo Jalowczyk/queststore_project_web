@@ -79,5 +79,7 @@ public abstract class User {
     public void startController(){
     }
 
+    abstract boolean hasStudentRole();
+
 
 }
