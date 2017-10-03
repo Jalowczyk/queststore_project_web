@@ -183,20 +183,20 @@ public class UserDAO extends AbstractDAO implements UserInterfaceDAO {
         return foundMentor;
     }
 
-    public static Integer getLastCreatedId() {
+    public static Integer getLastUserCreatedId() {
 
-        Integer loadedStudentId = null;
+        Integer loadedUserId = null;
         String lastId = "SELECT * FROM users WHERE id_number = (SELECT MAX(id_number) FROM users)";
 
         try (Statement st = conn.createStatement()) {
             ResultSet rs = st.executeQuery(lastId);
 
             if (rs.next()) {
-                loadedStudentId = rs.getInt("id_number");
+                loadedUserId = rs.getInt("id_number");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return loadedStudentId;
+        return loadedUserId;
     }
 }
