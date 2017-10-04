@@ -24,4 +24,8 @@ class MentorTest {
         assertEquals("Ostafil", mentor.getSurname());
     }
 
+    @Test
+    public void testGetPassword() {
+        assertEquals("password", mentor.getPassword());
+    }
 }
