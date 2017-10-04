@@ -28,4 +28,9 @@ class MentorTest {
     public void testGetPassword() {
         assertEquals("password", mentor.getPassword());
     }
+
+    @Test
+    public void testGetMail() {
+        assertEquals("mat@gmail.com", mentor.getMail());
+    }
 }
