@@ -114,5 +114,22 @@ class WalletTest {
 
     }
 
-    
+    @Test
+    public void testAddCoolcoinsChangesExperience() {
+
+        this.wallet.addCoolcoins(100);
+        int actual = this.wallet.getExperience();
+        assertEquals(200, actual);
+
+    }
+
+    @Test
+    public void testAddCoolcoinsChangesBalance() {
+
+        this.wallet.addCoolcoins(100);
+        int actual = this.wallet.getBalance();
+        assertEquals(200, actual);
+
+    }
+
 }
