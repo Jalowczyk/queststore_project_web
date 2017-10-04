@@ -12,11 +12,17 @@ public class Wallet implements WalletInterface{
   private Integer balance;
   private Integer walletId;
 
-  public Wallet(){}
+  public Wallet() {
 
-  public Wallet(Integer experience, Integer balance) {
+  }
+
+  public Wallet(Integer walletId, Integer experience, Integer balance, ArrayList<Artifact> artifacts) {
+
+    this.walletId = walletId;
     this.experience = experience;
     this.balance = balance;
+    this.artifacts = artifacts;
+
   }
 
 
