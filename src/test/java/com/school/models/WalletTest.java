@@ -103,4 +103,16 @@ class WalletTest {
 
     }
 
+    @Test
+    public void testAddArtifactIsAddByReference() {
+
+        Artifact newArtifact = new Artifact("artifact3");
+        ArrayList<Artifact> expected = artifacts;
+        expected.add(newArtifact);
+        this.wallet.addArtifact(newArtifact);
+        assertIterableEquals(expected, this.wallet.getArtifacts());
+
+    }
+
+    
 }
