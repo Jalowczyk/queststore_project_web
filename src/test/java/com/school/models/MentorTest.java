@@ -51,4 +51,10 @@ class MentorTest {
         assertEquals("Nowak", mentor.getSurname());
     }
 
+    @Test
+    public void testSetPassword() {
+        mentor.setPassword("1234");
+        assertEquals("1234", mentor.getPassword());
+    }
+
 }
