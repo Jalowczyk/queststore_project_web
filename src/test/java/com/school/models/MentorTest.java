@@ -45,4 +45,10 @@ class MentorTest {
         assertEquals("Jan", mentor.getName());
     }
 
+    @Test
+    public void testSetSurname() {
+        mentor.setSurname("Nowak");
+        assertEquals("Nowak", mentor.getSurname());
+    }
+
 }
