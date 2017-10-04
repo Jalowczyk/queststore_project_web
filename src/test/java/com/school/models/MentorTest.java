@@ -19,4 +19,9 @@ class MentorTest {
         assertEquals("Mateusz", mentor.getName());
     }
 
+    @Test
+    public void testGetSurname() {
+        assertEquals("Ostafil", mentor.getSurname());
+    }
+
 }
