@@ -3,6 +3,8 @@ package com.school.models;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -19,5 +21,12 @@ class WalletTest {
         this.wallet = new Wallet(1, 100, 100, artifacts);
     }
 
-    
+    @Test
+    public void testGetWalletIDReturnsExpectedValue() {
+
+        int actual = this.wallet.getWalletId();
+        assertEquals(1, actual);
+    }
+
+
 }
