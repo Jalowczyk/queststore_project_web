@@ -24,27 +24,38 @@ public class Wallet implements WalletInterface{
 
   }
 
-
   public ArrayList getArtifacts(){
     return this.artifacts;
   }
-  public Integer getWalletId() {return this.walletId; }
+
+  public Integer getWalletId() {
+    return this.walletId;
+  }
+
   public Integer getExperience(){
     return this.experience;
   }
+
   public Integer getBalance(){
     return this.balance;
   }
 
-  public void setWalletId(Integer id) { this.walletId = id; }
-  public void setExperience(Integer exp){
-    this.experience = exp;
+  public void setWalletId(Integer id) {
+    this.walletId = id;
   }
-  public void setBalance(Integer balance){
+
+  public void setExperience(Integer experience) throws new IllegalArgumentException {
+    if (experience < 0) {
+      throw new IllegalArgumentException();
+    }
+    this.experience = experience;
+  }
+
+  public void setBalance(Integer balance) {
     this.balance = balance;
   }
 
-  public String vievWallet(){
+  public String vievWallet() {
     String walletInfo;
 
     walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts: %s", balance, artifacts);
