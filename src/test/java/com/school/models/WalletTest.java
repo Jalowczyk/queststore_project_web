@@ -22,11 +22,19 @@ class WalletTest {
     }
 
     @Test
-    public void testGetWalletIDReturnsExpectedValue() {
+    public void testGetWalletIdReturnsExpectedValue() {
 
         int actual = this.wallet.getWalletId();
         assertEquals(1, actual);
+
     }
 
+    @Test
+    public void testGetExperienceExpectedValue() {
+
+        int actual = this.wallet.getExperience();
+        assertEquals(1, actual);
+
+    }
 
 }
