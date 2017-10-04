@@ -83,5 +83,11 @@ class MentorTest {
         assertEquals(id, mentor.getId());
     }
 
+    @Test
+    public void testDetailsObjectsAsString() {
+        String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", mentor.name, mentor.surname, mentor.id);
+        assertEquals(info, mentor.toString());
+    }
+
 
 }
