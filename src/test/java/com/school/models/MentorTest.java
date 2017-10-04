@@ -1,6 +1,7 @@
 package com.school.models;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -68,5 +69,13 @@ class MentorTest {
         mentor.setStatus("student");
         assertEquals("student", mentor.getStatus());
     }
+
+    @Test
+    public void testSetId() {
+        Integer id = 1;
+        mentor.setId(id);
+        assertEquals(id, mentor.getId());
+    }
+
 
 }
