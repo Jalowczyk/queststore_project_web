@@ -78,6 +78,24 @@ class WalletTest {
     }
 
     @Test
+    public void testSetBalanceChangesValueToExpected() {
+
+        this.wallet.setBalance(200);
+        int actual = this.wallet.getBalance();
+        assertEquals(200, actual);
+
+    }
+
+    @Test
+    public void testSetBalanceThrowsExcpetionIfValueBelow0() {
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.wallet.setBalance(-100);
+        });
+
+    }
+
+    @Test
     public void testGetArtifactsReturnsExpectedValue() {
 
         ArrayList<Artifact> actual = this.wallet.getArtifacts();
