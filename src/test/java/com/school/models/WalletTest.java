@@ -30,10 +30,18 @@ class WalletTest {
     }
 
     @Test
-    public void testGetExperienceExpectedValue() {
+    public void testGetExperienceReturnsExpectedValue() {
 
         int actual = this.wallet.getExperience();
-        assertEquals(1, actual);
+        assertEquals(100, actual);
+
+    }
+
+    @Test
+    public void testGetBalanceReturnsExpectedValue() {
+
+        int actual = this.wallet.getBalance();
+        assertEquals(100, actual);
 
     }
 
