@@ -41,6 +41,12 @@ class MentorTest {
     }
 
     @Test
+    public void testGetId() {
+        assertEquals(null, mentor.getId());
+    }
+
+
+    @Test
     public void testSetName() {
         mentor.setName("Jan");
         assertEquals("Jan", mentor.getName());
