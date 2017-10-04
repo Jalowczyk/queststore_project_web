@@ -76,9 +76,13 @@ public class Wallet implements WalletInterface{
   }
 
   private Integer calculateLevel() {
-
-    return null;
+    Integer level = (int)this.experience / 1000;
+    if (level == 0) {
+      level = 1;
+    }
+    return level;
   }
+
 
 }
 
