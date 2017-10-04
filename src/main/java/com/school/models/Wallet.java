@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Wallet implements WalletInterface{
 
-  private ArrayList artifacts = new ArrayList();
+  private ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
   private Integer experience;
   private Integer level;
   private Integer balance;
