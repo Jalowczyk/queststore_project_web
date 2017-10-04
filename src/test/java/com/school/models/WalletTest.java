@@ -132,4 +132,13 @@ class WalletTest {
 
     }
 
+    @Test
+    public void testCalculateLevelReturnsExpectedValue() {
+
+        this.wallet.setExperience(2795);
+        int actual = this.wallet.calculateLevel();
+        assertEquals(2, actual);
+
+    }
+
 }
