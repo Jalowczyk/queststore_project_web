@@ -44,14 +44,17 @@ public class Wallet implements WalletInterface{
     this.walletId = id;
   }
 
-  public void setExperience(Integer experience) throws new IllegalArgumentException {
+  public void setExperience(Integer experience) throws IllegalArgumentException {
     if (experience < 0) {
       throw new IllegalArgumentException();
     }
     this.experience = experience;
   }
 
-  public void setBalance(Integer balance) {
+  public void setBalance(Integer balance) throws IllegalArgumentException{
+    if (experience < 0) {
+      throw new IllegalArgumentException();
+    }
     this.balance = balance;
   }
 
