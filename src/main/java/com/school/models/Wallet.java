@@ -6,12 +6,22 @@ import java.util.ArrayList;
 
 public class Wallet implements WalletInterface{
 
-  private ArrayList<Artifact> artifacts = new ArrayList<Artifact>();
+  private ArrayList<Artifact> artifacts;
   private Integer experience;
   private Integer balance;
   private Integer walletId;
 
   public Wallet() {
+
+  }
+
+  // TEMPORARY CONSTRUCTOR
+  public Wallet(Integer experience, Integer balance) {
+
+    this.walletId = 1;
+    this.experience = experience;
+    this.balance = balance;
+    this.artifacts = new ArrayList<Artifact>();
 
   }
 
