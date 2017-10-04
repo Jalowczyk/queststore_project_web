@@ -146,5 +146,5 @@ class WalletTest {
         String actual = new Wallet(100, 100).viewWallet();
         assertEquals(expected, actual);
     }
-    
+
 }
