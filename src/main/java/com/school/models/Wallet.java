@@ -67,11 +67,11 @@ public class Wallet implements WalletInterface{
     this.artifacts.add(artifact);
   }
 
-  public String vievWallet() {
-    String walletInfo;
-
-    walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts: %s", balance, artifacts);
-
+  public String viewWallet() {
+    String walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts:", balance);
+    for (Artifact artifact : this.artifacts) {
+      walletInfo += "\n" + artifact;
+    }
     return walletInfo;
   }
 
