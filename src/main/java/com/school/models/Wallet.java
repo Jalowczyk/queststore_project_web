@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class Wallet implements WalletInterface{
 
-  ArrayList artifacts = new ArrayList();
-  Integer experience = 0;
-  Integer level = 0;
-  Integer balance = 0;
-  Integer walletId;
+  private ArrayList artifacts = new ArrayList();
+  private Integer experience;
+  private Integer level;
+  private Integer balance;
+  private Integer walletId;
 
   public Wallet(){}
 
