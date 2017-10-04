@@ -58,6 +58,11 @@ public class Wallet implements WalletInterface{
     this.balance = balance;
   }
 
+  public void addCoolcoins(Integer coolcoins) {
+      this.experience += coolcoins;
+      this.balance += coolcoins;
+  }
+
   public String vievWallet() {
     String walletInfo;
 
