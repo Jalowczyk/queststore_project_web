@@ -61,6 +61,15 @@ class WalletTest {
     }
 
     @Test
+    public void testSetExperienceThrowsExcpetionIfValueBelow0() {
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            this.wallet.setExperience(-100);
+        });
+
+    }
+
+    @Test
     public void testGetBalanceReturnsExpectedValue() {
 
         int actual = this.wallet.getBalance();
