@@ -57,4 +57,10 @@ class MentorTest {
         assertEquals("1234", mentor.getPassword());
     }
 
+    @Test
+    public void testSetMail() {
+        mentor.setMail("mentor@gmail.com");
+        assertEquals("mentor@gmail.com", mentor.getMail());
+    }
+
 }
