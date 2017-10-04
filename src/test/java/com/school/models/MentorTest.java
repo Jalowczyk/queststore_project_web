@@ -33,4 +33,16 @@ class MentorTest {
     public void testGetMail() {
         assertEquals("mat@gmail.com", mentor.getMail());
     }
+
+    @Test
+    public void testGetStatus() {
+        assertEquals("mentor", mentor.getStatus());
+    }
+
+    @Test
+    public void testSetName() {
+        mentor.setName("Jan");
+        assertEquals("Jan", mentor.getName());
+    }
+
 }
