@@ -13,7 +13,7 @@ public class Artifact {
         return this.name;
     }
 
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 
