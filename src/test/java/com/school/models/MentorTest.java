@@ -1,8 +1,6 @@
 package com.school.models;
 
-import com.school.controllers.MentorController;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
