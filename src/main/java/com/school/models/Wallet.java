@@ -34,7 +34,7 @@ public class Wallet implements WalletInterface{
 
   }
 
-  public ArrayList getArtifacts(){
+  public ArrayList<Artifact> getArtifacts(){
     return this.artifacts;
   }
 
