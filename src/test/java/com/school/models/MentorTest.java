@@ -1,10 +1,12 @@
 package com.school.models;
 
+import com.school.controllers.MentorController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MentorTest {
 
@@ -42,7 +44,7 @@ class MentorTest {
 
     @Test
     public void testGetId() {
-        assertEquals(null, mentor.getId());
+        assertNull(mentor.getId());
     }
 
 
@@ -88,6 +90,4 @@ class MentorTest {
         String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", mentor.name, mentor.surname, mentor.id);
         assertEquals(info, mentor.toString());
     }
-
-
 }
