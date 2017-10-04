@@ -35,6 +35,15 @@ class WalletTest {
     }
 
     @Test
+    public void testSetWalletIdChangesValueToExpected() {
+
+        this.wallet.setWalletId(2);
+        int actual = this.wallet.getWalletId();
+        assertEquals(2, actual);
+
+    }
+
+    @Test
     public void testGetExperienceReturnsExpectedValue() {
 
         int actual = this.wallet.getExperience();
