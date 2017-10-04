@@ -141,4 +141,13 @@ class WalletTest {
 
     }
 
+    @Test
+    public void testCalculateLevelNeverReturns0() {
+
+        int actual = this.wallet.getExperience();
+        assertEquals(1, actual);
+
+    }
+
+    
 }
