@@ -62,7 +62,7 @@ public class Wallet implements WalletInterface{
   }
 
   public void setBalance(Integer balance) throws IllegalArgumentException{
-    if (experience < 0) {
+    if (balance < 0) {
       throw new IllegalArgumentException();
     }
     this.balance = balance;
