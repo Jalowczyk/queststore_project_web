@@ -144,10 +144,18 @@ class WalletTest {
     @Test
     public void testCalculateLevelNeverReturns0() {
 
-        int actual = this.wallet.getExperience();
+        int actual = this.wallet.calculateLevel();
         assertEquals(1, actual);
 
     }
 
-    
+    @Test
+    public void testViewWalletReturnsExpectedString() {
+
+        String expected = "You have 100 coolcoins available.\nYour bought artifacts:";
+        expected += "\n" + "artifact1";
+        expected += "\n" + "artifact2";
+    }
+
+
 }
