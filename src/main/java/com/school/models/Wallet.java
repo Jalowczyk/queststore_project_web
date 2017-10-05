@@ -6,57 +6,93 @@ import java.util.ArrayList;
 
 public class Wallet implements WalletInterface{
 
-  ArrayList artifacts = new ArrayList();
-  Integer experience = 0;
-  Integer level = 0;
-  Integer balance = 0;
-  Integer walletId;
+  private ArrayList<Artifact> artifacts;
+  private Integer experience;
+  private Integer balance;
+  private Integer walletId;
 
-  public Wallet(){}
+  public Wallet() {
 
+  }
+
+  // TEMPORARY CONSTRUCTOR
   public Wallet(Integer experience, Integer balance) {
+
+    this.walletId = 1;
     this.experience = experience;
     this.balance = balance;
+    this.artifacts = new ArrayList<Artifact>();
+
   }
 
+  public Wallet(Integer walletId, Integer experience, Integer balance, ArrayList<Artifact> artifacts) {
 
-  public ArrayList getArtifacts(){
+    this.walletId = walletId;
+    this.experience = experience;
+    this.balance = balance;
+    this.artifacts = artifacts;
+
+  }
+
+  public ArrayList<Artifact> getArtifacts(){
     return this.artifacts;
   }
-  public Integer getWalletId() {return this.walletId; }
+
+  public Integer getWalletId() {
+    return this.walletId;
+  }
+
   public Integer getExperience(){
     return this.experience;
   }
+
   public Integer getBalance(){
     return this.balance;
   }
-  public Integer getLevel() {
-    return this.level;
+
+  public void setWalletId(Integer id) {
+    this.walletId = id;
   }
 
-  public void setWalletId(Integer id) { this.walletId = id; }
-  public void setExperience(Integer exp){
-    this.experience = exp;
+  public void setExperience(Integer experience) throws IllegalArgumentException {
+    if (experience < 0) {
+      throw new IllegalArgumentException();
+    }
+    this.experience = experience;
   }
-  public void setBalance(Integer balance){
+
+  public void setBalance(Integer balance) throws IllegalArgumentException{
+    if (balance < 0) {
+      throw new IllegalArgumentException();
+    }
     this.balance = balance;
   }
-  public void setLevel(Integer level) {
-    this.level = level;
+
+  public void addCoolcoins(Integer coolcoins) {
+    this.experience += coolcoins;
+    this.balance += coolcoins;
   }
 
-  public String vievWallet(){
-    String walletInfo;
+  public void addArtifact(Artifact artifact) {
+    this.artifacts.add(artifact);
+  }
 
-    walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts: %s", balance, artifacts);
-
+  public String viewWallet() {
+    String walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts:", balance);
+    for (Artifact artifact : this.artifacts) {
+      walletInfo += "\n" + artifact;
+    }
     return walletInfo;
   }
 
-  private void calculateLevel() {
-
-    System.out.println("To be implemented");
+  public Integer calculateLevel() {
+    Integer level = (int)this.experience / 1000;
+    if (level == 0) {
+      level = 1;
+    }
+    return level;
   }
+
 
 }
 
