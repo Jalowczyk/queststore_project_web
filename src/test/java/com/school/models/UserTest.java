@@ -32,5 +32,15 @@ class UserTest {
         assertEquals("new", this.user.getStatus());
     }
 
+    @Test
+    void testToString() {
+    }
+
+    @Test
+    void testSetName() {
+        this.user.setName("new");
+        assertEquals("new", this.user.getName());
+    }
+
 
 }
