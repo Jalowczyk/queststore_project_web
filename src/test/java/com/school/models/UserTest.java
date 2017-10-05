@@ -26,5 +26,11 @@ class UserTest {
         assertEquals("status", this.user.getStatus());
     }
 
+    @Test
+    void testSetStatus() {
+        this.user.setStatus("new");
+        assertEquals("new", this.user.getStatus());
+    }
+
 
 }
