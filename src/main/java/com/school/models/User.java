@@ -76,7 +76,6 @@ public abstract class User {
         return this.mail;
     }
 
-    public boolean startController(){
-        return false;
+    public void startController(){
     }
 }
