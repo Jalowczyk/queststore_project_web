@@ -24,6 +24,12 @@ class StudentTest {
         assertNull(student.getCourse());
     }
 
+    @Test
+    public void testSetWallet() {
+        Wallet wallet = new Wallet();
+        student.setWallet(wallet);
+        assertEquals(wallet, student.getWallet());
+    }
 
 
 }
