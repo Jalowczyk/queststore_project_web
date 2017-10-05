@@ -12,7 +12,7 @@ class CourseTest {
 
     @BeforeEach
     public void before() {
-        course = new Course("name");
+        course = new Course(1, "name");
     }
 
     @Test
@@ -31,6 +31,12 @@ class CourseTest {
         this.course.setName("new name");
         String actual = this.course.getName();
         assertEquals("new name", actual);
+    }
+
+    @Test
+    public void testGetIdReturnExpectedValue() {
+        int actual = this.course.getId();
+        assertEquals(1, actual);
     }
 
 }
