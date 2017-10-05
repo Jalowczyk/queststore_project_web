@@ -1,7 +1,9 @@
 package com.school.controllers;
 
+import com.school.dao.CourseDAO;
 import com.school.dao.MentorDAO;
 import com.school.dao.UserDAO;
+import com.school.models.Course;
 import com.school.models.Mentor;
 import com.school.models.User;
 import com.school.views.AdminView;
@@ -70,7 +72,10 @@ public class AdminController {
 
     public static void createCourse(){
 
-        System.out.println("To be implemented");
+        String courseName = AdminView.typeCourseName();
+        Course course = new Course(courseName);
+        CourseDAO courseDao = new CourseDAO();
+        courseDao.saveCourse(course);
     }
 
     public static void editMentorProfile(){
@@ -84,7 +89,14 @@ public class AdminController {
 
     public static void showCourseInfo(){
 
-        System.out.println("To be implemented");
+        CourseDAO courseDAO = new CourseDAO();
+        ArrayList<Course> courses = courseDAO.getAllCourses();
+        AdminView.showAllCourses(courses);
+        Integer courseId = AdminView.typeCourseId();
+
+        Course course = courseDAO.getCourseById(courseId);
+        AdminView.showCourseInfo(course);
+
     }
 
     public static void showMentorProfile(){

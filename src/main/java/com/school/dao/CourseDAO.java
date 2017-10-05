@@ -41,8 +41,7 @@ public class CourseDAO extends DBConnection {
             return courses;
         }
     }
-
-    public static Course getCourseById(Integer id) {
+    public Course getCourseById(Integer id) {
 
         Course course = null;
 
@@ -81,7 +80,7 @@ public class CourseDAO extends DBConnection {
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
-            statement.setString(2, course.getName());
+            statement.setString(1, course.getName());
             statement.executeUpdate();
 
         } catch (SQLException e) {
