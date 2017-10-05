@@ -26,4 +26,11 @@ class CourseTest {
         assertEquals("name", actual);
     }
 
+    @Test
+    public void testSetNameChangesValueToExpected() {
+        this.course.setName("new name");
+        String actual = this.course.getName();
+        assertEquals("new name", actual);
+    }
+
 }
