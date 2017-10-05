@@ -31,5 +31,12 @@ class StudentTest {
         assertEquals(wallet, student.getWallet());
     }
 
+    @Test
+    public void testSetCourse() {
+        Course course = new Course("test");
+        student.setCourse(course);
+        assertEquals(course, student.getCourse());
+    }
+
 
 }
