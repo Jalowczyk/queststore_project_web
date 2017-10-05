@@ -19,4 +19,11 @@ class StudentTest {
         assertNotNull(student.getWallet());
     }
 
+    @Test
+    public void testGetCourse() {
+        assertNull(student.getCourse());
+    }
+
+
+
 }
