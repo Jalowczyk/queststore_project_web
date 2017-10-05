@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 class MentorTest {
@@ -13,6 +14,11 @@ class MentorTest {
     @BeforeEach
     public void before() {
         this.mentor = new Mentor("Mateusz", "Ostafil", "password", "mat@gmail.com", "mentor");
+    }
+
+    @Test
+    public void testEmptyConstructor() {
+        assertNotNull(new Mentor());
     }
 
     @Test
