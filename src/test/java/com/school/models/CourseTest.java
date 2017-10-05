@@ -16,8 +16,13 @@ class CourseTest {
     }
 
     @Test
-    public void testCourseHasConstructor() {
+    public void testCourseHasConstructorWithOnlyName() {
         assertNotNull(new Course("name"));
+    }
+
+    @Test
+    public void testCourseHasConstructor() {
+        assertNotNull(new Course(1, "name"));
     }
 
     @Test
