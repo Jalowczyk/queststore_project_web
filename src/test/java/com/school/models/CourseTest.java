@@ -8,7 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CourseTest {
 
+    private Course course;
 
-
+    @BeforeEach
+    public void before() {
+        course = new Course("name");
+    }
 
 }
