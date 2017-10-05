@@ -54,6 +54,7 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
         user.setPassword(password);
         user.setMail(mail);
         user.setId(idNum);
+        user.setStatus(status);
 
         return user;
     }
