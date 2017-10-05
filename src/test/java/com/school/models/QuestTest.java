@@ -55,4 +55,10 @@ class QuestTest {
         actual = quest.getCategory();
         assertEquals(expected, actual);
     }
+
+    @Test
+    void constructorTest() {
+        assertNotNull(new Quest("test", "test", 20, "test"));
+    }
+    
 }
