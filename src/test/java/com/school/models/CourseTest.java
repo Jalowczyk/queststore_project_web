@@ -39,4 +39,11 @@ class CourseTest {
         assertEquals(1, actual);
     }
 
+    @Test
+    public void testSetIdChanagesValueToExpected() {
+        this.course.setId(2);
+        int actual = this.course.getId();
+        assertEquals(2, actual);
+    }
+
 }
