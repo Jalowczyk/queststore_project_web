@@ -85,5 +85,10 @@ class UserTest {
         assertNull(this.user.getId());
     }
 
-
+    @Test
+    void testSetId() {
+        Integer id = 1;
+        this.user.setId(1);
+        assertEquals(id, this.user.getId());
+    }
 }
