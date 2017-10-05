@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class MentorController {
 
-    public static void startController(User mentor) {
+    public static boolean startController(User mentor) {
 
         MentorDAO myMentor = new MentorDAO(mentor);
 
@@ -21,6 +21,8 @@ public class MentorController {
 
         String choice = MentorView.getChoice();
         startRequestProcess(choice);
+
+        return true;
     }
 
     public static void startRequestProcess(String choice) {
