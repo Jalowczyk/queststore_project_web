@@ -42,5 +42,10 @@ class UserTest {
         assertEquals("new", this.user.getName());
     }
 
+    @Test
+    void testGetName() {
+        assertEquals("name", this.user.getName());
+    }
+
 
 }
