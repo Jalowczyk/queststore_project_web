@@ -1,6 +1,5 @@
 package com.school.models;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +33,11 @@ class UserTest {
 
     @Test
     void testToString() {
+        this.user.setId(1);
+        assertEquals("\n" +
+                "Name: name\n" +
+                "Surname: $surname\n" +
+                "Login: 1\n", this.user.toString());
     }
 
     @Test
