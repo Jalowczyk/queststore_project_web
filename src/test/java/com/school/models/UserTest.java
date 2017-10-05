@@ -64,5 +64,10 @@ class UserTest {
         assertEquals("new", this.user.getPassword());
     }
 
+    @Test
+    void testGetPassword() {
+        assertEquals("password", this.user.getPassword());
+    }
+
 
 }
