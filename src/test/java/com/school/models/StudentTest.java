@@ -20,6 +20,11 @@ class StudentTest {
     }
 
     @Test
+    public void testConstructor() {
+        assertNotNull(new Student("Adam", "Kowalski", "adam@gmail.com", "xxx", "student"));
+    }
+
+    @Test
     public void testGetWallet() {
         assertNotNull(student.getWallet());
     }
