@@ -80,5 +80,10 @@ class UserTest {
         assertEquals("mail", this.user.getMail());
     }
 
+    @Test
+    void testGetId() {
+        assertNull(this.user.getId());
+    }
+
 
 }
