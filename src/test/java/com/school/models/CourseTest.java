@@ -15,4 +15,9 @@ class CourseTest {
         course = new Course("name");
     }
 
+    @Test
+    public void testCourseHasConstructor() {
+        assertNotNull(new Course("name"));
+    }
+
 }
