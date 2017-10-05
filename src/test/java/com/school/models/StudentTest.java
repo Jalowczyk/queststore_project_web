@@ -15,6 +15,11 @@ class StudentTest {
     }
 
     @Test
+    public void testEmptyConstructor() {
+        assertNotNull(new Student());
+    }
+
+    @Test
     public void testGetWallet() {
         assertNotNull(student.getWallet());
     }
