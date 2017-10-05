@@ -20,4 +20,10 @@ class CourseTest {
         assertNotNull(new Course("name"));
     }
 
+    @Test
+    public void testGetNameReturnsExpectedValue() {
+        String actual = this.course.getName();
+        assertEquals("name", actual);
+    }
+
 }
