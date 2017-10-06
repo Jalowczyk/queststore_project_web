@@ -14,15 +14,14 @@ class UserDAOTest {
 
     ResultSet rs = mock(ResultSet.class);
 
-    @Test
-    public void testGetUser() throws SQLException{
+    public void testGetUser(String statusTxt) throws SQLException{
         Mockito.when(rs.getString("first_name")).thenReturn("Jola");
         Mockito.when(rs.getString("last_name")).thenReturn("Bond");
         Mockito.when(rs.getString("password")).thenReturn("xxx");
         Integer id = 1;
         Mockito.when(rs.getInt("id_number")).thenReturn(id);
         Mockito.when(rs.getString("email")).thenReturn("jola@gmail.com");
-        Mockito.when(rs.getString("status")).thenReturn("admin");
+        Mockito.when(rs.getString("status")).thenReturn(statusTxt);
 
         UserDAO userDao = new UserDAO();
         User user = userDao.getUser(rs);
@@ -33,6 +32,21 @@ class UserDAOTest {
         assertEquals("xxx", user.getPassword());
         assertEquals(id, user.getId());
         assertEquals("jola@gmail.com", user.getMail());
-        assertEquals("admin", user.getStatus());
+        assertEquals(statusTxt, user.getStatus());
+    }
+
+    @Test
+    public void testGetUserAsAdmin() throws SQLException {
+        testGetUser("admin");
+    }
+
+    @Test
+    public void testGetUserAsMentor() throws  SQLException {
+        testGetUser("mentor");
+    }
+
+    @Test
+    public void testGetUserAsStudent() throws SQLException {
+        testGetUser("student");
     }
 }
