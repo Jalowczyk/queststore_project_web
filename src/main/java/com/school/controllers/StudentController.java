@@ -23,17 +23,22 @@ public class StudentController {
 
     public static void startRequestProcess(String choice, Student student) {
 
-        if(choice.equals("1")){
-            showWalletInfo(student);
+        switch (choice) {
 
-        } else if(choice.equals("2")){
-            goToStore(); //start Shop controller
+            case "1":
+                showWalletInfo(student);
+                break;
 
-        } else if(choice.equals("3")){
-            seeMyLevel(student);
+            case "2":
+                goToStore(); //start Shop controller
+                break;
 
-        } else if(choice.equals("0")){
-            System.exit(0);
+            case "3":
+                seeMyLevel(student);
+                break;
+
+            case "0":
+                System.exit(0);
         }
     }
 

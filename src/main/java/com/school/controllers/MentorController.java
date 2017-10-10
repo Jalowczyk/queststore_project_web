@@ -2,19 +2,16 @@ package com.school.controllers;
 
 
 import com.school.dao.*;
-import com.school.models.Course;
-import com.school.models.Student;
-import com.school.models.User;
-import com.school.models.Quest;
+import com.school.models.*;
 import com.school.views.MentorView;
 
 import java.util.ArrayList;
 
 public class MentorController {
 
-    public static void startController(User mentor) {
+    public static void startController(Mentor mentor) {
 
-        MentorDAO myMentor = new MentorDAO(mentor);
+        MentorDAO myMentorDao = new MentorDAO(mentor);
 
         MentorView.welcomeMsg(mentor.getName());
         MentorView.showMenu();
@@ -25,37 +22,43 @@ public class MentorController {
 
     public static void startRequestProcess(String choice) {
 
-        if(choice.equals("1")) {
-            createNewStudentProcess();
-        }
 
-        if (choice.equals("2")) {
-            showAvailableCourses();
-        }
-        if (choice.equals("3")) {
-            manageQuests(); //start QuestController
+        switch (choice) {
 
-        }
-        if (choice.equals("4")) {
-            manageArtefacts(); //start ArtefactController
+            case "1":
+                createNewStudentProcess();
+                break;
 
-        }
-        if (choice.equals("5")) {
-            showStudentInfo(); //summary of student wallet, bought artefacts
+            case "2":
+                showAvailableCourses();
+                break;
 
-        }
-        if (choice.equals("6")) {
-            markStudentArtefacts();
-        }
-        if (choice.equals("7")) {
-            markStudentQuest();
-        }
-        if (choice.equals("8")) {
-            System.out.println("sads");
-            setLvlExperience();
-        }
-        if (choice.equals("0")) {
-            System.exit(0);
+            case "3":
+                manageQuests();
+                break;
+
+            case "4":
+                manageArtefacts();
+                break;
+
+            case "5":
+                showStudentInfo();
+                break;
+
+            case "6":
+                markStudentArtefacts();
+                break;
+
+            case "7":
+                markStudentQuest();
+                break;
+
+            case "8":
+                setLvlExperience();
+                break;
+
+            case "0":
+                System.exit(0);
         }
     }
 
@@ -65,18 +68,17 @@ public class MentorController {
         String surname = MentorView.typeStudentSurname();
         String password = MentorView.typeStudentPassword();
         String mail = MentorView.typeStudentMail();
-        String status = "student";
 
         showAvailableCourses();
         Integer id = MentorView.getCourseId();
 
-        createNewStudentObject(name, surname, password, mail, status, id);
+        createNewStudentObject(name, surname, password, mail, id);
     }
 
     static void createNewStudentObject(String name, String surname, String password,
-                                              String mail, String status, Integer id){
+                                       String mail, Integer id){
 
-        Student student = new Student(name, surname, password, mail, status);
+        Student student = new Student(name, surname, password, mail);
         CourseDAO courseDAO = new CourseDAO();
         assignStudentToCourse(student, courseDAO.getCourseById(id));
 

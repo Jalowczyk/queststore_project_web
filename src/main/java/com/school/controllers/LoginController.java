@@ -2,6 +2,7 @@ package com.school.controllers;
 
 import com.school.dao.UserDAO;
 import com.school.models.User;
+import com.school.models.UserLogger;
 import com.school.views.LoginView;
 
 
@@ -18,12 +19,12 @@ public class LoginController {
 }
     public static void startLoginProcess(String id, String password){
 
-        UserDAO dao = new UserDAO();
-        User user = dao.load(id, password);
-        if(user != null) {
-            user.startController();
-        }else{
-            LoginView.failedLoginMsg();
-        }
+            UserDAO dao = new UserDAO();
+            User user = dao.load(id, password);
+            if(user != null) {
+                UserLogger.logIn(user);
+            }else{
+                LoginView.failedLoginMsg();
+            }
     }
 }

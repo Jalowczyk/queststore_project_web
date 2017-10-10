@@ -47,31 +47,24 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
         String mail = rs.getString("email");
         String status = rs.getString("status");
 
-        User user = getUserByStatus(status);
-
-        user.setName(name);
-        user.setSurname(surname);
-        user.setPassword(password);
-        user.setMail(mail);
-        user.setId(idNum);
-        user.setStatus(status);
-
-        return user;
-    }
-
-    public User getUserByStatus(String status) {
-
-        if(status.equals("admin")){
-            return new Admin();
+        if(status.equals("student")){
+            Student student = new Student(name, surname, mail, password);
+            student.setId(idNum);
+            return student;
         }
         if(status.equals("mentor")){
-            return new Mentor();
+            Mentor mentor = new Mentor(name, surname, mail, password);
+            mentor.setId(idNum);
+            return mentor;
         }
-        if(status.equals("student")){
-            return new Student();
+        if(status.equals("admin")){
+            Admin admin = new Admin(name, surname, mail, password);
+            admin.setId(idNum);
+            return admin;
         }
         return null;
     }
+
 
     public void saveUser(User user) {
 
