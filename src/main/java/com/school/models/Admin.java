@@ -1,19 +1,14 @@
 package com.school.models;
 
-import com.school.controllers.AdminController;
-
 
 public class Admin extends User {
 
+    private static String status = "admin";
+
     public Admin(){}
 
-    public Admin(String name, String surname, String password, String mail, String status) {
+    public Admin(String name, String surname, String password, String mail) {
         super(name, surname, password, mail, status);
-    }
-
-    @Override
-    public void startController(){
-        AdminController.startController(this);
     }
 }
 

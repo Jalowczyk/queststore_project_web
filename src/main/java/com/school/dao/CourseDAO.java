@@ -19,7 +19,7 @@ public class CourseDAO extends DBConnection {
 
     public ArrayList<Course> getAllCourses() {
 
-        Course course = null;
+        Course course;
         ArrayList<Course> courses = new ArrayList<>();
 
         String query = "SELECT * FROM " + tableName + ";";
@@ -30,7 +30,6 @@ public class CourseDAO extends DBConnection {
             while (rs.next()) {
 
                 course = createCourseFromResultSet(rs);
-
                 courses.add(course);
             }
 
@@ -41,11 +40,12 @@ public class CourseDAO extends DBConnection {
             return courses;
         }
     }
+
     public Course getCourseById(Integer id) {
 
         Course course = null;
 
-        String query = "SELECT * FROM courses WHERE id = " + id + ";";
+        String query = "SELECT * FROM courses WHERE crs_id = " + id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -56,6 +56,7 @@ public class CourseDAO extends DBConnection {
 
         } catch (SQLException e) {
             e.printStackTrace();
+
         } finally {
             return course;
         }
@@ -64,7 +65,7 @@ public class CourseDAO extends DBConnection {
 
     public static Course createCourseFromResultSet(ResultSet rs) throws SQLException {
 
-        Integer id = rs.getInt("id");
+        Integer id = rs.getInt("crs_id");
         String name = rs.getString("course_name");
 
         Course course = new Course(name);

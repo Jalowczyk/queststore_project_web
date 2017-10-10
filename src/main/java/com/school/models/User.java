@@ -7,7 +7,7 @@ public abstract class User {
     protected String password;
     protected Integer id;
     protected String mail;
-    protected String status;
+    private String status;
 
     public User(){}
 
@@ -76,6 +76,4 @@ public abstract class User {
         return this.mail;
     }
 
-    public void startController(){
-    }
 }

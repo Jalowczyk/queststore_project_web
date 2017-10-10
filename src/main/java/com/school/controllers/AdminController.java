@@ -3,6 +3,7 @@ package com.school.controllers;
 import com.school.dao.CourseDAO;
 import com.school.dao.MentorDAO;
 import com.school.dao.UserDAO;
+import com.school.models.Admin;
 import com.school.models.Course;
 import com.school.models.Mentor;
 import com.school.models.User;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 
 public class AdminController {
 
-    public static void startController(User admin) {
+    public static void startController(Admin admin) {
 
         AdminView.welcomeMsg(admin.getName());
         AdminView.showMenu();
@@ -25,23 +26,29 @@ public class AdminController {
 
     public static void startRequestProcess(String choice){
 
-        if(choice.equals("1")){
-            createMentor();
+        switch (choice) {
+            case "1":
+                createMentor();
+                break;
 
-        } else if(choice.equals("2")){
-            createCourse();
+            case "2":
+                createCourse();
+                break;
 
-        } else if(choice.equals("3")){
-            editMentorProfile();
+            case "3":
+                editMentorProfile();
+                break;
 
-        } else if(choice.equals("4")){
-            showCourseInfo();
+            case "4":
+                showCourseInfo();
+                break;
 
-        } else if(choice.equals("5")){
-            showMentorProfile();
+            case "5":
+                showMentorProfile();
+                break;
 
-        } else if(choice.equals("0")){
-            System.exit(0);
+            case "0":
+                System.exit(0);
         }
 
 
@@ -54,9 +61,8 @@ public class AdminController {
         String surname = AdminView.typeMentorSurname();
         String password = AdminView.typeMentorPassword();
         String mail = AdminView.typeMentorEmail();
-        String status = "mentor";
 
-        Mentor mentor = new Mentor(name, surname, password, mail, status);
+        Mentor mentor = new Mentor(name, surname, password, mail);
 
         saveMentor(mentor);
 

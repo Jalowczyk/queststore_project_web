@@ -1,18 +1,14 @@
 package com.school.models;
 
-import com.school.controllers.MentorController;
+
 
 public class Mentor extends User {
 
+    private static String status = "mentor";
+
     public Mentor(){}
 
-    public Mentor(String name, String surname, String password, String mail, String status) {
+    public Mentor(String name, String surname, String password, String mail) {
         super(name, surname, password, mail, status);
     }
-
-    @Override
-    public void startController(){
-        MentorController.startController(this);
-    }
-
 }
