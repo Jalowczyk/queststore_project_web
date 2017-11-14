@@ -13,6 +13,7 @@ public class startServer {
 
             // set routes
             server.createContext("/loginForm", new LoginForm());
+            server.createContext("/account", new LoginForm());
 
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor

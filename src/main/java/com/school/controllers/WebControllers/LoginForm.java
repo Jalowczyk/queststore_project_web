@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers;
 
+import com.school.controllers.LoginController;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -38,7 +39,6 @@ public class LoginForm implements HttpHandler {
             os.write(response.getBytes());
             os.close();
 
-
         }
 
         if (method.equals("POST")) {
@@ -50,14 +50,26 @@ public class LoginForm implements HttpHandler {
 
             Map inputs = parseFormData(formData);
 
-            String firstName = inputs.get("name").toString();
-            String lastName = inputs.get("message").toString();
 
-            System.out.println(firstName);
-            System.out.println(lastName);
+            String firstName = inputs.get("login").toString();
+            String lastName = inputs.get("password").toString();
+
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("account.twig");
+
+            JtwigModel model = JtwigModel.newModel();
+
+            response = template.render(model);
+
+            LoginController.startLoginProcess(firstName, lastName);
+
+
+
+
         }
 
         httpExchange.sendResponseHeaders(200, response.getBytes().length);
+//        httpExchange.sendResponseHeaders(302, response.getBytes().length);
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();

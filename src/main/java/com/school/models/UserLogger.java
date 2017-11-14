@@ -21,6 +21,7 @@ public class UserLogger {
         if (user.getStatus().equals("admin")) {
 
             Admin admin = (Admin) user;
+
             AdminController.startController(admin);
 
         }

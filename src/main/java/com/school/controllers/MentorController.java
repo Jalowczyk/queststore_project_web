@@ -11,6 +11,7 @@ public class MentorController {
 
     public static void startController(Mentor mentor) {
 
+
         MentorDAO myMentorDao = new MentorDAO(mentor);
 
         MentorView.welcomeMsg(mentor.getName());

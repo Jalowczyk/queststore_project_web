@@ -13,12 +13,13 @@ public class StudentController {
     public static void startController(Student student) {
 
         setUpAttributes(student);
+//        setUpWebController();
 
         StudentView.welcomeMsg(student.getName());
         StudentView.showMenu();
 
-        String choice = StudentView.getChoice();
-        startRequestProcess(choice, student);
+//        String choice = StudentView.getChoice();
+//        startRequestProcess(choice, student);
     }
 
     public static void startRequestProcess(String choice, Student student) {
@@ -46,14 +47,14 @@ public class StudentController {
 
         Integer balance = student.getWallet().getBalance();
 
-        StudentView.showWalletInfo(balance);
+//        StudentView.showWalletInfo(balance);
     }
 
     public static void seeMyLevel(Student student) {
 
         Integer experience = student.getWallet().getExperience();
 
-        StudentView.showMyLevel(experience);
+//        StudentView.showMyLevel(experience);
     }
 
     public static void goToStore() {
