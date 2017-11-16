@@ -8,20 +8,20 @@
             Store - CoolWallet
         </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="account.css">
+        <link rel="stylesheet" type="text/css" href="static/css/account.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="css/fontello.css">
+        <link rel="stylesheet" type="text/css" href="static/css/css/fontello.css">
         
 
     </head>
     <body>
      
-
+ {% for student in students %}
         <div class="wrapper">
             <div class="header">
 
                 <div class="logo">
-                    <img src="img/logo.png" height="60" width="60" style="float: left;"/>
+                    <img src="static/img/logo.png" height="60" width="60" style="float: left;"/>
                     <span style="color: #E0E0E0" font-weight: bold;>Cool</span>Wallet
                     <div style="clear:both;"></div>
                 </div>
@@ -41,9 +41,10 @@
                         <li><a id="group_btn" href="groupshopping.html"><i class="icon-users"></i>Group shopping</a></li>
                     </ol>
                 </div>
+
                 <div class="rightmenu">
                     <ol>
-                        <li><a href="#"><img src="img/ccoin.png" height="40" width="40" style="float: left;" hspace="2"/>800,00</a></li>
+                        <li><a href="#"><img src="static/img/ccoin.png" height="40" width="40" style="float: left;" hspace="2"/> {{ student.getWallet.getBalance}}</a></li>
                         <li id="cart_btn"><a href="payment.html"><i class="icon-basket"></i>2</a></li>
                     </ol>
                 </div>
@@ -58,7 +59,7 @@
 
                     <div class="rectangle">
                         <div class="title">
-                            WELCOME PIOTR
+                           Welcome {{ student.getName }}
                         </div>
                         <h1>
                             It's Nice To See You
@@ -75,6 +76,7 @@
                     </br>
                     </br>
                     </br>
+
             </div>
             <div class="socials">
                 <div class="socialdivs">
@@ -100,6 +102,7 @@
                 </div>
             </footer>
         </div>
+        {% endfor %}
 
         <script src="jquery-3.2.1.min.js"></script>
 

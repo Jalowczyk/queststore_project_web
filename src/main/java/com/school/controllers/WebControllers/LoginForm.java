@@ -1,10 +1,17 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.LoginController;
+import com.school.models.User;
+import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.*;
+import java.time.Duration;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Map;
 
 import java.net.URLDecoder;
@@ -24,7 +31,6 @@ public class LoginForm implements HttpHandler {
         String response = "";
 
         if (method.equals("GET")) {
-            System.out.println("get");
 
             String userAgent = httpExchange.getRequestHeaders().getFirst("User-agent");
 
@@ -43,37 +49,59 @@ public class LoginForm implements HttpHandler {
 
         if (method.equals("POST")) {
 
-            System.out.println("post");
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
 
             Map inputs = parseFormData(formData);
 
-
             String firstName = inputs.get("login").toString();
             String lastName = inputs.get("password").toString();
 
+            User user = LoginController.startLoginProcess(firstName, lastName);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("account.twig");
+            if (user == null) {
+//                httpExchange.getResponseHeaders().add("Status", "Incore"
 
-            JtwigModel model = JtwigModel.newModel();
+                JtwigTemplate template = JtwigTemplate.classpathTemplate("main_page.twig");
 
-            response = template.render(model);
+                JtwigModel model = JtwigModel.newModel();
 
-            LoginController.startLoginProcess(firstName, lastName);
+                model.with("failed_login", true);
+                response = template.render(model);
+
+                httpExchange.sendResponseHeaders(200, response.length());
+                OutputStream os = httpExchange.getResponseBody();
+
+                os.write(response.getBytes());
+                os.close();
 
 
+            } else if (user.getStatus().equals("student")) {
 
+                httpExchange.getResponseHeaders().set("Location", "/students");
 
+            } else if (user.getStatus().equals("mentor")) {
+
+                httpExchange.getResponseHeaders().set("Location", "/mentors");
+
+            } else if (user.getStatus().equals("admin")) {
+
+                httpExchange.getResponseHeaders().set("Location", "/admins");
+            }
+
+            if (user != null) {
+                String cookie = setUpCookies(user);
+                httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
+            }
+                httpExchange.sendResponseHeaders(302, -1);
+                OutputStream os = httpExchange.getResponseBody();
+
+                os.write(response.getBytes());
+                os.close();
+            }
         }
 
-        httpExchange.sendResponseHeaders(200, response.getBytes().length);
-//        httpExchange.sendResponseHeaders(302, response.getBytes().length);
-        OutputStream os = httpExchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
-    }
 
     private static Map<String, String> parseFormData(String formData) throws UnsupportedEncodingException {
         Map<String, String> map = new HashMap();
@@ -87,5 +115,13 @@ public class LoginForm implements HttpHandler {
         return map;
     }
 
+    private static String setUpCookies(User user) {
+
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(60));
+        String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
+        String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
+
+        return cookie;
     }
+}
 

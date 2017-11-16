@@ -9,8 +9,15 @@ import java.util.ArrayList;
 
 public class MentorController {
 
-    public static void startController(Mentor mentor) {
+    private Mentor myMentor;
 
+    public MentorController(Mentor mentor){
+
+        myMentor = mentor;
+        startController(mentor);
+    }
+
+    public static void startController(Mentor mentor) {
 
         MentorDAO myMentorDao = new MentorDAO(mentor);
 
@@ -19,6 +26,10 @@ public class MentorController {
 
         String choice = MentorView.getChoice();
         startRequestProcess(choice);
+    }
+
+    public Mentor getMentor(){
+        return myMentor;
     }
 
     public static void startRequestProcess(String choice) {

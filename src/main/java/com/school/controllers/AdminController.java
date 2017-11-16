@@ -14,6 +14,14 @@ import java.util.ArrayList;
 
 public class AdminController {
 
+    private Admin myAdmin;
+
+    public AdminController(Admin admin){
+
+        myAdmin = admin;
+        startController(admin);
+    }
+
     public static void startController(Admin admin) {
 
         AdminView.welcomeMsg(admin.getName());
@@ -22,6 +30,10 @@ public class AdminController {
         String choice = AdminView.getChoice();
         startRequestProcess(choice);
 
+    }
+
+    public Admin getAdmin(){
+        return myAdmin;
     }
 
 

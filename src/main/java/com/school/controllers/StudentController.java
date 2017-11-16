@@ -10,10 +10,15 @@ import java.util.HashMap;
 
 public class StudentController {
 
-    public static void startController(Student student) {
+    private Student myStudent;
 
-        setUpAttributes(student);
-//        setUpWebController();
+    public StudentController(Student student){
+
+        myStudent = student;
+        startController(student);
+    }
+
+    public static void startController(Student student) {
 
         StudentView.welcomeMsg(student.getName());
         StudentView.showMenu();
@@ -21,6 +26,11 @@ public class StudentController {
 //        String choice = StudentView.getChoice();
 //        startRequestProcess(choice, student);
     }
+
+    public Student getStudent(){
+        return myStudent;
+    }
+
 
     public static void startRequestProcess(String choice, Student student) {
 

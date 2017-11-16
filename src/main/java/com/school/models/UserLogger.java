@@ -3,6 +3,7 @@ package com.school.models;
 import com.school.controllers.AdminController;
 import com.school.controllers.MentorController;
 import com.school.controllers.StudentController;
+import com.school.controllers.WebControllers.StudentWebController;
 
 public class UserLogger {
 
@@ -11,18 +12,16 @@ public class UserLogger {
         if (user.getStatus().equals("student")) {
 
             Student student = (Student) user;
-            StudentController.startController(student);
+
         }
         if (user.getStatus().equals("mentor")) {
 
             Mentor mentor = (Mentor) user;
-            MentorController.startController(mentor);
+
         }
         if (user.getStatus().equals("admin")) {
 
             Admin admin = (Admin) user;
-
-            AdminController.startController(admin);
 
         }
     }

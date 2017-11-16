@@ -8,7 +8,7 @@ body{
 header{
 
         padding-bottom: 260px;   
-        
+
     }
 
 .container{
@@ -150,6 +150,7 @@ h1{
 }
 
 
+
 .login {
     
     position: relative;
@@ -210,6 +211,12 @@ h1{
     text-shadow: 0 1px #2a85a1;
     margin-bottom: 100px;
 }
+
+#incorrect{
+
+    color: red !important;
+}
+
 .login a {
       color: #cce7fa;
       text-decoration: none;
