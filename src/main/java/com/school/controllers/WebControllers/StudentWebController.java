@@ -1,8 +1,11 @@
 package com.school.controllers.WebControllers;
 
+import com.school.dao.StudentDAO;
 import com.school.dao.UserDAO;
+import com.school.dao.WalletDAO;
 import com.school.models.Student;
 import com.school.models.User;
+import com.school.models.Wallet;
 import com.sun.net.httpserver.Headers;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
@@ -44,6 +47,12 @@ public class StudentWebController implements HttpHandler {
 
             Student student = (Student) user;
 
+            StudentDAO studentDAO = new StudentDAO(student);
+            WalletDAO walletDAO = new WalletDAO();
+
+            Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
+            student.setWallet(myWallet);
+
             JtwigTemplate template = JtwigTemplate.classpathTemplate("account.twig");
             JtwigModel model = JtwigModel.newModel();
 
@@ -53,11 +62,11 @@ public class StudentWebController implements HttpHandler {
 
             httpExchange.sendResponseHeaders(200, response.length());
 
-
         }
 
         else if(method.equals("POST")){
-            System.out.println("postik");
+
+            httpExchange.getResponseHeaders().set("Location", "/students");
         }
 
         OutputStream os = httpExchange.getResponseBody();

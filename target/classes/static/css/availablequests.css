@@ -1,7 +1,7 @@
 body{
     font-family: 'Lato', sans-serif;
     font-size: 20px;
-    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/image1.jpg") center top / cover;
+    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("img/image1.jpg") center top / cover;
     padding: 0;
     margin: 0 !important;
     min-width: 550px;
@@ -12,7 +12,7 @@ body{
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
 }
@@ -63,8 +63,22 @@ body{
 
 }
 
+@media (min-width: 350px){
+    .menu{
+        flex-direction: row;
+    }
+}
+@media (min-width: 300px) {
+    .leftmenu{
+        flex-basis: 750px;
+    }
+    .rightmenu{
+        flex-basis: 370px;
+    }
+}
+
 #user {
-    font-size: 40px;
+    font-size: 50px;
     margin-right: 5px;
     line-height: 40px;
 }
@@ -93,66 +107,121 @@ body{
     line-height: 40px;
 }
 
-@media (min-width: 350px){
-    .menu{
-        flex-direction: row;
-    }
-}
-@media (min-width: 300px) {
-    .leftmenu{
-        flex-basis: 750px;
-    }
-    .rightmenu{
-        flex-basis: 370px;
-    }
-}
-
 .content
 {
     display: flex;
-    width: 100%;
+    width: 70%;
     justify-content: center;
+    align-items: center;
     color:white;
     padding-top: 40px;
-    height:60vh;
+    /*margin-bottom: 10%;*/
+    flex-wrap: wrap;
 }
 
 .rectangle
 {
-    display: block;
-    width: 80%;
-    opacity: 0.5;
-
+    width: 100%;
+    background-color: #006666;
+    border-radius: 30px;
+    opacity: 0.9;
 }
-h1{
-    animation: TitlePosition 4s ease-in;
-    display: flex;
-    font-size: 5vw;
-    color: white;
-    text-transform: uppercase;
-    justify-content: center;
-    margin: 15px;
-}
-
-@keyframes TitlePosition{
-    from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
 .title
 {
     display: flex;
     justify-content: center;
-    font-size: 5vw;
-    text-transform: uppercase;
+    font-size: 3vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
     padding: 10px;
-    opacity: 0.8;
+
 }
+
+.totalamount
+{
+    text-align: center;
+    font-size: 40px;
+    padding: 10px;
+
+}
+
+.numbers
+{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 40px;
+    padding: 10px;
+
+}
+
+#number
+{
+
+    text-align: center;
+    width: 150px;
+}
+
+#contenttable
+{
+    width: 100%;
+}
+
+td
+{
+    padding: 15px;
+    font-size: 1.5vw;
+    text-align:center;
+    vertical-align:middle;
+}
+
+th
+{
+    font-size: 2vw;
+    padding: 30px;
+    text-align:center;
+    vertical-align:middle;
+}
+
+input[type="checkbox"]{
+    width: 30px; /*Desired width*/
+    height: 30px; /*Desired height*/
+}
+
+.buttons
+{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5%;
+    font-size: 2.5vw;
+}
+
+.back, .payment
+{
+
+    border-top: 2px solid #ACA7A7;
+    border-bottom: 2px solid #ACA7A7;
+    border-left: 2px solid #ACA7A7;
+    border-right: 2px solid #ACA7A7;
+    background-color: #D66C2F;
+    border-radius: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.payment:hover
+{
+    background-color: #975833;
+}
+
+.back:hover
+{
+    background-color: #975833;
+}
+
 
 .socials
 {
@@ -239,14 +308,14 @@ h1{
 
 a.links
 {
-color: white;
-text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a.links:hover
 {
-color: #000000;
-text-decoration: none;
+    color: #000000;
+    text-decoration: none;
 }
 
 a.socialhtml5

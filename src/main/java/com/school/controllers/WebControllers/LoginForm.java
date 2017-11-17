@@ -117,7 +117,7 @@ public class LoginForm implements HttpHandler {
 
     private static String setUpCookies(User user) {
 
-        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(60));
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(15));
         String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
         String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
 

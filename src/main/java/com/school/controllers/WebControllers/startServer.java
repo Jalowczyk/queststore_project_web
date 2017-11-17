@@ -14,6 +14,8 @@ public class startServer {
             // set routes
             server.createContext("/loginForm", new LoginForm());
             server.createContext("/students", new StudentWebController());
+            server.createContext("/myquests", new Quest());
+
 
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor

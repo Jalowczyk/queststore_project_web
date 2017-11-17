@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:font-weight="http://www.w3.org/1999/xhtml">
     <head>
-
+            <!-- <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script> -->
+            <script type="text/javascript"></script>
+            
         <title>
-            QuestStore
+            QuestStore - CodeCool
         </title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="static/css/account.css">
+        <link rel="stylesheet" type="text/css" href="myartifacts.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/fontello.css">
 
         <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
-        
 
     </head>
     <body>
      
- {% for student in students %}
         <div class="wrapper">
             <div class="header">
 
                 <div class="logo">
-                    <img src="static/img/logo.png" height="60" width="60" style="float: left;"/>
+                    <img src="img/logo.png" height="60" width="60" style="float: left;"/>
                     <span style="color: #E0E0E0" font-weight: bold;>Quest</span>Store
                 </div>
             </div>
@@ -28,41 +29,73 @@
                 <div class="leftmenu">
                     <ol>
                         <li><a id="myacc_btn" href="account.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
-                                My account
-                            </a>
+                            My account
+                        </a>
                             <ul>
-                                <li><a href="myartifacts.twig">My Artifacts</a></li>
-                                <li><a href="myquests">My Quests</a></li>
+                                <li><a href="myartifacts.html">My Artifacts</a></li>
+                                <li><a href="myquests.html">My Quests</a></li>
                                 <li><a href="availablequests.html">Available Quests</a></li>
                                 <li><a href="store.html">Go to Store</a></li>
                                 <li><a href="index.html">Log Out</a></li>
                             </ul>
                         </li>
                         <li><a id="group_btn" href="groupshopping.html"><i class="fa fa-users" id="users" aria-hidden="true"></i>
-                                Group shopping
-                            </a>
+                            Group shopping
+                        </a>
                         </li>
                     </ol>
                 </div>
                 <div class="rightmenu">
                     <ol>
-                        <li><a id="coin"><img src="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/> {{ student.getWallet.getBalance}} </a></li>
-                        <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>0</a></li>
+                        <li><a id="coin"><img src="img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>800,00</a></li>
+                        <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>2</a></li>
                     </ol>
                 </div>
 
 
             </div>
-
             <div class="content">
 
                     <div class="rectangle">
                         <div class="title">
-                            WELCOME  {{ student.getName }}
+                            My artifacts
                         </div>
-                        <h1>
-                            It's Nice To See You
-                        </h1>
+
+                        <table id="contenttable">
+                            <tr>
+                                <th style="width:30%">Name</th>
+                                <th style="width:70%">Description</th>
+                            </tr>
+                            <tr>
+                                <td>Walka na poduszki</td>
+                                <td>Walka na poduszki z wybranym mentorem do pierwszej krwi</td>
+                            </tr>
+                            <tr>
+                                <td>Wyjście na piwo</td>
+                                <td>Wyjście na piwo z wybranym mentorem</td>
+                            </tr>
+                            <tr>
+                                <td>Darmowa pizza</td>
+                                <td>Darmowa pizza na koszt wybranego mentora</td>
+                            </tr>
+                            <tr>
+                                <td>Torturowanie</td>
+                                <td>Torturowanie mentora wybranymi narzędziami przez mentora przez 2 minuty</td>
+                            </tr>
+                            <tr>
+                                <td>Zatrudnienie</td>
+                                <td>Zatrudnienie mentora jako członka zespołu na godzinę</td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="buttons">
+                        <a href="account.html" class="socialhtml5">
+                            <div class="payment">
+                                Home
+                            </div>
+                        </a>
                     </div>
 
             </div>
@@ -91,7 +124,7 @@
             </footer>
         </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="jquery-3.2.1.min.js"></script>
 
         <script>
         
@@ -117,6 +150,5 @@
 
         </script>
 
-  {% endfor %}
     </body>
 </html>
