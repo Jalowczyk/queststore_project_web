@@ -9,7 +9,7 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class Cookie {
+public abstract class Cookie {
 
     public Integer getIdFromCookies(Headers requestHeaders) {
 
@@ -27,9 +27,9 @@ public class Cookie {
         return userID;
     }
 
-    public String setUpCookies(User user) {
+    public String setupCookies(User user) {
 
-        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(100));
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(10));
         String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
         String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
 

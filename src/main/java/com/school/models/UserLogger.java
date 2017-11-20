@@ -1,10 +1,5 @@
 package com.school.models;
 
-import com.school.controllers.AdminController;
-import com.school.controllers.MentorController;
-import com.school.controllers.StudentController;
-import com.school.controllers.WebControllers.StudentWebController;
-
 public class UserLogger {
 
     public static void logIn(User user) {

@@ -1,6 +1,7 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.LoginController;
+import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -16,7 +17,7 @@ import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 
-public class LoginWebController implements HttpHandler {
+public class LoginWebController extends StudentSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -82,8 +83,8 @@ public class LoginWebController implements HttpHandler {
             }
 
             if (user != null) {
-                Cookie cookies = new Cookie();
-                String cookie = cookies.setUpCookies(user);
+
+                String cookie = setupCookies(user);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
                 httpExchange.sendResponseHeaders(302, -1);

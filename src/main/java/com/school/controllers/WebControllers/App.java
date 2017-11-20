@@ -1,11 +1,12 @@
 package com.school.controllers.WebControllers;
 
+import com.school.controllers.WebControllers.student.StudentWebController;
 import com.school.controllers.WebControllers.utilController.Static;
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
 
 
-public class startServer {
+public class App {
 
         public static void main(String[] args) throws Exception {
             // create a server on port 8000
