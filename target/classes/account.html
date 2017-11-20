@@ -1,0 +1,20 @@
+{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html"
+with {'css_template': 'static/css/account.css'} %}
+
+<div class="content">
+
+    <div class="rectangle">
+        <div class="title">
+            {% for student in students %}
+            WELCOME  {{ student.getName }}
+            {% endfor %}
+        </div>
+        <h1>
+            It's Nice To See You
+        </h1>
+    </div>
+
+</div>
+
+
+{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}

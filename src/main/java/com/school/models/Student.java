@@ -1,12 +1,22 @@
 package com.school.models;
 
 
+import java.util.ArrayList;
+
 public class Student extends User {
 
     private Wallet wallet;
     private Course course;
     private static String status = "student";
+    private ArrayList<Artifact> artifacts;
 
+    public ArrayList<Artifact> getArtifacts() {
+        return artifacts;
+    }
+
+    public void setArtifacts(ArrayList<Artifact> artifacts) {
+        this.artifacts = artifacts;
+    }
 
     public Student(){
     }

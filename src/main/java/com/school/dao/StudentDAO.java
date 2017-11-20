@@ -1,10 +1,12 @@
 package com.school.dao;
+import com.school.models.Artifact;
 import com.school.models.Student;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class StudentDAO extends UserDAO {
 
@@ -74,6 +76,27 @@ public class StudentDAO extends UserDAO {
         }
         return studentCourseId;
     }
-}
 
+    public ArrayList<Artifact> getStudentArtefacts(){
+
+        ArrayList<Artifact> artifacts = new ArrayList<>();
+
+        String query = "SELECT student_id, artifact_id FROM students_artifacts WHERE student_id = " + student.getId() + ";";
+        ArtefactDAO artefactDAO = new ArtefactDAO();
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+
+                Integer artefactID = rs.getInt("artifact_id");
+                Artifact artifact = artefactDAO.getArtefactById(artefactID);
+                artifacts.add(artifact);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return artifacts;
+    }
+            }
 

@@ -12,10 +12,10 @@ public class startServer {
             HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
             // set routes
-            server.createContext("/loginForm", new LoginForm());
+            server.createContext("/loginForm", new LoginWebController());
             server.createContext("/students", new StudentWebController());
-            server.createContext("/myquests", new Quest());
-
+            server.createContext("/artifacts", new ArtifactWebController());
+            server.createContext("/signUp", new SignUpWebController());
 
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor

@@ -1,0 +1,53 @@
+{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html"
+with {'css_template': 'static/css/myartifacts.css'} %}
+
+<div class="content">
+
+    {% for student in students %}
+
+                    <div class="rectangle">
+                        <div class="title">
+                            My Quests
+                        </div>
+
+                    <table>
+                        <tr>
+                            <th style="width:30%">Name</th>
+                            <th style="width:50%">Description</th>
+                            <th style="width:20%">Deadline</th>
+                        </tr>
+                        <tr>
+                            <td>Zostanę programistą</td>
+                            <td>Przestanę ciągnąć hajs od rodziców dzięki klepaniu w komputer</td>
+                            <td>W tym wcieleniu</td>
+                        </tr>
+                        <tr>
+                            <td>Wyleczę się z depresji</td>
+                            <td>Wyjdę do ludzi, zacznę biegać</td>
+                            <td>Dwa tygodnie</td>
+                        </tr>
+                        <tr>
+                            <td>Schudnę</td>
+                            <td>Zrzucę 10 kg w 10 dni od jutra</td>
+                            <td>10 dni</td>
+                        </tr>
+                        <tr>
+                            <td>Nie kradnij</td>
+                            <td>Przestanę podjadać jedzenie z lodówki w Codecoolu</td>
+                            <td>12.11.2017</td>
+                        </tr>
+                        <tr>
+                            <td>Misja Futbol</td>
+                            <td>Zakwalifikujemy się na mistrzostwa świata w Rosji</td>
+                            <td>12.11.2017</td>
+                        </tr>
+
+                    </table>
+
+
+                    </div>
+
+    {% endfor %}
+
+
+ {% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}

@@ -6,8 +6,6 @@ import com.school.models.Student;
 import com.school.models.Wallet;
 import com.school.views.StudentView;
 
-import java.util.HashMap;
-
 public class StudentController {
 
     private Student myStudent;
@@ -80,5 +78,6 @@ public class StudentController {
         Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
         student.setWallet(myWallet);
     }
+
 
 }

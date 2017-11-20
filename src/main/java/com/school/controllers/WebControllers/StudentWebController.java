@@ -16,9 +16,6 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import java.util.List;
-
-
 
 public class StudentWebController implements HttpHandler {
 
@@ -30,30 +27,23 @@ public class StudentWebController implements HttpHandler {
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
 
-        Integer userID = getIdFromCookies(requestHeaders);
+        Cookie cookies = new Cookie();
+        Integer userID = cookies.getIdFromCookies(requestHeaders);
 
-        if(userID == null){
+        if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
             httpExchange.sendResponseHeaders(302, -1);
 
-        }
-
-
-        else if (method.equals("GET")) {
+        } else if (method.equals("GET")) {
 
             UserDAO userDao = new UserDAO();
             User user = userDao.getUserById(userID);
 
-            Student student = (Student) user;
+            Student student = getStudentObject(user);
+            setUpAttributes(student);
 
-            StudentDAO studentDAO = new StudentDAO(student);
-            WalletDAO walletDAO = new WalletDAO();
-
-            Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
-            student.setWallet(myWallet);
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("account.twig");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("account.html");
             JtwigModel model = JtwigModel.newModel();
 
             model.with("students", student);
@@ -62,11 +52,8 @@ public class StudentWebController implements HttpHandler {
 
             httpExchange.sendResponseHeaders(200, response.length());
 
-        }
+        } else if (method.equals("POST")) {
 
-        else if(method.equals("POST")){
-
-            httpExchange.getResponseHeaders().set("Location", "/students");
         }
 
         OutputStream os = httpExchange.getResponseBody();
@@ -75,22 +62,26 @@ public class StudentWebController implements HttpHandler {
 
     }
 
-    private static Integer getIdFromCookies(Headers requestHeaders) {
-
-        Integer userID;
+    private static Student getStudentObject(User user) {
         try {
-            String key = "Cookie";
-            List values = requestHeaders.get(key);
-            String keyValue = (String) values.get(0);
-            String id = keyValue.split("=")[1];
-            userID = Integer.valueOf(id);
-        }catch (Exception e){
+            Student student = (Student) user;
+            return student;
+        } catch (java.lang.ClassCastException e) {
             return null;
         }
+    }
 
-        return userID;
+    private static void setUpAttributes(Student student){
+
+        StudentDAO studentDAO = new StudentDAO(student);
+        WalletDAO walletDAO = new WalletDAO();
+        Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
+
+        student.setArtifacts(studentDAO.getStudentArtefacts());
+        student.setWallet(myWallet);
+
     }
-    }
+}
 
 
 
