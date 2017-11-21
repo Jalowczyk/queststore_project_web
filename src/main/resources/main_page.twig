@@ -32,23 +32,6 @@
 
                     }
                 }
-
-                function ShowWrongPassword(){
-
-
-                    var passwordForm = document.getElementById('wrong_password');
-                    var displaySetting = passwordForm.style.display;
-
-                    if (displaySetting == 'block') {
-
-                      passwordForm.style.display = 'none';
-                     }
-                      else {
-
-                      passwordForm.style.display = 'block';
-
-                }
-                }
                 </script>
         <title>
             Welcome in CoolCoin
@@ -112,6 +95,10 @@
                 {% if (failed_login) %}
                 <p id="incorrect">Incorrect password, try again</p>
                 {% endif %}
+                {% if (session_over) %}
+                                <p id="session_over"> You were away so long, please login again</p>
+                                {% endif %}
+
             </div>
       </div>
 
@@ -124,11 +111,21 @@
         </footer>
 
         {% if (failed_login) %}
+
          <script type="text/javascript">
          showLogin();
+        </script>
+
+         {% endif %}
+
+         {% if (session_over) %}
+                  <script type="text/javascript">
+                  showLogin();
 
 
          </script>
          {% endif %}
+
+
     </body>
 </html>

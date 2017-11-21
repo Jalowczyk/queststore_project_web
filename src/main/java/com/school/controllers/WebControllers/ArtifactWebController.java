@@ -25,9 +25,13 @@ public class ArtifactWebController extends StudentSessionController implements H
 
         if (userID == null) {
 
-            httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, -1);
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("main_page.twig");
+            JtwigModel model = JtwigModel.newModel();
 
+            model.with("session_over", true);
+            response = template.render(model);
+
+            httpExchange.sendResponseHeaders(200, response.length());
         }
 
         else if (method.equals("GET")) {
