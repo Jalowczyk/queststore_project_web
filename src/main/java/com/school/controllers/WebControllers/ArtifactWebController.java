@@ -37,6 +37,7 @@ public class ArtifactWebController extends StudentSessionController implements H
             JtwigTemplate template = JtwigTemplate.classpathTemplate("myartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
+            model.with("student_artifacts", student.getArtifacts());
             model.with("students", student);
 
             response = template.render(model);
