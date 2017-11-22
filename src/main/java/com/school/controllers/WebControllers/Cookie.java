@@ -11,7 +11,7 @@ import java.util.List;
 
 public abstract class Cookie {
 
-    public Integer getIdFromCookies(Headers requestHeaders) {
+    public Integer getIdFromExistingCookies(Headers requestHeaders) {
 
         Integer userID;
         try {
@@ -29,7 +29,7 @@ public abstract class Cookie {
 
     public String setupCookies(User user) {
 
-        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(10));
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(30));
         String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
         String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
 

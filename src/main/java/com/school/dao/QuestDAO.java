@@ -17,11 +17,11 @@ public class QuestDAO extends DBConnection {
         super(tableName);
     }
 
-    public static Quest createQuestFromDatabase(Integer id) {
+    public Quest getQuestById(Integer id) {
 
         Quest course = null;
 
-        String query = "SELECT * FROM quests WHERE id_ = " + id + ";";
+        String query = "SELECT * FROM quests WHERE quest_id = " + id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -39,11 +39,11 @@ public class QuestDAO extends DBConnection {
 
     public static Quest createQuestFromResultSet(ResultSet rs) throws SQLException {
 
-        Integer id = rs.getInt("id");
+        Integer id = rs.getInt("quest_id");
         String title = rs.getString("title");
         String info = rs.getString("info");
         Integer prize = rs.getInt("prize");
-        String category = rs.getString("quest_category");
+        String category = rs.getString("category");
 
         Quest quest = new Quest(title, info, prize, category);
         quest.setId(id);

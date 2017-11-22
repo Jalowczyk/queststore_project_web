@@ -21,8 +21,7 @@ public class StudentWebController extends StudentSessionController implements Ht
         String method = httpExchange.getRequestMethod();
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
-
-        Integer userID = getIdFromCookies(requestHeaders);
+        Integer userID = getIdFromExistingCookies(requestHeaders);
 
         if (userID == null) {
 
@@ -31,7 +30,12 @@ public class StudentWebController extends StudentSessionController implements Ht
 
         } else if (method.equals("GET")) {
 
-            Student student = getUser(userID);
+            Student student = loadStudent(userID);
+
+            if (student != null) {
+                String cookie = setupCookies(student);
+                httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
+            }
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("account.html");
             JtwigModel model = JtwigModel.newModel();

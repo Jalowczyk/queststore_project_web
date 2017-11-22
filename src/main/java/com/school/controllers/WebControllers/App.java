@@ -16,6 +16,7 @@ public class App {
             server.createContext("/loginForm", new LoginWebController());
             server.createContext("/students", new StudentWebController());
             server.createContext("/artifacts", new ArtifactWebController());
+            server.createContext("/quests", new QuestWebController());
             server.createContext("/signUp", new SignUpWebController());
 
             server.createContext("/static", new Static());
