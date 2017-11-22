@@ -1,15 +1,15 @@
 {% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html"
-with {'css_template': 'static/css/account.css'} %}
+with {'css_template': 'static/css/style.css'} %}
 
-<div class="content">
+<div class="accountContent">
 
-    <div class="rectangle">
-        <div class="title">
+    <div class="accountRectangle">
+        <div class="accountTitle">
             {% for student in students %}
             WELCOME  {{ student.getName }}
             {% endfor %}
         </div>
-        <h1>
+        <h1 id="accounth1">
             It's Nice To See You
         </h1>
     </div>
