@@ -5,14 +5,13 @@ import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-
-import java.io.*;
-
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
+import java.io.IOException;
+import java.io.OutputStream;
 
-public class ArtifactWebController extends StudentSessionController implements HttpHandler {
+public class QuestWebController extends StudentSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -28,22 +27,20 @@ public class ArtifactWebController extends StudentSessionController implements H
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
             httpExchange.sendResponseHeaders(302, response.length());
 
-        }
-
-        else if (method.equals("GET")) {
+        } else if (method.equals("GET")) {
 
             Student student = loadStudent(userID);
-            setupStudentArtifacts(student);
+            setupStudentquests(student);
 
             if (student != null) {
                 String cookie = setupCookies(student);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("myartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("myquests.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("student_artifacts", student.getArtifacts());
+            model.with("student_quests", student.getQuests());
             model.with("students", student);
 
             response = template.render(model);
@@ -57,4 +54,4 @@ public class ArtifactWebController extends StudentSessionController implements H
         os.write(response.getBytes());
         os.close();
     }
-}
+        }

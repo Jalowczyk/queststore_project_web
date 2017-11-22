@@ -9,6 +9,15 @@ public class Student extends User {
     private Course course;
     private static String status = "student";
     private ArrayList<Artifact> artifacts;
+    private ArrayList<Quest> quests;
+
+    public ArrayList<Quest> getQuests() {
+        return quests;
+    }
+
+    public void setQuests(ArrayList<Quest> quests) {
+        this.quests = quests;
+    }
 
     public ArrayList<Artifact> getArtifacts() {
         return artifacts;
@@ -17,6 +26,7 @@ public class Student extends User {
     public void setArtifacts(ArrayList<Artifact> artifacts) {
         this.artifacts = artifacts;
     }
+
 
     public Student(){
     }

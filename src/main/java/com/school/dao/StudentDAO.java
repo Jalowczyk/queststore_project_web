@@ -1,5 +1,6 @@
 package com.school.dao;
 import com.school.models.Artifact;
+import com.school.models.Quest;
 import com.school.models.Student;
 
 import java.sql.PreparedStatement;
@@ -77,7 +78,7 @@ public class StudentDAO extends UserDAO {
         return studentCourseId;
     }
 
-    public ArrayList<Artifact> getStudentArtefacts(){
+    public ArrayList<Artifact> getStudentArtefacts() {
 
         ArrayList<Artifact> artifacts = new ArrayList<>();
 
@@ -98,5 +99,27 @@ public class StudentDAO extends UserDAO {
         }
         return artifacts;
     }
+
+    public ArrayList<Quest> getStudentQuests() {
+
+        ArrayList<Quest> quests = new ArrayList<>();
+
+        String query = "SELECT student_id, quest_id FROM students_quests WHERE student_id = " + student.getId() + ";";
+        QuestDAO questDAO = new QuestDAO();
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+
+                Integer questID = rs.getInt("quest_id");
+                Quest quest = questDAO.getQuestById(questID);
+                quests.add(quest);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quests;
+    }
+}
 
