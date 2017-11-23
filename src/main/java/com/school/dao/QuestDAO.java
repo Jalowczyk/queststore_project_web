@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class QuestDAO extends DBConnection {
 
@@ -35,6 +36,28 @@ public class QuestDAO extends DBConnection {
         }
         return course;
     }
+
+    public ArrayList<Quest> getAllQuests() {
+
+        ArrayList<Quest> allQuests = new ArrayList<>();
+        Quest quest = null;
+
+        String query = "SELECT * FROM quests";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                quest = createQuestFromResultSet(rs);
+                allQuests.add(quest);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allQuests;
+    }
+
 
 
     public static Quest createQuestFromResultSet(ResultSet rs) throws SQLException {

@@ -16,8 +16,10 @@ public class App {
             server.createContext("/loginForm", new LoginWebController());
             server.createContext("/students", new StudentWebController());
             server.createContext("/artifacts", new ArtifactWebController());
-            server.createContext("/quests", new QuestWebController());
+            server.createContext("/quests", new StudentQuestWebController());
             server.createContext("/signUp", new SignUpWebController());
+            server.createContext("/availablequests", new QuestWebController()) ;
+
 
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor

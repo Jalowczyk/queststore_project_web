@@ -4,7 +4,7 @@
 
     <div class="rectangle">
         <div class="title">
-            My Quests
+            All Quests
         </div>
         <table>
             <tr>
@@ -12,9 +12,10 @@
                 <th style="width:30%">Info</th>
                 <th style="width:20%">Category</th>
                 <th style="width:20%">Prize</th>
+
             </tr>
 
-            {% for quest in student_quests %}
+            {% for quest in all_quests %}
             <tr>
                 <td>{{ quest.getTitle() }}</td>
                 <td>{{ quest.getInfo() }}</td>
@@ -39,4 +40,4 @@
 
 </div>
 
-    {% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}
+{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}

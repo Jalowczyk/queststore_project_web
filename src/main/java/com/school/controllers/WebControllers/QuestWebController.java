@@ -1,6 +1,7 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.student.StudentSessionController;
+import com.school.dao.QuestDAO;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -31,16 +32,18 @@ public class QuestWebController extends StudentSessionController implements Http
 
             Student student = loadStudent(userID);
             setupStudentquests(student);
+            QuestDAO questDAO = new QuestDAO();
+
 
             if (student != null) {
                 String cookie = setupCookies(student);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("myquests.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("all_quests.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("student_quests", student.getQuests());
+            model.with("all_quests", questDAO.getAllQuests());
             model.with("students", student);
 
             response = template.render(model);
@@ -54,4 +57,6 @@ public class QuestWebController extends StudentSessionController implements Http
         os.write(response.getBytes());
         os.close();
     }
-        }
+}
+
+

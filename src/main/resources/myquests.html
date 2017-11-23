@@ -1,5 +1,4 @@
-{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html"
-with {'css_template': 'static/css/style.css'} %}
+{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html" %}
 
 <div class="content">
 
@@ -10,7 +9,7 @@ with {'css_template': 'static/css/style.css'} %}
         <table>
             <tr>
                 <th style="width:30%">Title</th>
-                <th style="width:50%">Info</th>
+                <th style="width:30%">Info</th>
                 <th style="width:20%">Category</th>
                 <th style="width:20%">Prize</th>
             </tr>
@@ -20,11 +19,24 @@ with {'css_template': 'static/css/style.css'} %}
                 <td>{{ quest.getTitle() }}</td>
                 <td>{{ quest.getInfo() }}</td>
                 <td>{{ quest.getCategory() }}</td>
-                <td>{{ quest.getPrize() }}</td>
+                <td > {{quest.getPrize()}} <img src="static/img/ccoin.png" height="35" width="35" style="float: left;" /></td>
             </tr>
             {% endfor %}
 
         </table>
     </div>
+
+    <div class="buttons">
+
+        <a href="students" class="socialhtml5">
+            <div class="payment">
+                Home
+            </div>
+        </a>
+    </div>
+
+</div>
+
+</div>
 
     {% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}
