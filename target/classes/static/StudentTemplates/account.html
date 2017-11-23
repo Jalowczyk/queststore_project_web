@@ -24,12 +24,12 @@
                     <span style="color: #E0E0E0" font-weight: bold;>Quest</span>Store
                 </div>
             </div>
-            <div class="menu">
+            <div class="stickymenu">
                 <div class="leftmenu">
                     <ol>
                         <li><a id="myacc_btn" href="account.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
-                            My account
-                        </a>
+                                My account
+                            </a>
                             <ul>
                                 <li><a href="myartifacts.html">My Artifacts</a></li>
                                 <li><a href="myquests.html">My Quests</a></li>
@@ -39,8 +39,8 @@
                             </ul>
                         </li>
                         <li><a id="group_btn" href="groupshopping.html"><i class="fa fa-users" id="users" aria-hidden="true"></i>
-                            Group shopping
-                        </a>
+                                Group shopping
+                            </a>
                         </li>
                     </ol>
                 </div>
@@ -51,39 +51,18 @@
                     </ol>
                 </div>
 
+
             </div>
 
-            <div class="content">
+            <div class="accountContent">
 
-                    <div class="rectangle">
-                        <div class="title">
-                            Unsuccessful Payment
+                    <div class="accountRectangle">
+                        <div class="accountTitle">
+                            WELCOME PIOTR
                         </div>
-                        
-                        <div class="unsuccesspayment">
-                            
-                            <p>The transaction was unsuccessful</p>
-                            <p>Not enough funds. Try to make another order.</p>
-                            
-                        </div>
-                    </div>
-
-                    <div class="unsuccessfullpaymentButtons">
-                        <a href="index.html" class="socialhtml5">
-                            <div class="back">
-                                Log Out
-                            </div>
-                        </a>
-                        <a href="account.html" class="socialhtml5">                                
-                            <div class="payment">
-                                Home
-                            </div>
-                        </a>
-                        <a href="store.html" class="socialhtml5">                                
-                            <div class="payment">
-                                Another order
-                            </div>
-                        </a>
+                        <h1 id="accounth1">
+                            It's Nice To See You
+                        </h1>
                     </div>
 
             </div>
@@ -111,32 +90,6 @@
                 </div>
             </footer>
         </div>
-
-        <script src="jquery-3.2.1.min.js"></script>
-
-        <script>
-        
-            $(document).ready(function() {
-                var NavY = $('.menu').offset().top;
-
-                var stickyNav = function(){
-                    var ScrollY = $(window).scrollTop();
-
-                    if (ScrollY > NavY) {
-                        $('.menu').addClass('sticky');
-                    } else {
-                        $('.menu').removeClass('sticky');
-                    }
-                };
-
-                stickyNav();
-
-                $(window).scroll(function() {
-                    stickyNav();
-                });
-            });
-
-        </script>
 
     </body>
 </html>
