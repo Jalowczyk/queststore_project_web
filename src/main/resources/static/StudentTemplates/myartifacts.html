@@ -4,7 +4,7 @@
         <script type="text/javascript"></script>
             
         <title>
-            QuestStore
+            QuestStore - CodeCool
         </title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="style.css">
@@ -14,7 +14,7 @@
 
     </head>
     <body>
-
+     
         <div class="wrapper">
             <div class="header">
 
@@ -23,7 +23,7 @@
                     <span style="color: #E0E0E0" font-weight: bold;>Quest</span>Store
                 </div>
             </div>
-            <div class="menu">
+            <div class="stickymenu">
                 <div class="leftmenu">
                     <ol>
                         <li><a id="myacc_btn" href="account.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
@@ -50,56 +50,52 @@
                     </ol>
                 </div>
 
-            </div>
 
+            </div>
             <div class="content">
 
                     <div class="rectangle">
                         <div class="title">
-                            Shopping List
+                            My artifacts
                         </div>
-                        <table>
+
+                        <table id="contenttable">
                             <tr>
-                                <th style="width:10%"></th>
-                                <th style="width:20%">Name</th>
-                                <th style="width:57%">Description</th>
-                                <th style="width:23%">Price</th>
+                                <th style="width:30%">Name</th>
+                                <th style="width:70%">Description</th>
                             </tr>
                             <tr>
-                                <td class="tdpayment"><input type="checkbox" name="check" id="check"></td>
-                                <td class="tdpayment">Walka na poduszki</td>
-                                <td class="tdpayment">Walka na poduszki z wybranym mentorem do pierwszej krwi</td>
-                                <td class="tdpayment">400 <img src="img/ccoin.png" height="25" width="25" style="float: left;" hspace="2"/></td>
+                                <td>Walka na poduszki</td>
+                                <td>Walka na poduszki z wybranym mentorem do pierwszej krwi</td>
                             </tr>
                             <tr>
-                                <td class="tdpayment"><input type="checkbox" name="check" id="check"></td>
-                                <td class="tdpayment">Darmowa pizza</td>
-                                <td class="tdpayment">Darmowa pizza na koszt wybranego mentora</td>
-                                <td class="tdpayment">600 <img src="img/ccoin.png" height="25" width="25" style="float: left;" hspace="2"/></td>
+                                <td>Wyjście na piwo</td>
+                                <td>Wyjście na piwo z wybranym mentorem</td>
+                            </tr>
+                            <tr>
+                                <td>Darmowa pizza</td>
+                                <td>Darmowa pizza na koszt wybranego mentora</td>
+                            </tr>
+                            <tr>
+                                <td>Torturowanie</td>
+                                <td>Torturowanie mentora wybranymi narzędziami przez mentora przez 2 minuty</td>
+                            </tr>
+                            <tr>
+                                <td>Zatrudnienie</td>
+                                <td>Zatrudnienie mentora jako członka zespołu na godzinę</td>
                             </tr>
                         </table>
-                        <div class="totalamountpayment">
-                            <div id="totalamount">
-                                Total amount
-                            </div>
-                            <div id="totalamount">
-                                1000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" hspace="2"/>
-                            </div>
-                        </div>
                     </div>
 
-                    <div class="paymentButtons">
+
+                    <div class="buttons">
                         <a href="account.html" class="socialhtml5">
-                            <div class="cancel">
-                                Cancel
-                            </div>
-                        </a>
-                        <a href="unsuccessfulpayment.html" class="socialhtml5">                                
                             <div class="payment">
-                                Confirm payment
+                                Home
                             </div>
                         </a>
                     </div>
+
             </div>
             <div class="socials">
                 <div class="socialdivs">
@@ -125,32 +121,6 @@
                 </div>
             </footer>
         </div>
-
-        <script src="jquery-3.2.1.min.js"></script>
-
-        <script>
-        
-            $(document).ready(function() {
-                var NavY = $('.menu').offset().top;
-
-                var stickyNav = function(){
-                    var ScrollY = $(window).scrollTop();
-
-                    if (ScrollY > NavY) {
-                        $('.menu').addClass('sticky');
-                    } else {
-                        $('.menu').removeClass('sticky');
-                    }
-                };
-
-                stickyNav();
-
-                $(window).scroll(function() {
-                    stickyNav();
-                });
-            });
-
-        </script>
 
     </body>
 </html>
