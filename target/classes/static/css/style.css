@@ -65,6 +65,7 @@ body{
 
 }
 
+
 #user {
     font-size: 40px;
     margin-right: 5px;
@@ -472,6 +473,7 @@ ol > li
 ol > li:hover > ul
 {
     display: block;
+    height: 250px;
 }
 
 ol > li > ul
@@ -479,13 +481,18 @@ ol > li > ul
     list-style-type: none;
     padding: 0;
     margin: 0;
-    display: none;
+    height: 0;
+    display: block;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.2s 0.1s ease-out;
 }
 
 /*My account dropdown list*/
 ol > li > ul > li:hover
 {
     background-color: #413B3B;
+
 }
 
 ol > li > ul > li
