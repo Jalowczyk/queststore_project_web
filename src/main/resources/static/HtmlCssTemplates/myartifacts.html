@@ -23,7 +23,7 @@
                     <span style="color: #E0E0E0" font-weight: bold;>Quest</span>Store
                 </div>
             </div>
-            <div class="menu">
+            <div class="stickymenu">
                 <div class="leftmenu">
                     <ol>
                         <li><a id="myacc_btn" href="account.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
@@ -121,32 +121,6 @@
                 </div>
             </footer>
         </div>
-
-        <script src="jquery-3.2.1.min.js"></script>
-
-        <script>
-        
-            $(document).ready(function() {
-                var NavY = $('.menu').offset().top;
-
-                var stickyNav = function(){
-                    var ScrollY = $(window).scrollTop();
-
-                    if (ScrollY > NavY) {
-                        $('.menu').addClass('sticky');
-                    } else {
-                        $('.menu').removeClass('sticky');
-                    }
-                };
-
-                stickyNav();
-
-                $(window).scroll(function() {
-                    stickyNav();
-                });
-            });
-
-        </script>
 
     </body>
 </html>
