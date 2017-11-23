@@ -67,19 +67,19 @@ body{
 
 
 #user {
-    font-size: 40px;
+    font-size: 20px;
     margin-right: 5px;
     line-height: 40px;
 }
 
 #users {
-    font-size: 40px;
+    font-size: 20px;
     margin-right: 5px;
     line-height: 40px;
 }
 
 #cart_font {
-    font-size: 50px;
+    font-size: 20px;
     margin-right: 5px;
     line-height: 40px;
 }
@@ -428,12 +428,12 @@ ol a
     color: #FFFFFF;
     text-decoration: none;
     display: block;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #myacc_btn
 {
-    width: 220px;
+    width: 180px;
 }
 
 #group_btn
@@ -460,9 +460,8 @@ ol a
 ol > li
 {
     display: block;
-    height: 45px;
+    height: 35px;
     background: #2A2A2B;
-    padding: 10px 25px 5px 25px;
     text-decoration: none;
     border-radius: 50px;
     float: left;
@@ -481,7 +480,6 @@ ol > li > ul
     list-style-type: none;
     padding: 0;
     margin: 0;
-    height: 0;
     display: block;
     overflow: hidden;
     height: 0;
@@ -492,17 +490,14 @@ ol > li > ul
 ol > li > ul > li:hover
 {
     background-color: #413B3B;
-
 }
 
 ol > li > ul > li
 {
-    background-color: #AFA4A4;
+    background-color: #2A2A2B;
     position: relative;
     z-index: 100;
     border-top: 1px solid #424141;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 
 ol > li > ul > li:hover > a
@@ -529,7 +524,7 @@ a.links:hover
 
 
 .leftmenu > ol > li {
-    background-color: #AFA4A4;
+    background-color: #2A2A2B;
 }
 
 .leftmenu > ol > li:hover {
@@ -538,12 +533,8 @@ a.links:hover
 
 .leftmenu > ol a
 {
-    color: #3B3838;
-}
-
-.rightmenu > ol a
-{
-    color: #fff
+    color: #f4f4f4;
+    opacity: 0.8;
 }
 
 .leftmenu > ol > li:hover > a
