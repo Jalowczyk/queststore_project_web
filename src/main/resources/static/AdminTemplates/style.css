@@ -180,6 +180,11 @@ body{
     padding: 10px;
 }
 
+table
+{
+    width: 100%;
+}
+
 #contenttable
 {
     width: 100%;
@@ -238,6 +243,22 @@ th
     padding: 30px;
     text-align:center;
     vertical-align:middle;
+}
+
+.editmentor
+{
+    font-size: 2vw;
+    padding: 2%;
+    text-align:center;
+    vertical-align:middle;
+    float: left;
+}
+
+.fieldname
+{
+    font-size: 2vw;
+    padding: 2%;
+    width: 30%;
 }
 
 input[type="checkbox"]{
@@ -410,6 +431,20 @@ a.socialhtml5
     justify-content: center;
     width: 100%;
     color: #ffffff;
+    text-decoration: none;
+}
+
+a.editmentordiv
+{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding:2%;
+}
+a.editmentordiv:hover
+{
+    background-color: #255367;
     text-decoration: none;
 }
 
