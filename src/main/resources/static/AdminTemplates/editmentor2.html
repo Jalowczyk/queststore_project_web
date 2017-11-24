@@ -42,45 +42,39 @@
                 </div>
             </div>
 
-            <div class="content">
+            <div class="admincontent">
 
                     <div class="rectangle">
                         <div class="title">
                             Update mentor profile
                         </div>
-
-                        <table>
-                            <tr>
-                                <th class="fieldname">Name:</th>
-                                <th class="editmentor"><input type="text" name="name" placeholder="Enter new name" required></th>
-                            </tr>
-                            <tr>
-                                <th class="fieldname">Surname:</th>
-                                <th class="editmentor"><input type="text" name="surname" placeholder="Enter new surname" required></th>
-                            </tr>
-                            <tr>
-                                <th class="fieldname">Email:</th>
-                                <th class="editmentor"><input type="email" name="email" placeholder="Enter new email" required></th>
-                            </tr>
-                            <tr>
-                                <th class="fieldname">Class:</th>
-                                <th class="editmentor"><input type="text" name="class" placeholder="Enter new class" required></th>
-                            </tr>
-                            <tr>
-                                <th class="fieldname">Password:</th>
-                                <th class="editmentor"><input type="text" name="class" placeholder="Enter new password" required></th>
-                            </tr>
-                        </table>
-
-                    </div>
-
-                    <div class="buttons">
-
-                        <a href="editedmentor.html" class="socialhtml5">
-                            <div class="payment">
-                                Submit
-                            </div>
-                        </a>
+                        <form action="account.html" method="GET">
+                            <ul class="flex-outer">
+                                <li>
+                                    <label for="first-name">First Name</label>
+                                    <input type="text" id="first-name" placeholder="Enter new name here">
+                                </li>
+                                <li>
+                                    <label for="last-name">Last Name</label>
+                                    <input type="text" id="last-name" placeholder="Enter new last name here">
+                                </li>
+                                <li>
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" placeholder="Enter new email here">
+                                </li>
+                                <li>
+                                    <label for="class">Class</label>
+                                    <input type="tel" id="class" placeholder="Enter new class here">
+                                </li>
+                                <li>
+                                    <label for="password">Password</label>
+                                    <input type="tel" id="password" placeholder="Enter new password here">
+                                </li>
+                                <li>
+                                    <input type="submit" class="button" value="Submit">
+                                </li>
+                            </ul>
+                        </form>
                     </div>
 
             </div>
