@@ -316,6 +316,7 @@ th
     border-radius: 30px;
     padding: 10px;
     flex-wrap: wrap;
+    align-items: center;
 }
 /*InputForm*/
 
