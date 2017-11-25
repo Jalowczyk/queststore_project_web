@@ -272,7 +272,6 @@ th
     align-items: center;
     color:white;
     padding-top: 4%;
-    /*padding-bottom: 4%;*/
     flex-wrap: wrap;
     font-size: 2vw;
     margin-bottom: 15vw;
@@ -284,7 +283,39 @@ th
     display: flex;
     justify-content: center;
     padding: 9vw;
-    /*margin-bottom: 8%;*/
+    flex-wrap: wrap;
+}
+
+.showmentortitle
+{
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
+    padding: 3vw;
+}
+
+.information
+{
+    padding: 2vw;
+}
+
+.courseTitle
+{
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
 }
 /*InputForm*/
 
