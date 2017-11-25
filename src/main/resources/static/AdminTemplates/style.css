@@ -85,13 +85,15 @@ body{
 }
 
 #facebook_font {
-    font-size: 50px;
+    /*font-size: 50px;*/
+    font-size: 15px;
     margin-right: 5px;
     line-height: 40px;
 }
 
 #instagram_font {
-    font-size: 50px;
+    /*font-size: 50px;*/
+    font-size: 15px;
     margin-right: 5px;
     line-height: 40px;
 }
@@ -257,9 +259,32 @@ th
     align-items: center;
     color:white;
     padding-top: 4%;
-    padding-bottom: 4%;
+    padding-bottom: 7%;
     flex-wrap: wrap;
     font-size: 2vw;
+}
+
+.admincontent3
+{
+    display: flex;
+    width: 55%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    /*padding-bottom: 4%;*/
+    flex-wrap: wrap;
+    font-size: 2vw;
+    margin-bottom: 15vw;
+}
+
+.message
+{
+    font-size: 2w;
+    display: flex;
+    justify-content: center;
+    padding: 9vw;
+    /*margin-bottom: 8%;*/
 }
 /*InputForm*/
 
@@ -363,6 +388,15 @@ input[type="checkbox"]{
     font-size: 2.5vw;
 }
 
+a.homebutton
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #ffffff;
+    text-decoration: none;
+}
+
 p
 {
     display: flex;
@@ -408,30 +442,12 @@ p
     background-color: #975833;
 }
 
-
-.socials
-{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    background-color: #383333;
-    opacity: 0.8;
-    margin-bottom: 40px;
-}
-
-.socialdivs
-{
-    display: flex;
-    width: 80%;
-}
-
 .fb
 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80px;
 }
 
 .fb:hover
@@ -445,7 +461,6 @@ p
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80px;
 }
 
 .instagram:hover
@@ -508,9 +523,10 @@ a.socialhtml5
 {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 30%;
     color: #ffffff;
     text-decoration: none;
+    height: 20px;
 }
 
 a.editmentordiv
