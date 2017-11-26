@@ -1,7 +1,5 @@
 package com.school.dao;
-import com.school.models.Artifact;
-import com.school.models.Quest;
-import com.school.models.Student;
+import com.school.models.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -121,5 +119,8 @@ public class StudentDAO extends UserDAO {
         }
         return quests;
     }
+
+
+
 }
 

@@ -1,22 +1,19 @@
 package com.school.controllers.WebControllers.admin;
 
-import com.school.dao.MentorDAO;
+import com.school.dao.CourseDAO;
 import com.school.models.Admin;
-import com.school.models.Mentor;
+import com.school.models.Course;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
-
 import java.io.*;
-import java.net.URLDecoder;
-import java.util.HashMap;
 import java.util.Map;
 
 
-public class AddMentorController extends AdminSessionController implements HttpHandler {
+public class AddCourseController extends AdminSessionController implements HttpHandler {
 
 
     @Override
@@ -42,7 +39,7 @@ public class AddMentorController extends AdminSessionController implements HttpH
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/addmentor.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/addcourse.html");
 
             JtwigModel model = JtwigModel.newModel();
             response = template.render(model);
@@ -55,25 +52,20 @@ public class AddMentorController extends AdminSessionController implements HttpH
 
             Map inputs = parseFormData(formData);
 
-            String firstName = inputs.get("first_name").toString();
-            String lastName = inputs.get("last_name").toString();
-            String email = inputs.get("email").toString();
-            String course = inputs.get("class").toString();
-            String password = inputs.get("password").toString();
+            String courseName = inputs.get("course_name").toString();
+            Course course = new Course(courseName);
 
-            Mentor mentor = new Mentor(firstName, lastName, password, email);
-            MentorDAO mentorDAO = new MentorDAO(mentor);
-            mentorDAO.save();
+            CourseDAO courseDAO = new CourseDAO();
+            courseDAO.saveCourse(course);
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/admin_account.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentor_added", true);
+            model.with("course_added", true);
 
             response = template.render(model);
 
         }
-
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
         httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
@@ -83,3 +75,4 @@ public class AddMentorController extends AdminSessionController implements HttpH
         os.close();
     }
 }
+

@@ -737,8 +737,7 @@ a.links:hover
   }
 }
 
-#as{
-display: none;
-
+.hidden{
+  display: none;
 
 }

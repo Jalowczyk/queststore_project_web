@@ -1,22 +1,25 @@
 package com.school.controllers.WebControllers.admin;
 
-import com.school.dao.MentorDAO;
+import com.school.dao.CourseDAO;
+import com.school.dao.UserDAO;
 import com.school.models.Admin;
+import com.school.models.Course;
 import com.school.models.Mentor;
+import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
-
-import java.io.*;
-import java.net.URLDecoder;
-import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Map;
 
-
-public class AddMentorController extends AdminSessionController implements HttpHandler {
+public class ShowMentorController extends AdminSessionController implements HttpHandler {
 
 
     @Override
@@ -27,6 +30,8 @@ public class AddMentorController extends AdminSessionController implements HttpH
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
+
+        UserDAO userDAO = new UserDAO();
 
         if (userID == null) {
 
@@ -42,9 +47,12 @@ public class AddMentorController extends AdminSessionController implements HttpH
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/addmentor.html");
+            ArrayList mentors = userDAO.getAllUsersByStatus("mentor");
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/showmentor.html");
 
             JtwigModel model = JtwigModel.newModel();
+            model.with("mentors", mentors);
             response = template.render(model);
 
         } else if (method.equals("POST")) {
@@ -55,25 +63,18 @@ public class AddMentorController extends AdminSessionController implements HttpH
 
             Map inputs = parseFormData(formData);
 
-            String firstName = inputs.get("first_name").toString();
-            String lastName = inputs.get("last_name").toString();
-            String email = inputs.get("email").toString();
-            String course = inputs.get("class").toString();
-            String password = inputs.get("password").toString();
+            String mentorID = inputs.get("id").toString();
 
-            Mentor mentor = new Mentor(firstName, lastName, password, email);
-            MentorDAO mentorDAO = new MentorDAO(mentor);
-            mentorDAO.save();
+            User chosenMentor = userDAO.getUserById(Integer.parseInt(mentorID));
+            Mentor mentor = (Mentor) chosenMentor;
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/admin_account.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/mentordetails.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentor_added", true);
-
+            model.with("mentors", mentor);
             response = template.render(model);
 
         }
-
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
         httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
@@ -83,3 +84,5 @@ public class AddMentorController extends AdminSessionController implements HttpH
         os.close();
     }
 }
+
+

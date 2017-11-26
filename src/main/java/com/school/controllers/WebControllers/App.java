@@ -1,9 +1,8 @@
 package com.school.controllers.WebControllers;
 
-import com.school.controllers.WebControllers.admin.AddMentorController;
-import com.school.controllers.WebControllers.admin.AdminWebController;
-import com.school.controllers.WebControllers.admin.EditMentorController;
-import com.school.controllers.WebControllers.admin.SubmissionMentorEdition;
+import com.school.controllers.WebControllers.admin.*;
+import com.school.controllers.WebControllers.student.ArtifactWebController;
+import com.school.controllers.WebControllers.student.QuestWebController;
 import com.school.controllers.WebControllers.student.StudentQuestWebController;
 import com.school.controllers.WebControllers.student.StudentWebController;
 import com.school.controllers.WebControllers.utilController.Static;
@@ -18,18 +17,25 @@ public class App {
             HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
             // set routes
+
+            //log in
             server.createContext("/loginForm", new LoginWebController());
+            server.createContext("/signUp", new SignUpWebController());
+
+            //students
             server.createContext("/students", new StudentWebController());
+            server.createContext("/artifacts", new ArtifactWebController());
+            server.createContext("/quests", new StudentQuestWebController());
+            server.createContext("/availablequests", new QuestWebController());
+            //admins
+            server.createContext("/admins", new AdminWebController());
             server.createContext("/add_mentor", new AddMentorController());
             server.createContext("/edit_mentor", new EditMentorController());
             server.createContext("/edit_mentor_submit", new SubmissionMentorEdition());
-            server.createContext("/admins", new AdminWebController());
-            server.createContext("/artifacts", new ArtifactWebController());
-            server.createContext("/quests", new StudentQuestWebController());
-            server.createContext("/signUp", new SignUpWebController());
-            server.createContext("/availablequests", new QuestWebController()) ;
-
-
+            server.createContext("/add_course", new AddCourseController());
+            server.createContext("/show_mentor", new ShowMentorController());
+            server.createContext("/show_course", new ShowCourseController());
+            //static
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor
 
