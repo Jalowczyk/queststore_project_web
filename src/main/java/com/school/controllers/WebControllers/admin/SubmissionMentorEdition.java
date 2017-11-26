@@ -1,10 +1,6 @@
 package com.school.controllers.WebControllers.admin;
 
-import com.school.dao.UserDAO;
-import com.school.models.Admin;
-import com.school.models.Mentor;
-import com.school.models.User;
-import com.sun.net.httpserver.Headers;
+import com.school.dao.MentorDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -15,7 +11,7 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorController extends AdminSessionController implements HttpHandler {
+public class SubmissionMentorEdition extends AdminSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -23,48 +19,25 @@ public class EditMentorController extends AdminSessionController implements Http
         String method = httpExchange.getRequestMethod();
         String response = "";
 
-        Headers requestHeaders = httpExchange.getRequestHeaders();
-        Integer userID = getIdFromExistingCookies(requestHeaders);
-
-        UserDAO userDAO = new UserDAO();
-
-        if (userID == null) {
-
-            httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, response.length());
-
-        } else if (method.equals("GET")) {
-
-            Admin admin = loadAdmin(userID);
-
-            if (admin != null) {
-                String cookie = setupCookies(admin);
-                httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
-            }
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/editmentor.html");
-
-            JtwigModel model = JtwigModel.newModel();
-            model.with("mentors", userDAO.getAllUsersByStatus("mentor"));
-            response = template.render(model);
-
-
-        } else if (method.equals("POST")) {
+        if(method.equals("POST")) {
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
 
             Map inputs = parseFormData(formData);
+            String mail = inputs.get("email").toString();
+            String name = inputs.get("first_name").toString();
+            String surname = inputs.get("last_name").toString();
+            Integer id = Integer.parseInt(inputs.get("id").toString());
+            String password = inputs.get("password").toString();
 
-            String id = inputs.get("id").toString();
-            User chosenMentor = userDAO.getUserById(Integer.parseInt(id));
-            Mentor mentor = (Mentor) chosenMentor;
+            MentorDAO.editMentor(name, surname, mail, password, id);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/editmentor2.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/admin_account.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentor", mentor);
+            model.with("mentor_edited", true);
             response = template.render(model);
 
         }
@@ -75,6 +48,7 @@ public class EditMentorController extends AdminSessionController implements Http
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
+
     }
 
     private static Map<String, String> parseFormData(String formData) throws UnsupportedEncodingException {
@@ -89,4 +63,5 @@ public class EditMentorController extends AdminSessionController implements Http
         return map;
     }
 }
+
 

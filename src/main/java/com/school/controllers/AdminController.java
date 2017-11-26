@@ -49,9 +49,7 @@ public class AdminController {
                 createCourse();
                 break;
 
-            case "3":
-                editMentorProfile();
-                break;
+
 
             case "4":
                 showCourseInfo();
@@ -98,14 +96,6 @@ public class AdminController {
         courseDao.saveCourse(course);
     }
 
-    public static void editMentorProfile(){
-
-        Integer id = MentorView.getMentorId();
-        String name = MentorView.typeStudentName();
-
-        MentorDAO.editMentor(name, id);
-        System.out.println("details have changed");
-    }
 
     public static void showCourseInfo(){
 

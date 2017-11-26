@@ -78,7 +78,15 @@
 
                 <div class="rectangle">
                     <div class="message">
-                        Course has been successfully created
+
+                        {% if (mentor_added) %}
+                        Mentor has been successfully added
+                        {% endif %}
+
+                        {% if (mentor_edited) %}
+                        Mentor has been successfully edited
+                        {% endif %}
+
                     </div>
                 </div>
 
@@ -104,6 +112,14 @@
                 </div>
             </footer>
 
+            {% if (mentor_edited) %}
+
+            <script type="text/javascript">
+         showInfo();
+        </script>
+
+            {% endif %}
+
             {% if (mentor_added) %}
 
             <script type="text/javascript">
@@ -111,6 +127,7 @@
         </script>
 
             {% endif %}
+
         </div>
 
     </body>

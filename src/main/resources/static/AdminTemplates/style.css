@@ -581,6 +581,7 @@ a.editmentordiv
     color: #ffffff;
     text-decoration: none;
     padding:2%;
+
 }
 a.editmentordiv:hover
 {
@@ -735,5 +736,9 @@ a.links:hover
     left: -9999px;
   }
 }
+
+#as{
+display: none;
+
 
 }

@@ -49,20 +49,21 @@
                             Choose mentor you want to edit
                         </div>
 
-                        <form action="addcoursemessage.html" method="POST">
-                        <table>
-                            <tr>
-                                <td><a href="editmentor2.html" class="editmentordiv" name="ws">Mentor1Name Mentor1Surname</a></td>
-                            </tr>
+                        <form method="post" action="">
+                            {% for mentor in mentors %}
 
-                
-                        </table>
+                            <a href="javascript:{}" onclick="document.getElementById('as').click(); return false;" class="editmentordiv">{{ mentor.getName() }}</a>
+                            <input type="submit" id="as" value="{{ mentor.getId() }}" name="id">
+
+                            {% endfor %}
                         </form>
-                    </div>
+
+
+
 
                     <div class="buttons">
 
-                        <a href="account.html" class="homebutton">
+                        <a href="admins" class="homebutton">
                             <div class="payment">
                                 Home
                             </div>

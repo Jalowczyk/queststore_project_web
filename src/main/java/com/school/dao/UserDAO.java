@@ -52,7 +52,7 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
             student.setId(idNum);
             return student;
         }
-        if(status.equals("admin")){
+        if(status.equals("mentor")){
             Mentor mentor = new Mentor(name, surname, mail, password);
             mentor.setId(idNum);
             return mentor;
