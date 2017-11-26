@@ -22,7 +22,7 @@ public class AdminView extends AbstractView {
     }
 
     public static void showMenu() {
-        String menu = "\n1. Create mentor"
+        String menu = "\n1. Create admin"
                 + "\n2. Create new Course"
                 + "\n3. Edit chosen Mentor profile"
                 + "\n4. Show info about chosen Course"
@@ -35,35 +35,35 @@ public class AdminView extends AbstractView {
 
     public static String typeMentorName() {
 
-        System.out.println("\nPlease provide the name of mentor: ");
+        System.out.println("\nPlease provide the name of admin: ");
         String name = scan.nextLine();
         return name;
     }
 
     public static String typeMentorSurname() {
 
-        System.out.println("Please provide the surname of mentor: ");
+        System.out.println("Please provide the surname of admin: ");
         String surname = scan.nextLine();
         return surname;
     }
 
     public static String typeMentorPassword() {
 
-        System.out.println("Please provide the password for mentor: ");
+        System.out.println("Please provide the password for admin: ");
         String password = scan.nextLine();
         return password;
     }
 
     public static Integer typeMentorId() {
 
-        System.out.println("Please provide the id for mentor: ");
+        System.out.println("Please provide the id for admin: ");
         Integer id = scan.nextInt();
         return id;
     }
 
     public static String typeMentorEmail() {
 
-        System.out.println("Please provide the mail of mentor: ");
+        System.out.println("Please provide the mail of admin: ");
         String email = scan.nextLine();
         return email;
     }

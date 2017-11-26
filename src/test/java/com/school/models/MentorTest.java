@@ -7,11 +7,11 @@
 //
 //class MentorTest {
 //
-//    private Mentor mentor;
+//    private Mentor admin;
 //
 //    @BeforeEach
 //    public void before() {
-//        this.mentor = new Mentor("Mateusz", "Ostafil", "password", "mat@gmail.com", "mentor");
+//        this.admin = new Mentor("Mateusz", "Ostafil", "password", "mat@gmail.com", "admin");
 //    }
 //
 //    @Test
@@ -21,75 +21,75 @@
 //
 //    @Test
 //    public void testGetName() {
-//        assertEquals("Mateusz", mentor.getName());
+//        assertEquals("Mateusz", admin.getName());
 //    }
 //
 //    @Test
 //    public void testGetSurname() {
-//        assertEquals("Ostafil", mentor.getSurname());
+//        assertEquals("Ostafil", admin.getSurname());
 //    }
 //
 //    @Test
 //    public void testGetPassword() {
-//        assertEquals("password", mentor.getPassword());
+//        assertEquals("password", admin.getPassword());
 //    }
 //
 //    @Test
 //    public void testGetMail() {
-//        assertEquals("mat@gmail.com", mentor.getMail());
+//        assertEquals("mat@gmail.com", admin.getMail());
 //    }
 //
 //    @Test
 //    public void testGetStatus() {
-//        assertEquals("mentor", mentor.getStatus());
+//        assertEquals("admin", admin.getStatus());
 //    }
 //
 //    @Test
 //    public void testGetId() {
-//        assertNull(mentor.getId());
+//        assertNull(admin.getId());
 //    }
 //
 //
 //    @Test
 //    public void testSetName() {
-//        mentor.setName("Jan");
-//        assertEquals("Jan", mentor.getName());
+//        admin.setName("Jan");
+//        assertEquals("Jan", admin.getName());
 //    }
 //
 //    @Test
 //    public void testSetSurname() {
-//        mentor.setSurname("Nowak");
-//        assertEquals("Nowak", mentor.getSurname());
+//        admin.setSurname("Nowak");
+//        assertEquals("Nowak", admin.getSurname());
 //    }
 //
 //    @Test
 //    public void testSetPassword() {
-//        mentor.setPassword("1234");
-//        assertEquals("1234", mentor.getPassword());
+//        admin.setPassword("1234");
+//        assertEquals("1234", admin.getPassword());
 //    }
 //
 //    @Test
 //    public void testSetMail() {
-//        mentor.setMail("mentor@gmail.com");
-//        assertEquals("mentor@gmail.com", mentor.getMail());
+//        admin.setMail("admin@gmail.com");
+//        assertEquals("admin@gmail.com", admin.getMail());
 //    }
 //
 //    @Test
 //    public void testSetStatus() {
-//        mentor.setStatus("student");
-//        assertEquals("student", mentor.getStatus());
+//        admin.setStatus("student");
+//        assertEquals("student", admin.getStatus());
 //    }
 //
 //    @Test
 //    public void testSetId() {
 //        Integer id = 1;
-//        mentor.setId(id);
-//        assertEquals(id, mentor.getId());
+//        admin.setId(id);
+//        assertEquals(id, admin.getId());
 //    }
 //
 //    @Test
 //    public void testDetailsObjectsAsString() {
-//        String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", mentor.name, mentor.surname, mentor.id);
-//        assertEquals(info, mentor.toString());
+//        String info = String.format("\nName: %s\nSurname: $%s%nLogin: %s%n", admin.name, admin.surname, admin.id);
+//        assertEquals(info, admin.toString());
 //    }
 //}

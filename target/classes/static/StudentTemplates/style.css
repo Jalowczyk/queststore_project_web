@@ -1,7 +1,7 @@
 body{
     font-family: 'Lato', sans-serif;
     font-size: 20px;
-    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("img/image1.jpg") center top / cover;
+    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/image1.jpg") center top / cover;
     padding: 0;
     margin: 0 !important;
     min-width: 550px;
@@ -39,6 +39,7 @@ body{
 .stickymenu
 {
     display: flex;
+    justify-content: space-between;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
@@ -85,13 +86,15 @@ body{
 }
 
 #facebook_font {
-    font-size: 50px;
+    /*font-size: 50px;*/
+    font-size: 15px;
     margin-right: 5px;
     line-height: 40px;
 }
 
 #instagram_font {
-    font-size: 50px;
+    /*font-size: 50px;*/
+    font-size: 15px;
     margin-right: 5px;
     line-height: 40px;
 }
@@ -156,8 +159,10 @@ body{
     justify-content: center;
     align-items: center;
     color:white;
-    padding-top: 40px;
+    padding-top: 4%;
+    padding-bottom: 4%;
     flex-wrap: wrap;
+    font-size: 2vw;
 }
 
 .rectangle
@@ -178,6 +183,11 @@ body{
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
     padding: 10px;
+}
+
+table
+{
+    width: 100%;
 }
 
 #contenttable
@@ -240,6 +250,154 @@ th
     vertical-align:middle;
 }
 
+/*AdminTemplate*/
+
+.admincontent
+{
+    display: flex;
+    width: 55%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    padding-bottom: 7%;
+    flex-wrap: wrap;
+    font-size: 2vw;
+}
+
+.admincontent3
+{
+    display: flex;
+    width: 55%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    flex-wrap: wrap;
+    font-size: 2vw;
+    margin-bottom: 15vw;
+}
+
+.message
+{
+    font-size: 2w;
+    display: flex;
+    justify-content: center;
+    padding: 9vw;
+    flex-wrap: wrap;
+}
+
+.showmentortitle
+{
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
+    padding: 3vw;
+}
+
+.information
+{
+    padding: 2vw;
+}
+
+.courseTitle
+{
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
+    padding: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+/*InputForm*/
+
+form
+{
+    padding: 6%;
+}
+
+.flex-outer
+{
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex-outer li
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-outer > li:not(:last-child)
+{
+    margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p
+{
+    padding: 8px;
+    font-weight: 300;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+}
+
+.flex-outer > li > label,
+.flex-outer li p
+{
+    flex: 1 0 120px;
+    max-width: 220px;
+}
+
+.flex-outer > li > label + *
+{
+    flex: 1 0 220px;
+}
+
+.flex-outer li p
+{
+    margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea
+{
+    padding: 15px;
+    border: none;
+}
+
+input.button
+{
+    margin: auto;
+    padding: 8px 16px;
+    border: none;
+    background: #333;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border-radius: 2px;
+    margin-top: 2%;
+    font-size: 1.5vw;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+/*End of inputForm*/
+
+
 input[type="checkbox"]{
     width: 30px; /*Desired width*/
     height: 30px; /*Desired height*/
@@ -250,7 +408,7 @@ input[type="checkbox"]{
     width: 50%;
     display: flex;
     justify-content: space-evenly;
-    padding: 5%;
+    padding-top: 5%;
     font-size: 2.5vw;
 }
 
@@ -261,6 +419,15 @@ input[type="checkbox"]{
     justify-content: space-evenly;
     padding: 5%;
     font-size: 2.5vw;
+}
+
+a.homebutton
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #ffffff;
+    text-decoration: none;
 }
 
 p
@@ -308,30 +475,12 @@ p
     background-color: #975833;
 }
 
-
-.socials
-{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    background-color: #383333;
-    opacity: 0.8;
-    margin-bottom: 40px;
-}
-
-.socialdivs
-{
-    display: flex;
-    width: 80%;
-}
-
 .fb
 {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80px;
 }
 
 .fb:hover
@@ -345,7 +494,6 @@ p
     justify-content: center;
     align-items: center;
     width: 80%;
-    height: 80px;
 }
 
 .instagram:hover
@@ -408,8 +556,23 @@ a.socialhtml5
 {
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 30%;
     color: #ffffff;
+    text-decoration: none;
+    height: 20px;
+}
+
+a.editmentordiv
+{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding:2%;
+}
+a.editmentordiv:hover
+{
+    background-color: #255367;
     text-decoration: none;
 }
 

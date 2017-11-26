@@ -4,7 +4,7 @@ package com.school.models;
 
 public class Mentor extends User {
 
-    private static String status = "mentor";
+    private static String status = "admin";
 
     public Mentor(){}
 

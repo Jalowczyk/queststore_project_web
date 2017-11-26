@@ -9,7 +9,7 @@ public class UserLogger {
             Student student = (Student) user;
 
         }
-        if (user.getStatus().equals("mentor")) {
+        if (user.getStatus().equals("admin")) {
 
             Mentor mentor = (Mentor) user;
 

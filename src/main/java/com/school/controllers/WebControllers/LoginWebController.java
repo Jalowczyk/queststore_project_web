@@ -73,13 +73,13 @@ public class LoginWebController extends StudentSessionController implements Http
 
                 httpExchange.getResponseHeaders().set("Location", "/students");
 
-            } else if (user.getStatus().equals("mentor")) {
-
-                httpExchange.getResponseHeaders().set("Location", "/mentors");
-
             } else if (user.getStatus().equals("admin")) {
 
                 httpExchange.getResponseHeaders().set("Location", "/admins");
+
+            } else if (user.getStatus().equals("mentor")) {
+
+                httpExchange.getResponseHeaders().set("Location", "/mentors");
             }
 
             if (user != null) {

@@ -1,4 +1,4 @@
-package com.school.controllers.WebControllers;
+package com.school.controllers.WebControllers.student;
 
 import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.Student;

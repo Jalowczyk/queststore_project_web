@@ -121,7 +121,7 @@ public class AdminController {
 
     public static void showMentorProfile(){
 
-        ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("mentor");
+        ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("admin");
 
         for(User mentor : mentorsList){
             MentorView.showStudent(mentor);
