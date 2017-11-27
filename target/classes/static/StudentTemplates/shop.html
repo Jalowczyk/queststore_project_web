@@ -8,12 +8,19 @@
     </title>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" type="text/css" href ='static/css/shop.css'  >
+    <link rel="stylesheet" type="text/css" href ='static/css/shop.css'>
+    <link rel="stylesheet" type="text/css" href ='static/css/style1.css'>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+
+
+
 
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
 
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
+    <script type="text/javascript" src="static/js/boxOver.js"></script>
 
 </head>
 <body>
@@ -52,7 +59,7 @@
         </div>
         <div class="rightmenu">
             <ol>
-                <li><a id="coin"><img src="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
+                <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
                 <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>2</a></li>
             </ol>
         </div>
@@ -76,9 +83,113 @@
 
     </div>
 </div>
-<div class="items">
-    nokia
+
+<div class="main_bg1">
+    <div class="wrap">
+        <div class="main1">
+            <h2>ARTIFACTS</h2>
+        </div>
+    </div>
 </div>
+<!-- start main -->
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <!-- start grids_of_3 -->
+            <div class="grids_of_3">
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic1.jpg" alt=""/>
+                        <h3>branded shoes</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic2.jpg" alt=""/>
+                        <h3>branded t-shirts</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic3.jpg" alt=""/>
+                        <h3>branded tees</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="grids_of_3">
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic4.jpg" alt=""/>
+                        <h3>branded bags</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic5.jpg" alt=""/>
+                        <h3>ems women bag</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="grid1_of_3">
+                    <a href="details.html">
+                        <img src="static/img/pic6.jpg" alt=""/>
+                        <h3>branded cargos</h3>
+                        <div class="price">
+                            <h4>$300<span>Buy</span></h4>
+                        </div>
+                        <span class="b_btm"></span>
+                    </a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <!--/#cart_items-->
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <div id="footer_page">
+        <div id="left_footer">
+            <span>&copy; 2017</span>
+            <a href="account.html" class="links">Account Page</a>
+        </div>
+        <a href="https://www.facebook.com/CodecoolPoland/" target="_blank" class="socialhtml5">
+            <div class="fb">
+                <i class="fa fa-facebook" id="facebook_font" aria-hidden="true"></i>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/codecool_official/" target="_blank" class="socialhtml5">
+            <div class="instagram">
+                <i class="fa fa-instagram" id="instagram_font" aria-hidden="true"></i>
+            </div>
+        </a>
+        <span class="authors">Valentyn Potapov, Piotr Tarczon</span>
+    </div>
+</footer>
+</div>
+
+
 </body>
 </html>
 
