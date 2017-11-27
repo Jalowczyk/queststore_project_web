@@ -10,7 +10,7 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class StudentQuestWebController extends StudentSessionController implements HttpHandler {
+public class ShopController extends StudentSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -36,12 +36,10 @@ public class StudentQuestWebController extends StudentSessionController implemen
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/myquests.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/shop.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("student_quests", student.getQuests());
             model.with("students", student);
-
             response = template.render(model);
 
             final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -53,4 +51,6 @@ public class StudentQuestWebController extends StudentSessionController implemen
         os.write(response.getBytes());
         os.close();
     }
-        }
+}
+
+

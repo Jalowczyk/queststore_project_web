@@ -38,7 +38,7 @@ public class StudentWebController extends StudentSessionController implements Ht
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("account.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/account.html");
             JtwigModel model = JtwigModel.newModel();
 
             model.with("students", student);
