@@ -1,6 +1,5 @@
 package com.school.controllers.WebControllers.student;
 
-import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -37,7 +36,7 @@ public class StudentQuestWebController extends StudentSessionController implemen
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("myquests.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/myquests.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student_quests", student.getQuests());

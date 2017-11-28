@@ -1,6 +1,8 @@
 package com.school.models;
 
 
+import com.school.onlineshop.part1.Basket;
+
 import java.util.ArrayList;
 
 public class Student extends User {
@@ -10,6 +12,15 @@ public class Student extends User {
     private static String status = "student";
     private ArrayList<Artifact> artifacts;
     private ArrayList<Quest> quests;
+    private Basket basket;
+
+    public Basket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Basket basket) {
+        this.basket = basket;
+    }
 
     public ArrayList<Quest> getQuests() {
         return quests;

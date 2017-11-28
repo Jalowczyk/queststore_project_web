@@ -1,6 +1,5 @@
 package com.school.controllers.WebControllers.student;
 
-import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -40,7 +39,7 @@ public class ArtifactWebController extends StudentSessionController implements H
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("myartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/myartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student_artifacts", student.getArtifacts());

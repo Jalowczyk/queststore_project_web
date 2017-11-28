@@ -8,14 +8,14 @@ body{
 }
 
 .wrapper
-{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
+ {
+     display: flex;
+     width: 100%;
+     align-items: center;
+     justify-content: center;
+     flex-wrap: wrap;
+     flex-direction: row;
+ }
 
 .header
 {
@@ -265,17 +265,24 @@ th
     font-size: 2vw;
 }
 
-.admincontent3
+#admincontent3
 {
-    display: flex;
+    display: none;
     width: 55%;
     justify-content: center;
     align-items: center;
     color:white;
-    padding-top: 4%;
+    padding-top: 10%;
     flex-wrap: wrap;
     font-size: 2vw;
-    margin-bottom: 15vw;
+    margin-top: -50vw;
+    -webkit-animation: seconds 1.0s forwards;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-delay: 1.5s;
+      animation: seconds 1.0s forwards;
+      animation-iteration-count: 1;
+      animation-delay: 1.5s;
+
 }
 
 .message
@@ -428,6 +435,7 @@ a.homebutton
     width: 100%;
     color: #ffffff;
     text-decoration: none;
+
 }
 
 p
@@ -569,12 +577,14 @@ a.editmentordiv
     color: #ffffff;
     text-decoration: none;
     padding:2%;
+
 }
 a.editmentordiv:hover
 {
     background-color: #255367;
     text-decoration: none;
 }
+
 
 ol
 {
@@ -703,4 +713,33 @@ a.links:hover
 .leftmenu > ol > li:hover > a
 {
     color: #C0B62F;
+}
+
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+
+.hidden{
+  display: none;
+
+}
+
+input.button:hover
+{
+    opacity: 0.8;
 }

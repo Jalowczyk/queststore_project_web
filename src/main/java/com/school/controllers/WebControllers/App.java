@@ -1,10 +1,7 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.admin.*;
-import com.school.controllers.WebControllers.student.ArtifactWebController;
-import com.school.controllers.WebControllers.student.QuestWebController;
-import com.school.controllers.WebControllers.student.StudentQuestWebController;
-import com.school.controllers.WebControllers.student.StudentWebController;
+import com.school.controllers.WebControllers.student.*;
 import com.school.controllers.WebControllers.utilController.Static;
 import com.sun.net.httpserver.HttpServer;
 import java.net.InetSocketAddress;
@@ -23,6 +20,7 @@ public class App {
             server.createContext("/signUp", new SignUpWebController());
 
             //students
+            server.createContext("/shop", new ShopController());
             server.createContext("/students", new StudentWebController());
             server.createContext("/artifacts", new ArtifactWebController());
             server.createContext("/quests", new StudentQuestWebController());
