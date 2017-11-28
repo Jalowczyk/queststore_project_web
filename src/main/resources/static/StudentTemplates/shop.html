@@ -24,24 +24,18 @@
 
          function showAddedToBasket() {
 
-            var added_item_button = document.getElementById('admincontent3');
-            var displaySetting = added_item_button.style.display;
+           var added_item_button = document.getElementById('admincontent3');
+           var first_page_background = document.getElementById('admincontent3');
+              var actualDisplay = getComputedStyle(added_item_button).display;
+              if (actualDisplay == 'none') {
+                added_item_button.style.display = 'block';
 
-            if (displaySetting == 'none') {
 
-            added_item_button.style.display = 'block';
-
-           }
+              } else {
+              added_item_button.style.display = 'none';
 
             }
-
-
-
-
-
-
-
-
+         }
 
     </script>
 
@@ -59,15 +53,11 @@
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
 
 
-
-
-
 </head>
 <body>
 
 {% for student in students %}
-
-<div class="wrapper">
+<div class="page">
     <div class="header">
 
         <div class="logo">
@@ -107,97 +97,105 @@
     </div>
 
     {% endfor %}
+    <div class="wrapper">
 
-    <div class="accountContent">
+        <div class="accountContent">
 
-        <div class="accountRectangle">
-            <div class="accountTitle">
+            <div class="accountRectangle">
+                <div class="accountTitle">
 
-                WELCOME  TO STORE
+                    WELCOME  TO STORE
+
+                </div>
+                <h1 id="accounth1">
+                    It's Nice To See You
+                </h1>
+            </div>
+
+        </div>
+        <a class="button" href="javascript:{}" onclick="showLogin();" target="_blank" id="TellMeMoreButton">DO PURCHASE</a>
+    </div>
+
+
+    <div class="main_bg1">
+        <div class="wrap">
+            <div class="main1">
+                <h2>Artifacts</h2>
+            </div>
+        </div>
+    </div>
+    <!-- start main -->
+    <div class="main_bg" id="purchasing">
+        <div class="wrap">
+            <div class="main">
+                <!-- start grids_of_3 -->
+                <form method="post">
+                    {% for artifact in artifacts %}
+                        {% if  loop.index0 % 3 == 0 %}
+                    <div class="grids_of_3">
+                        {% endif %}
+
+                        <div class="grid1_of_3">
+
+                            <input type="submit" class="hidden" id="{{ artifact.getTitle() }}"  value="{{ artifact.getId() }}" name="id">
+                            <a href="javascript:{}" onclick="document.getElementById('{{ artifact.getTitle() }}').click(); return false;" id="href_id">
+
+                                <h3>b{{ artifact.getTitle() }}</h3>
+                                <div class="price">
+                                    <h4>$ {{artifact.getPrice() }}<span> BUY </span></h4>
+                                </div>
+
+                                <span class="b_btm"></span>
+                            </a>
+                        </div>
+                        {% endfor %}
+
+                    <div class="clear"></div>
+                </div>
+                </form>
+                <!--/#cart_items-->
+            </div>
+        </div>
+    </div>
+
+    <div onmousemove="showAddedToBasket();" class="admincontent3" id="admincontent3">
+
+        <div class="rectangle">
+            <div class="cartmessage">
+
+                <img src="static/img/virtueMart_logo.png" height="150" width="150">
 
             </div>
-            <h1 id="accounth1">
-                It's Nice To See You
-            </h1>
         </div>
 
     </div>
-    <a class="button" href="javascript:{}" onclick="showLogin();" target="_blank" id="TellMeMoreButton">DO PURCHASE</a>
-</div>
 
+    {% if added_to_basket == true %}
+                <script type="text/javascript">
+                showAddedToBasket();
+                </script>
+    {% endif %}
 
-<div class="main_bg1">
-    <div class="wrap">
-        <div class="main1">
-            <h2>Artifacts</h2>
-        </div>
-    </div>
-</div>
-<!-- start main -->
-<div class="main_bg" id="purchasing">
-    <div class="wrap">
-        <div class="main">
-            <!-- start grids_of_3 -->
-            <form method="post">
-                {% for artifact in artifacts %}
-                    {% if  loop.index0 % 3 == 0 %}
-                <div class="grids_of_3">
-                    {% endif %}
-
-                    <div class="grid1_of_3">
-
-                        <input type="submit" class="hidden" id="{{ artifact.getTitle() }}"  value="{{ artifact.getId() }}" name="id">
-                        <a href="javascript:{}" onclick="document.getElementById('{{ artifact.getTitle() }}').click(); return false;" id="href_id">
-
-                            <h3>b{{ artifact.getTitle() }}</h3>
-                            <div class="price">
-                                <h4>$ {{artifact.getPrice() }}<span> BUY </span></h4>
-                            </div>
-
-                            <span class="b_btm"></span>
-                        </a>
-                    </div>
-                    {% endfor %}
-
-                <div class="clear"></div>
+    <footer>
+        <div id="footer_page">
+            <div id="left_footer">
+                <span>&copy; 2017</span>
+                <a href="account.html" class="links">Account Page</a>
             </div>
-            </form>
-            <!--/#cart_items-->
+            <a href="https://www.facebook.com/CodecoolPoland/" target="_blank" class="socialhtml5">
+                <div class="fb">
+                    <i class="fa fa-facebook" id="facebook_font" aria-hidden="true"></i>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/codecool_official/" target="_blank" class="socialhtml5">
+                <div class="instagram">
+                    <i class="fa fa-instagram" id="instagram_font" aria-hidden="true"></i>
+                </div>
+            </a>
+            <span class="authors">Valentyn Potapov, Piotr Tarczon</span>
         </div>
-    </div>
+    </footer>
 </div>
-
-<div class="admincontent3" id="admincontent3">
-
-    Hello
-</div>
-
-{% if added_to_basket == true %}
-<script type="text/javascript">
-            showAddedToBasket();
-            </script>
-{% endif %}
-
-<footer>
-    <div id="footer_page">
-        <div id="left_footer">
-            <span>&copy; 2017</span>
-            <a href="account.html" class="links">Account Page</a>
-        </div>
-        <a href="https://www.facebook.com/CodecoolPoland/" target="_blank" class="socialhtml5">
-            <div class="fb">
-                <i class="fa fa-facebook" id="facebook_font" aria-hidden="true"></i>
-            </div>
-        </a>
-        <a href="https://www.instagram.com/codecool_official/" target="_blank" class="socialhtml5">
-            <div class="instagram">
-                <i class="fa fa-instagram" id="instagram_font" aria-hidden="true"></i>
-            </div>
-        </a>
-        <span class="authors">Valentyn Potapov, Piotr Tarczon</span>
-    </div>
-</footer>
-
 
 </body>
 </html>

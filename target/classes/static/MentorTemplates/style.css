@@ -251,6 +251,18 @@ th
     vertical-align:middle;
 }
 
+.tablerow:hover
+{
+    cursor: pointer;
+    background-color: #255367;
+}
+
+.tablerow2:hover
+{
+    background-color: #255367;
+}
+
+
 /*AdminTemplate*/
 
 .admincontent
@@ -266,17 +278,24 @@ th
     font-size: 2vw;
 }
 
-.admincontent3
+#admincontent3
 {
-    display: flex;
+    display: none;
     width: 55%;
     justify-content: center;
     align-items: center;
     color:white;
-    padding-top: 4%;
+    padding-top: 10%;
     flex-wrap: wrap;
     font-size: 2vw;
-    margin-bottom: 15vw;
+    margin-top: -50vw;
+    -webkit-animation: seconds 1.0s forwards;
+      -webkit-animation-iteration-count: 1;
+      -webkit-animation-delay: 1.5s;
+      animation: seconds 1.0s forwards;
+      animation-iteration-count: 1;
+      animation-delay: 1.5s;
+
 }
 
 .message
@@ -284,6 +303,7 @@ th
     font-size: 2w;
     display: flex;
     justify-content: center;
+    text-align: center;
     padding: 9vw;
     flex-wrap: wrap;
 }
@@ -365,18 +385,27 @@ a.editstudentdiv:hover
 
 /*Quest Manager Template*/
 
-/*.questcontent*/
-/*{*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*color:white;*/
-    /*padding-top: 4%;*/
-    /*padding-bottom: 7%;*/
-    /*flex-wrap: wrap;*/
-    /*font-size: 2vw;*/
-/*}*/
+.questcontent
+{
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    padding-bottom: 7%;
+    flex-wrap: wrap;
+    font-size: 2vw;
+}
 
+.questrectangle
+{
+    width: 100%;
+    background-color: #006666;
+    border-radius: 30px;
+    opacity: 0.9;
+    padding-bottom: 20px;
+}
 
 /*InputForm*/
 
@@ -452,6 +481,11 @@ input.button
     font-size: 1.5vw;
     text-decoration: none;
     cursor:pointer;
+}
+
+input.button:hover
+{
+    opacity: 0.8;
 }
 
 /*End of inputForm*/
@@ -721,7 +755,7 @@ ol a
 
 #myacc_btn
 {
-    width: 180px;
+    width: 190px;
 }
 
 #group_btn
@@ -828,4 +862,28 @@ a.links:hover
 .leftmenu > ol > li:hover > a
 {
     color: #C0B62F;
+}
+
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+
+.hidden{
+  display: none;
+
 }
