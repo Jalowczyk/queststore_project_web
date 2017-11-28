@@ -127,6 +127,7 @@ body{
     text-transform: uppercase;
     justify-content: center;
     margin: 15px;
+    text-align: center;
 }
 
 @keyframes TitlePosition
@@ -250,6 +251,18 @@ th
     vertical-align:middle;
 }
 
+.tablerow:hover
+{
+    cursor: pointer;
+    background-color: #255367;
+}
+
+.tablerow2:hover
+{
+    background-color: #255367;
+}
+
+
 /*AdminTemplate*/
 
 .admincontent
@@ -290,6 +303,7 @@ th
     font-size: 2w;
     display: flex;
     justify-content: center;
+    text-align: center;
     padding: 9vw;
     flex-wrap: wrap;
 }
@@ -326,6 +340,73 @@ th
     flex-wrap: wrap;
     align-items: center;
 }
+
+/*Mentor Template*/
+
+.mentorcontent
+{
+    display: flex;
+    width: 55%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    padding-bottom: 7%;
+    flex-wrap: wrap;
+    font-size: 2vw;
+}
+
+a.editstudentdiv
+{
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding:2%;
+}
+a.editstudentdiv:hover
+{
+    background-color: #255367;
+    text-decoration: none;
+}
+
+.showstudenttitle
+{
+    display: flex;
+    justify-content: center;
+    font-size: 2vw;
+    border-top: 2px solid #B9AB2C;
+    border-bottom: 2px solid #B9AB2C;
+    border-left: 2px solid #B9AB2C;
+    border-right: 2px solid #B9AB2C;
+    border-radius: 30px;
+    padding: 3vw;
+}
+
+/*Quest Manager Template*/
+
+.questcontent
+{
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding-top: 4%;
+    padding-bottom: 7%;
+    flex-wrap: wrap;
+    font-size: 2vw;
+}
+
+.questrectangle
+{
+    width: 100%;
+    background-color: #006666;
+    border-radius: 30px;
+    opacity: 0.9;
+    padding-bottom: 20px;
+}
+
 /*InputForm*/
 
 form
@@ -409,6 +490,62 @@ input.button:hover
 
 /*End of inputForm*/
 
+/*Input Form for marking quest*/
+
+.flex-outer-quest
+{
+    list-style-type: none;
+    padding: 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.flex-outer-quest li
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.flex-outer-quest > li:not(:last-child)
+{
+    margin-bottom: 20px;
+}
+
+.flex-outer-quest li label,
+.flex-outer-quest li p
+{
+    padding: 8px;
+    font-weight: 300;
+    /*letter-spacing: .09em;*/
+    /*text-transform: uppercase;*/
+}
+
+.flex-outer-quest > li > label,
+.flex-outer-quest li p
+{
+    flex: 1 0 120px;
+    max-width: 220px;
+}
+
+.flex-outer-quest > li > label + *
+{
+    flex: 1 0 220px;
+}
+
+.flex-outer-quest li p
+{
+    margin: 0;
+}
+
+.flex-outer-quest li input:not([type='checkbox']),
+.flex-outer-quest li textarea
+{
+    padding: 15px;
+    border: none;
+}
+
+/*End of inputform for marking quest*/
 
 input[type="checkbox"]{
     width: 30px; /*Desired width*/
@@ -581,7 +718,6 @@ a.editmentordiv
     color: #ffffff;
     text-decoration: none;
     padding:2%;
-
 }
 a.editmentordiv:hover
 {
@@ -599,6 +735,16 @@ ol
     line-height: 200%;
 }
 
+.mentorOl
+{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    font-size: 18px;
+    height: 45px;
+    line-height: 180%;
+}
+
 ol a
 {
     color: #FFFFFF;
@@ -609,7 +755,7 @@ ol a
 
 #myacc_btn
 {
-    width: 180px;
+    width: 190px;
 }
 
 #group_btn
