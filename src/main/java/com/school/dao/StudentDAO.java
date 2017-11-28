@@ -1,5 +1,6 @@
 package com.school.dao;
 import com.school.models.*;
+import com.school.onlineshop.part1.Basket;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,6 +20,21 @@ public class StudentDAO extends UserDAO {
 
         saveUser(student);
         saveStudentRecords();
+    }
+
+    public void saveStudentBasketItem(Artifact artifact) {
+
+        String query = "INSERT INTO students_basket (student_id, basket_artifact_id) VALUES(?,?)";
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+
+            statement.setInt(1, student.getId());
+            statement.setInt(2, artifact.getId());
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void saveStudentRecords() {
@@ -119,6 +135,49 @@ public class StudentDAO extends UserDAO {
         }
         return quests;
     }
+
+    public Basket getStudentBasket() {
+
+        Basket basket = new Basket();
+        String query = "SELECT * FROM students_basket WHERE student_id = " + student.getId() + ";";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+
+                Integer items_in_basket_id = rs.getInt("basket_artifact_id");
+                addProductToBasket(items_in_basket_id, basket);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return basket;
+    }
+
+    private Basket addProductToBasket(Integer product_id, Basket basket) {
+
+        String query = "SELECT title, price, category FROM artifacts WHERE artifact_id = " + product_id + ";";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+
+                String item_name = rs.getString("title");
+                String item_info = rs.getString("category");
+                Integer price = rs.getInt("price");
+
+                Artifact artifact = new Artifact(item_name, price, item_info);
+                basket.addProduct(artifact);
+            }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return basket;
+
+}
 
 
 

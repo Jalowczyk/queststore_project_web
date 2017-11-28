@@ -5,6 +5,7 @@ import com.school.models.Artifact;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ArtefactDAO extends  DBConnection{
 
@@ -47,10 +48,33 @@ public class ArtefactDAO extends  DBConnection{
 
 
         Artifact artifact = new Artifact(title, price, category);
-
+        artifact.setId(id);
 
         return artifact;
     }
+
+    public ArrayList<Artifact> getAllArtifacts() {
+
+        ArrayList<Artifact> allQuests = new ArrayList<>();
+        Artifact artifact = null;
+
+        String query = "SELECT * FROM artifacts";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                artifact = createArtefactsFromResultSet(rs);
+                allQuests.add(artifact);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allQuests;
+    }
+
+
 
 
 }

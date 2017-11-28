@@ -417,6 +417,7 @@ img{max-width:100%;}
 	margin-left: 4.3333%;
 	border: 1px solid rgb(223, 223, 223);
 	position: relative;
+    margin-bottom: 3%;
 }
 .grid1_of_3:first-child{
 	margin-left: 0;
@@ -452,11 +453,11 @@ img{max-width:100%;}
 	display: block;
 	margin-bottom: 40px;
 }
-.price h4{
+.price h4 {
 	font-size: 1.5em;
 	color: #999999;	
 }
-.price h4 span{
+.price h4 span {
 	display: inline-block;
 	font-size: 1.1em;
 	background: #3CC395;
@@ -467,6 +468,12 @@ img{max-width:100%;}
 	-moz-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+}
+
+.added_item{
+    display: none ;
+    margin-bottom: 40px;
+
 }
 
 /* start grids_of_3 */

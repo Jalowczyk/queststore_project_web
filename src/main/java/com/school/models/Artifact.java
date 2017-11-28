@@ -5,12 +5,22 @@ public class Artifact {
     private String title;
     private Integer price;
     private String category;
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Artifact(String title, Integer price, String category){
 
         this.title = title;
         this.price = price;
         this.category = category;
+
     }
 
     public Integer getPrice() {

@@ -1,5 +1,8 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.dao.ArtefactDAO;
+import com.school.dao.StudentDAO;
+import com.school.models.Artifact;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -7,8 +10,12 @@ import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class ShopController extends StudentSessionController implements HttpHandler {
 
@@ -19,7 +26,12 @@ public class ShopController extends StudentSessionController implements HttpHand
         String response = "";
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
+
         Integer userID = getIdFromExistingCookies(requestHeaders);
+        Student student = loadStudent(userID);
+
+        ArtefactDAO artefactDAO = new ArtefactDAO();
+        ArrayList<Artifact> artifacts = artefactDAO.getAllArtifacts();
 
         if (userID == null) {
 
@@ -28,8 +40,6 @@ public class ShopController extends StudentSessionController implements HttpHand
 
         } else if (method.equals("GET")) {
 
-            Student student = loadStudent(userID);
-            setupStudentquests(student);
 
             if (student != null) {
                 String cookie = setupCookies(student);
@@ -40,6 +50,36 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", student);
+            model.with("artifacts", artifacts);
+            response = template.render(model);
+
+            final byte[] finalResponseBytes = response.getBytes("UTF-8");
+            httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
+
+        } else if (method.equals("POST")) {
+
+            InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
+            BufferedReader br = new BufferedReader(isr);
+            String formData = br.readLine();
+
+            Map inputs = parseFormData(formData);
+
+            String artifactId = inputs.get("id").toString();
+
+            Artifact artifact = artefactDAO.getArtefactById(Integer.parseInt(artifactId));
+            student.getBasket().addProduct(artifact);
+
+            StudentDAO studentDAO = new StudentDAO(student);
+            studentDAO.saveStudentBasketItem(artifact);
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/shop.html");
+
+            JtwigModel model = JtwigModel.newModel();
+            model.with("students", student);
+            model.with("artifacts", artifacts);
+            model.with("added_to_basket",true);
+
+
             response = template.render(model);
 
             final byte[] finalResponseBytes = response.getBytes("UTF-8");

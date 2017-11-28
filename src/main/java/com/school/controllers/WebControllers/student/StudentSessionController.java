@@ -8,6 +8,7 @@ import com.school.dao.WalletDAO;
 import com.school.models.Student;
 import com.school.models.User;
 import com.school.models.Wallet;
+import com.school.onlineshop.part1.Basket;
 
 public abstract class StudentSessionController extends Cookie {
 
@@ -19,6 +20,8 @@ public abstract class StudentSessionController extends Cookie {
         try {
             Student student = (Student) user;
             setupStudentBalance(student);
+            setupStudentBasket(student);
+
 
             return student;
 
@@ -51,4 +54,12 @@ public abstract class StudentSessionController extends Cookie {
         student.setWallet(myWallet);
 
     }
+    private void setupStudentBasket(Student student) {
+
+        StudentDAO studentDAO = new StudentDAO(student);
+        Basket basket = studentDAO.getStudentBasket();
+        student.setBasket(basket);
+
+    }
+
 }

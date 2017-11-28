@@ -25,6 +25,8 @@ public class App {
             server.createContext("/artifacts", new ArtifactWebController());
             server.createContext("/quests", new StudentQuestWebController());
             server.createContext("/availablequests", new QuestWebController());
+            server.createContext("/basket", new BasketController());
+
             //admins
             server.createContext("/admins", new AdminWebController());
             server.createContext("/add_mentor", new AddMentorController());

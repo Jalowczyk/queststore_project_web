@@ -1,33 +1,33 @@
 package com.school.onlineshop.part1;
 
+import com.school.models.Artifact;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
-
 public class Basket {
 
-    ArrayList<Product> productList = new ArrayList<Product>();
+    ArrayList<Artifact> productList = new ArrayList<>();
 
 
-    public void addProduct(Product product) {
+    public void addProduct(Artifact product) {
         productList.add(product);
     }
 
-    public Iterator<Product> getIterator() {
+    public Iterator<Artifact> getIterator() {
 
-        Iterator<Product> ProductIterator = new ProductIterator();
+        Iterator<Artifact> ProductIterator = new ProductIterator();
         return ProductIterator;
     }
 
-    public ArrayList<Product> getProductList() {
+    public ArrayList<Artifact> getProductList() {
 
         return this.productList;
     }
 
     public void iterateThroughList() {
 
-        Iterator<Product> it = getIterator();
+        Iterator<Artifact> it = getIterator();
         while (it.hasNext()) {
             System.out.println(it.next());
         }
@@ -36,13 +36,13 @@ public class Basket {
     public Float calculateOrderPrice() {
 
         Float sum = 0f;
-        for (Product item : this.productList) {
-            sum += item.getDefaultPrice();
+        for (Artifact item : this.productList) {
+            sum += item.getPrice();
         }
         return sum;
     }
 
-    public void removeProduct(Product product) {
+    public void removeProduct(Artifact product) {
 
         productList.remove(product);
     }

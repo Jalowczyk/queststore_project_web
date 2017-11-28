@@ -53,7 +53,7 @@
                 <div class="rightmenu">
                     <ol>
                         <li><a id="coin"><img src="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
-                        <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>2</a></li>
+                        <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket().getProductList().size() }}</a></li>
                     </ol>
                 </div>
 
