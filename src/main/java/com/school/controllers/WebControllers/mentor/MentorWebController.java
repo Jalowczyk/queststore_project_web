@@ -1,21 +1,21 @@
-package com.school.controllers.WebControllers.admin;
+package com.school.controllers.WebControllers.mentor;
 
+import com.school.controllers.WebControllers.admin.AdminSessionController;
 import com.school.models.Admin;
+import com.school.models.Mentor;
 import com.sun.net.httpserver.Headers;
-import org.jtwig.JtwigModel;
-import org.jtwig.JtwigTemplate;
-
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import org.jtwig.JtwigModel;
+import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
+public class MentorWebController extends MentorSessionController implements HttpHandler {
 
-public class AdminWebController extends AdminSessionController implements HttpHandler {
-
-    @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+        @Override
+        public void handle(HttpExchange httpExchange) throws IOException {
 
         String response = "";
         String method = httpExchange.getRequestMethod();
@@ -31,17 +31,15 @@ public class AdminWebController extends AdminSessionController implements HttpHa
 
         } else if (method.equals("GET")) {
 
-            Admin admin = loadAdmin(userID);
+            Mentor mentor = loadMentor(userID);
 
-            if (admin != null) {
-                String cookie = setupCookies(admin);
+            if (mentor != null) {
+                String cookie = setupCookies(mentor);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/admin_account.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
             JtwigModel model = JtwigModel.newModel();
-
-            model.with("admins", admin);
 
             response = template.render(model);
             httpExchange.sendResponseHeaders(200, response.length());
@@ -52,9 +50,5 @@ public class AdminWebController extends AdminSessionController implements HttpHa
         os.close();
 
     }
-}
-
-
-
-
+    }
 

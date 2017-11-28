@@ -1,6 +1,7 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.admin.*;
+import com.school.controllers.WebControllers.mentor.MentorWebController;
 import com.school.controllers.WebControllers.student.*;
 import com.school.controllers.WebControllers.utilController.Static;
 import com.sun.net.httpserver.HttpServer;
@@ -38,6 +39,11 @@ public class App {
             //static
             server.createContext("/static", new Static());
             server.setExecutor(null); // creates a default executor
+
+
+            //mentors
+            server.createContext("/mentors", new MentorWebController());
+
 
             // start listening
             server.start();
