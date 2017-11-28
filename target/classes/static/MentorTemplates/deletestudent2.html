@@ -27,8 +27,8 @@
     <div class="stickymenu">
         <div class="leftmenu">
             <ol class="mentorOl">
-                <li><a id="myacc_btn" href="addstudent.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
-                    Add student
+                <li><a id="myacc_btn" href="deletestudent.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
+                    Delete student
                 </a>
                     <ul>
                         <li><a href="mentor_account.html">Home page</a></li>
@@ -46,46 +46,24 @@
     <div class="mentorcontent">
 
         <div class="rectangle">
-            <div class="title">
-                Add new student
+            <div class="message">
+                Are you sure you want to delete this student?
+                <div class="information">StudentName StudentSurname</div>
             </div>
-            <form method="POST">
-                <ul class="flex-outer">
-                    <li>
-                        <label for="first-name">First Name</label>
-                        <input type="text" id="first-name" name="first_name" placeholder="Enter student name here" required>
-                    </li>
-                    <li>
-                        <label for="last-name">Last Name</label>
-                        <input type="text" id="last-name" name="last_name" placeholder="Enter student last name here" required>
-                    </li>
-                    <li>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter student email here" required>
-                    </li>
-                    <li>
-                        <label for="course">Course</label>
-                        <input type="tel" id="course" name="course" placeholder="Enter student course here" required>
-                    </li>
-                    <li>
-                        <label for="password">Password</label>
-                        <input type="tel" id="password" name="password" placeholder="Enter student password here" required>
-                    </li>
-                    <li>
-                        <input type="submit" class="button" value="Submit">
-                    </li>
-                </ul>
-            </form>
         </div>
         <div class="buttons">
 
             <a href="mentor_account.html" class="homebutton">
                 <div class="payment">
-                    Home
+                    Yes
+                </div>
+            </a>
+            <a href="mentor_account.html" class="homebutton">
+                <div class="payment">
+                    No
                 </div>
             </a>
         </div>
-
     </div>
 
     <footer>

@@ -27,8 +27,8 @@
     <div class="stickymenu">
         <div class="leftmenu">
             <ol class="mentorOl">
-                <li><a id="myacc_btn" href="manageartifacts.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
-                    Manage artifacts
+                <li><a id="myacc_btn" href="markstudentartifact.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
+                    Mark artifact
                 </a>
                     <ul>
                         <li><a href="mentor_account.html">Home page</a></li>
@@ -47,7 +47,7 @@
 
         <div class="questrectangle">
             <div class="showstudenttitle">
-                Actual artifacts
+                Choose artifact you want to mark
             </div>
             <table>
                 <tr>
@@ -55,30 +55,30 @@
                     <th style="width:57%">Description</th>
                     <th style="width:23%">Price</th>
                 </tr>
-                <tr class="tablerow2">
-                    <td><a class="editstudentdiv">Walka na poduszki</a></td>
-                    <td><a class="editstudentdiv">Walka na poduszki z wybranym mentorem do pierwszej krwi</a></td>
-                    <td><a class="editstudentdiv">1000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
+                <tr class="tablerow">
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Walka na poduszki</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Walka na poduszki z wybranym mentorem do pierwszej krwi</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">1000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
                 </tr>
-                <tr class="tablerow2">
-                    <td><a class="editstudentdiv">Wyjście na piwo</a></td>
-                    <td><a class="editstudentdiv">Wyjście na piwo z wybranym mentorem</a></td>
-                    <td><a class="editstudentdiv">2000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
+                <tr class="tablerow">
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Wyjście na piwo</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Wyjście na piwo z wybranym mentorem</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">2000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
                 </tr>
-                <tr class="tablerow2">
-                    <td><a class="editstudentdiv">Darmowa pizza</a></td>
-                    <td><a class="editstudentdiv">Darmowa pizza na koszt wybranego mentora</a></td>
-                    <td><a class="editstudentdiv">2500 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
+                <tr class="tablerow">
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Darmowa pizza</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Darmowa pizza na koszt wybranego mentora</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">2500 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
                 </tr>
-                <tr class="tablerow2">
-                    <td><a class="editstudentdiv">Torturowanie</a></td>
-                    <td><a class="editstudentdiv">Torturowanie mentora wybranymi narzędziami przez mentora przez 2 minuty</a></td>
-                    <td><a class="editstudentdiv">3000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
+                <tr class="tablerow">
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Torturowanie</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">orturowanie mentora wybranymi narzędziami przez mentora przez 2 minuty</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">3000 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
                 </tr>
-                <tr class="tablerow2">
-                    <td><a class="editstudentdiv">Zatrudnienie</a></td>
-                    <td><a class="editstudentdiv">Zatrudnienie mentora jako członka zespołu na godzin</a></td>
-                    <td><a class="editstudentdiv">3500 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
+                <tr class="tablerow">
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Zatrudnienie</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">Zatrudnienie mentora jako członka zespołu na godzin</a></td>
+                    <td><a href="markstudentartifact3.html" class="editstudentdiv">3500 <img src="img/ccoin.png" height="35" width="35" style="float: left;" /></a></td>
                 </tr>
             </table>
         </div>
@@ -115,6 +115,14 @@
     </footer>
 
 </div>
+
+<script>
+$('tr').click( function() {
+window.location = $(this).find('a').attr('href');
+}).hover( function() {
+$(this).toggleClass('hover');
+});
+</script>
 
 </body>
 </html>
