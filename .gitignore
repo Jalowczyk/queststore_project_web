@@ -37,6 +37,3 @@ hs_err_pid*
 .idea
 
 #Target directory
-/target/
-target/*
-target
