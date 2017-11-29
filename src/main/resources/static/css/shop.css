@@ -10,13 +10,12 @@ body{
 
 .page{
 
-background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/shop.jpeg") center top / cover;
- background-attachment:fixed;
+    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/shop.jpeg") center top / cover;
+    background-attachment:fixed;
 }
 
 .wrapper
  {
-
      display: flex;
      width: 100%;
      align-items: center;
@@ -28,7 +27,7 @@ background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../
 
 .header
 {
- background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/shop.jpeg") center top / cover;
+    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/shop.jpeg") center top / cover;
     display: flex;
     width: 100%;
     padding: 10px 0;
@@ -1326,20 +1325,20 @@ input.button:hover
     }
 
 .button{
-        background: #fed136;
-        color: #484543;
-        border-radius: 3px;
-        display: block;
-        width: 240px;
-        padding: 20px 0;
-        margin: 0 auto;
+    background: #fed136;
+    color: #484543;
+    border-radius: 3px;
+    display: block;
+    width: 240px;
+    padding: 20px 0;
+    margin: 0 auto;
 
-        text-decoration: none;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 18px;
-        pointer-events: "";
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    pointer-events: "";
 
     }
 
@@ -1349,7 +1348,6 @@ input.button:hover
 
 
 #admincontent3{
-
     display: none ;
     width: 45%;
     justify-content: center;
@@ -1361,11 +1359,10 @@ input.button:hover
     margin-top: -42vw;
     margin-left: 314px;
     -webkit-animation: seconds 1.0s forwards;
-      -webkit-animation-iteration-count: 1;
-      -webkit-animation-delay: 1.5s;
-      animation: seconds 1.0s forwards;
-      animation-iteration-count: 1;
-      animation-delay: 1.5s;
-
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-delay: 1.5s;
+    animation: seconds 1.0s forwards;
+    animation-iteration-count: 1;
+    animation-delay: 1.5s;
 }
 
