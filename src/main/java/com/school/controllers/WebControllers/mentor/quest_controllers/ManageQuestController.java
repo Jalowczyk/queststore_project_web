@@ -1,6 +1,9 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.quest_controllers;
 
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.QuestDAO;
 import com.school.models.Mentor;
+import com.school.models.Quest;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -9,8 +12,9 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
-public class ManageStudentController extends MentorSessionController implements HttpHandler {
+public class ManageQuestController extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -36,8 +40,11 @@ public class ManageStudentController extends MentorSessionController implements 
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            QuestDAO questDAO = new QuestDAO();
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managequests.html");
             JtwigModel model = JtwigModel.newModel();
+            model.with("quests", questDAO.getAllQuests());
 
             response = template.render(model);
             httpExchange.sendResponseHeaders(200, response.length());

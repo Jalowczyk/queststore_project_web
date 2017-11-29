@@ -1,6 +1,7 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.artifacts;
 
 import com.school.controllers.WebControllers.admin.AdminSessionController;
+import com.school.dao.ArtefactDAO;
 import com.school.dao.UserDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -13,7 +14,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class DeleteStudentSubmit extends AdminSessionController implements HttpHandler {
+public class SubmitToDeleteArtifact extends AdminSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -28,15 +29,16 @@ public class DeleteStudentSubmit extends AdminSessionController implements HttpH
             String formData = br.readLine();
 
             Map inputs = parseFormData(formData);
-            String student_id = inputs.get("id").toString();
 
-            UserDAO userDAO = new UserDAO();
-            userDAO.deleteUser(Integer.parseInt(student_id));
+            Integer artifact_id = Integer.parseInt(inputs.get("artifact_id").toString());
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            ArtefactDAO artefactDAO = new ArtefactDAO();
+            artefactDAO.deleteArtifact(artifact_id);
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("student_deleted", true);
+            model.with("artifact_deleted", true);
             response = template.render(model);
         }
 

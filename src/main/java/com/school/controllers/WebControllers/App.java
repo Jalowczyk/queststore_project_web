@@ -2,6 +2,9 @@ package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.admin.*;
 import com.school.controllers.WebControllers.mentor.*;
+import com.school.controllers.WebControllers.mentor.artifacts.*;
+import com.school.controllers.WebControllers.mentor.quest_controllers.*;
+import com.school.controllers.WebControllers.mentor.student_controllers.*;
 import com.school.controllers.WebControllers.student.*;
 import com.school.controllers.WebControllers.utilController.Static;
 import com.sun.net.httpserver.HttpServer;
@@ -50,6 +53,19 @@ public class App {
             server.createContext("/deletestudent", new DeleteStudentController());
             server.createContext("/delete_student_submit", new DeleteStudentSubmit());
             server.createContext("/showstudents", new ShowStudentsController());
+            server.createContext("/managequests", new ManageQuestController());
+            server.createContext("/addquest", new AddQuestController());
+            server.createContext("/markstudentquest", new MarkStudentQuestController());
+            server.createContext("/mark_student_submit", new MarkStudentSubmit());
+            server.createContext("/manageartifacts", new ManageArtifactsController());
+            server.createContext("/markstudentartifact", new MarkStudentArtifactController());
+            server.createContext("/markstudentartifactsubmit", new SubmitMarkStudentArtifact());
+            server.createContext("/addartifact", new AddArtifactController());
+            server.createContext("/editartifact", new EditArtifactController());
+            server.createContext("/editartifactsubmit", new SubmitEditArtifact());
+            server.createContext("/deleteartifacts", new DeleteArtifactsController());
+            server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
+
 
             // start listening
             server.start();

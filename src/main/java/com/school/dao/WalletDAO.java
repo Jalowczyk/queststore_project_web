@@ -83,6 +83,22 @@ public class WalletDAO extends DBConnection {
         }
     }
 
+    public void editWallet(Wallet wallet) {
+
+        String query = "UPDATE wallets SET wallet_balance = (?)  WHERE wallet_id = '" + wallet.getWalletId() + "'";
+
+        try (PreparedStatement statement = conn.prepareStatement(query)) {
+            statement.setInt(1, wallet.getBalance());
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public static Integer getLastWalletCreatedId() {
 
         Integer loadedWalletId = null;

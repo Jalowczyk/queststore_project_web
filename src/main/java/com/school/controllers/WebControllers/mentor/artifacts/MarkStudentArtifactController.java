@@ -1,10 +1,9 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.artifacts;
 
-import com.school.dao.StudentDAO;
-import com.school.dao.WalletDAO;
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.UserDAO;
 import com.school.models.Mentor;
 import com.school.models.Student;
-import com.school.models.Wallet;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -15,10 +14,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Map;
 
-public class AddStudentController extends MentorSessionController implements HttpHandler {
-
+public class MarkStudentArtifactController extends MentorSessionController implements HttpHandler  {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -44,14 +43,16 @@ public class AddStudentController extends MentorSessionController implements Htt
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/addstudent.html");
+            UserDAO userDAO = new UserDAO();
+            ArrayList allStudents = userDAO.getAllUsersByStatus("student");
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact.html");
             JtwigModel model = JtwigModel.newModel();
+            model.with("students", allStudents);
 
             response = template.render(model);
 
         } else if (method.equals("POST")) {
-
-            System.out.println("is post");
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -59,28 +60,16 @@ public class AddStudentController extends MentorSessionController implements Htt
 
             Map inputs = parseFormData(formData);
 
-            String firstName = inputs.get("first_name").toString();
-            String lastName = inputs.get("last_name").toString();
-            String email = inputs.get("email").toString();
-            String course = inputs.get("course").toString();
-            String password = inputs.get("password").toString();
+            Integer studentId = Integer.parseInt(inputs.get("id").toString());
+            Student student = loadStudent(studentId);
+            setupStudentArtifacts(student);
 
-            Student student = new Student(firstName, lastName, password, email);
-            StudentDAO studentDAO = new StudentDAO(student);
-
-            Wallet wallet = new Wallet();
-            WalletDAO walletDAO = new WalletDAO();
-
-            walletDAO.saveWallet(wallet);
-            studentDAO.save();
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
-
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact2.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("student_added", true);
+            model.with("student", student);
+            model.with("student_artifacts", student.getArtifacts());
 
             response = template.render(model);
-
         }
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -91,3 +80,4 @@ public class AddStudentController extends MentorSessionController implements Htt
         os.close();
     }
 }
+
