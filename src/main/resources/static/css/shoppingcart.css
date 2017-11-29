@@ -65,11 +65,10 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 body {
     padding: 0px 30px 30px 20px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    /*background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/background2.jpg") center top / cover;*/
+    background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/background2.jpg") center top / cover;
     font-weight: 100;
     font-size: 18px;
     padding: 0;
-    background: white;
 }
 
 .logo {
@@ -90,7 +89,7 @@ h1 {
 }
 
 label {
-    color: #aaa;
+    color: #ffffff;
 }
 
 .shopping-cart {
@@ -595,4 +594,29 @@ a.links:hover
 .leftmenu > ol > li:hover > a
 {
     color: #C0B62F;
+}
+
+
+/*Transaction unsuccessful*/
+
+.transactionbox
+{
+    display: flex;
+    padding:5%;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    flex-direction: column;
+}
+
+.transactionform
+{
+    display: flex;
+    justify-content:center;
+}
+
+.transactionmessage
+{
+    padding:20px;
 }
