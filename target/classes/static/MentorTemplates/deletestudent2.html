@@ -42,7 +42,6 @@
             </ol>
         </div>
     </div>
-    <form method="POST" action="delete_student_submit">
     <div class="mentorcontent">
 
         <div class="rectangle">
@@ -53,6 +52,7 @@
                 {% endfor %}
             </div>
         </div>
+        <form method="POST" action="delete_student_submit">
         <div class="buttons">
 
             <a href="javascript:{}" onclick="document.getElementById('id').click(); return false;" class="homebutton">
@@ -70,7 +70,9 @@
             <input type="submit" class="hidden" id="id" value="{{ student.getId() }}" name="id">
         </div>
     </div>
-    </form>
+        </form>
+
+
 
     <footer>
         <div id="footer_page">

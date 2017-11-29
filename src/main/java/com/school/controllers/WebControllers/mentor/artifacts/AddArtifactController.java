@@ -1,9 +1,9 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.artifacts;
 
-import com.school.dao.UserDAO;
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.ArtefactDAO;
+import com.school.models.Artifact;
 import com.school.models.Mentor;
-import com.school.models.Student;
-import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,30 +14,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
-public class ShowStudentsController extends MentorSessionController implements HttpHandler {
+public class AddArtifactController extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String method = httpExchange.getRequestMethod();
         String response = "";
+        String method = httpExchange.getRequestMethod();
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-        UserDAO userDAO = new UserDAO();
-
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, response.length());
+            httpExchange.sendResponseHeaders(302, -1);
 
         } else if (method.equals("GET")) {
-
-
 
             Mentor mentor = loadMentor(userID);
 
@@ -46,12 +41,9 @@ public class ShowStudentsController extends MentorSessionController implements H
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArrayList students = userDAO.getAllUsersByStatus("student");
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/showstudents.html");
-
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/addartifact.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("students", students);
+
             response = template.render(model);
 
         } else if (method.equals("POST")) {
@@ -62,15 +54,21 @@ public class ShowStudentsController extends MentorSessionController implements H
 
             Map inputs = parseFormData(formData);
 
-            String studentID = inputs.get("id").toString();
+            String artifactName = inputs.get("artifact_title").toString();
+            String artifactInfo = inputs.get("artifact_category").toString();
+            Integer artifactPrice = Integer.parseInt(inputs.get("artifact_price").toString());
 
-            User chosenStudent = userDAO.getUserById(Integer.parseInt(studentID));
-            Student student = (Student) chosenStudent;
+            Artifact artifact = new Artifact(artifactName, artifactPrice, artifactInfo);
+            ArtefactDAO artefactDAO = new ArtefactDAO();
+            artefactDAO.saveArtifact(artifact);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/studentdetails.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("students", student);
+            model.with("artifact_added", true);
+            model.with("artifacts", artefactDAO.getAllArtifacts());
+
+
             response = template.render(model);
 
         }
@@ -83,3 +81,4 @@ public class ShowStudentsController extends MentorSessionController implements H
         os.close();
     }
 }
+

@@ -387,6 +387,7 @@ a.editstudentdiv:hover
 
 .questcontent
 {
+
     display: flex;
     width: 70%;
     justify-content: center;

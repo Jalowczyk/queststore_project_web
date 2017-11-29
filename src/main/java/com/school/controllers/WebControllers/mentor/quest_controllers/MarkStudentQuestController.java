@@ -1,9 +1,11 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.quest_controllers;
 
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.QuestDAO;
 import com.school.dao.UserDAO;
 import com.school.models.Mentor;
+import com.school.models.Quest;
 import com.school.models.Student;
-import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,25 +16,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Map;
 
-public class EditStudentController extends MentorSessionController implements HttpHandler {
+public class MarkStudentQuestController extends MentorSessionController implements HttpHandler  {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String method = httpExchange.getRequestMethod();
         String response = "";
+        String method = httpExchange.getRequestMethod();
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-        UserDAO userDAO = new UserDAO();
 
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, response.length());
+            httpExchange.sendResponseHeaders(302, -1);
 
         } else if (method.equals("GET")) {
 
@@ -43,12 +45,14 @@ public class EditStudentController extends MentorSessionController implements Ht
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editstudent.html");
+            UserDAO userDAO = new UserDAO();
+            ArrayList allStudents = userDAO.getAllUsersByStatus("student");
 
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentquest.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("students", userDAO.getAllUsersByStatus("student"));
-            response = template.render(model);
+            model.with("students", allStudents);
 
+            response = template.render(model);
 
         } else if (method.equals("POST")) {
 
@@ -58,16 +62,16 @@ public class EditStudentController extends MentorSessionController implements Ht
 
             Map inputs = parseFormData(formData);
 
-            String id = inputs.get("id").toString();
-            User chosenStudent = userDAO.getUserById(Integer.parseInt(id));
-            Student student = (Student) chosenStudent;
+            Integer studentId = Integer.parseInt(inputs.get("id").toString());
+            Student student = loadStudent(studentId);
+            setupStudentquests(student);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editstudent2.html");
-
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentquest2.html");
             JtwigModel model = JtwigModel.newModel();
             model.with("student", student);
-            response = template.render(model);
+            model.with("student_quests", student.getQuests());
 
+            response = template.render(model);
         }
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -77,6 +81,4 @@ public class EditStudentController extends MentorSessionController implements Ht
         os.write(response.getBytes());
         os.close();
     }
-
 }
-

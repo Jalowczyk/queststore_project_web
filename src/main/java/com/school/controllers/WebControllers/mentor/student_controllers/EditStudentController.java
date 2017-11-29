@@ -1,5 +1,6 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.student_controllers;
 
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
 import com.school.dao.UserDAO;
 import com.school.models.Mentor;
 import com.school.models.Student;
@@ -16,7 +17,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class DeleteStudentController extends MentorSessionController implements HttpHandler {
+public class EditStudentController extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -43,7 +44,7 @@ public class DeleteStudentController extends MentorSessionController implements 
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editstudent.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", userDAO.getAllUsersByStatus("student"));
@@ -62,7 +63,7 @@ public class DeleteStudentController extends MentorSessionController implements 
             User chosenStudent = userDAO.getUserById(Integer.parseInt(id));
             Student student = (Student) chosenStudent;
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent2.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editstudent2.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student", student);

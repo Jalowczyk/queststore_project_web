@@ -1,4 +1,4 @@
-package com.school.controllers.WebControllers.mentor;
+package com.school.controllers.WebControllers.mentor.student_controllers;
 
 import com.school.controllers.WebControllers.admin.AdminSessionController;
 import com.school.dao.UserDAO;

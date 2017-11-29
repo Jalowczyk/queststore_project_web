@@ -59,7 +59,6 @@ public class QuestDAO extends DBConnection {
     }
 
 
-
     public static Quest createQuestFromResultSet(ResultSet rs) throws SQLException {
 
         Integer id = rs.getInt("quest_id");
@@ -76,7 +75,7 @@ public class QuestDAO extends DBConnection {
 
     public void saveQuest(Quest quest) {
 
-        String query = "INSERT INTO quests (title, info, prize, quest_category) VALUES(?,?,?,?)";
+        String query = "INSERT INTO quests (title, info, prize, category) VALUES(?,?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
@@ -91,6 +90,19 @@ public class QuestDAO extends DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteQuest(Integer questID, Integer studentID) {
+
+        String query = "DELETE FROM students_quests WHERE quest_id = '" + questID + "'AND student_id = '" + studentID + "'";
+
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 
