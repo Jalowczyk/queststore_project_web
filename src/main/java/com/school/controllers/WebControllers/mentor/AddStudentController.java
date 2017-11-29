@@ -1,9 +1,10 @@
-package com.school.controllers.WebControllers.admin;
+package com.school.controllers.WebControllers.mentor;
 
-import com.school.dao.UserDAO;
-import com.school.models.Admin;
+import com.school.dao.StudentDAO;
+import com.school.dao.WalletDAO;
 import com.school.models.Mentor;
-import com.school.models.User;
+import com.school.models.Student;
+import com.school.models.Wallet;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,46 +15,43 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
-public class ShowMentorController extends AdminSessionController implements HttpHandler {
+public class AddStudentController extends MentorSessionController implements HttpHandler {
 
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String method = httpExchange.getRequestMethod();
         String response = "";
+        String method = httpExchange.getRequestMethod();
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-        UserDAO userDAO = new UserDAO();
 
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, response.length());
+            httpExchange.sendResponseHeaders(302, -1);
 
         } else if (method.equals("GET")) {
 
-            Admin admin = loadAdmin(userID);
+            Mentor mentor = loadMentor(userID);
 
-            if (admin != null) {
-                String cookie = setupCookies(admin);
+            if (mentor != null) {
+                String cookie = setupCookies(mentor);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArrayList mentors = userDAO.getAllUsersByStatus("mentor");
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/showmentor.html");
-
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/addstudent.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentors", mentors);
+
             response = template.render(model);
 
         } else if (method.equals("POST")) {
+
+            System.out.println("is post");
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -61,15 +59,26 @@ public class ShowMentorController extends AdminSessionController implements Http
 
             Map inputs = parseFormData(formData);
 
-            String mentorID = inputs.get("id").toString();
+            String firstName = inputs.get("first_name").toString();
+            String lastName = inputs.get("last_name").toString();
+            String email = inputs.get("email").toString();
+            String course = inputs.get("course").toString();
+            String password = inputs.get("password").toString();
 
-            User chosenMentor = userDAO.getUserById(Integer.parseInt(mentorID));
-            Mentor mentor = (Mentor) chosenMentor;
+            Student student = new Student(firstName, lastName, password, email);
+            StudentDAO studentDAO = new StudentDAO(student);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/mentordetails.html");
+            Wallet wallet = new Wallet();
+            WalletDAO walletDAO = new WalletDAO();
+
+            walletDAO.saveWallet(wallet);
+            studentDAO.save();
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentors", mentor);
+            model.with("student_added", true);
+
             response = template.render(model);
 
         }
@@ -82,5 +91,3 @@ public class ShowMentorController extends AdminSessionController implements Http
         os.close();
     }
 }
-
-

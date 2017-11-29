@@ -1365,7 +1365,7 @@ input.button:hover
       -webkit-animation-delay: 1.5s;
       animation: seconds 1.0s forwards;
       animation-iteration-count: 1;
-      animation-delay: 1.5s;
+      animation-delay: 1.0s;
 
 }
 

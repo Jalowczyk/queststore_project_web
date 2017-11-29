@@ -43,10 +43,11 @@ public class Student extends User {
     }
 
 
-    public Student(String name, String surname, String mail, String password){
+    public Student(String name, String surname, String password, String mail){
 
         super(name, surname, password, mail, status);
         this.wallet = new Wallet();
+        this.basket = new Basket();
 
     }
 

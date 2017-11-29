@@ -1,6 +1,7 @@
 package com.school.controllers.WebControllers.admin;
 
 import com.school.dao.MentorDAO;
+import com.school.dao.UserDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -11,7 +12,7 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SubmissionMentorEdition extends AdminSessionController implements HttpHandler {
+public class SubmitMentorEdition extends AdminSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -32,7 +33,7 @@ public class SubmissionMentorEdition extends AdminSessionController implements H
             Integer id = Integer.parseInt(inputs.get("id").toString());
             String password = inputs.get("password").toString();
 
-            MentorDAO.editMentor(name, surname, mail, password, id);
+            UserDAO.editUser(name, surname, mail, password, id);
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/admin_account.html");
 

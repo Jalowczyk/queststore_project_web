@@ -1,8 +1,8 @@
-package com.school.controllers.WebControllers.admin;
+package com.school.controllers.WebControllers.mentor;
 
 import com.school.dao.UserDAO;
-import com.school.models.Admin;
 import com.school.models.Mentor;
+import com.school.models.Student;
 import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -14,11 +14,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
-public class ShowMentorController extends AdminSessionController implements HttpHandler {
-
+public class DeleteStudentController extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -38,20 +36,19 @@ public class ShowMentorController extends AdminSessionController implements Http
 
         } else if (method.equals("GET")) {
 
-            Admin admin = loadAdmin(userID);
+            Mentor mentor = loadMentor(userID);
 
-            if (admin != null) {
-                String cookie = setupCookies(admin);
+            if (mentor != null) {
+                String cookie = setupCookies(mentor);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArrayList mentors = userDAO.getAllUsersByStatus("mentor");
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/showmentor.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentors", mentors);
+            model.with("students", userDAO.getAllUsersByStatus("student"));
             response = template.render(model);
+
 
         } else if (method.equals("POST")) {
 
@@ -61,15 +58,14 @@ public class ShowMentorController extends AdminSessionController implements Http
 
             Map inputs = parseFormData(formData);
 
-            String mentorID = inputs.get("id").toString();
+            String id = inputs.get("id").toString();
+            User chosenStudent = userDAO.getUserById(Integer.parseInt(id));
+            Student student = (Student) chosenStudent;
 
-            User chosenMentor = userDAO.getUserById(Integer.parseInt(mentorID));
-            Mentor mentor = (Mentor) chosenMentor;
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/AdminTemplates/mentordetails.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent2.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("mentors", mentor);
+            model.with("student", student);
             response = template.render(model);
 
         }
@@ -81,6 +77,6 @@ public class ShowMentorController extends AdminSessionController implements Http
         os.write(response.getBytes());
         os.close();
     }
-}
 
+}
 

@@ -1,7 +1,7 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.admin.*;
-import com.school.controllers.WebControllers.mentor.MentorWebController;
+import com.school.controllers.WebControllers.mentor.*;
 import com.school.controllers.WebControllers.student.*;
 import com.school.controllers.WebControllers.utilController.Static;
 import com.sun.net.httpserver.HttpServer;
@@ -32,7 +32,7 @@ public class App {
             server.createContext("/admins", new AdminWebController());
             server.createContext("/add_mentor", new AddMentorController());
             server.createContext("/edit_mentor", new EditMentorController());
-            server.createContext("/edit_mentor_submit", new SubmissionMentorEdition());
+            server.createContext("/edit_mentor_submit", new SubmitMentorEdition());
             server.createContext("/add_course", new AddCourseController());
             server.createContext("/show_mentor", new ShowMentorController());
             server.createContext("/show_course", new ShowCourseController());
@@ -43,7 +43,13 @@ public class App {
 
             //mentors
             server.createContext("/mentors", new MentorWebController());
-
+            server.createContext("/managestudents", new ManageStudentController());
+            server.createContext("/addstudent", new AddStudentController());
+            server.createContext("/editstudent", new EditStudentController());
+            server.createContext("/edit_student_submit", new EditStudentSubmit());
+            server.createContext("/deletestudent", new DeleteStudentController());
+            server.createContext("/delete_student_submit", new DeleteStudentSubmit());
+            server.createContext("/showstudents", new ShowStudentsController());
 
             // start listening
             server.start();
