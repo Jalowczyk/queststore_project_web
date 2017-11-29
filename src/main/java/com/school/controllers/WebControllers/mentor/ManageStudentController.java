@@ -10,10 +10,10 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class MentorWebController extends MentorSessionController implements HttpHandler {
+public class ManageStudentController extends MentorSessionController implements HttpHandler {
 
-        @Override
-        public void handle(HttpExchange httpExchange) throws IOException {
+    @Override
+    public void handle(HttpExchange httpExchange) throws IOException {
 
         String response = "";
         String method = httpExchange.getRequestMethod();
@@ -36,7 +36,7 @@ public class MentorWebController extends MentorSessionController implements Http
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
             JtwigModel model = JtwigModel.newModel();
 
             response = template.render(model);
@@ -48,5 +48,5 @@ public class MentorWebController extends MentorSessionController implements Http
         os.close();
 
     }
-    }
+}
 

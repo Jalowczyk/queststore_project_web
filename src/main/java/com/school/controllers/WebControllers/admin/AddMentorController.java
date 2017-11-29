@@ -72,7 +72,6 @@ public class AddMentorController extends AdminSessionController implements HttpH
 
         }
 
-
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
         httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
