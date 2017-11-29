@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class QuestDAO extends DBConnection {
 
@@ -17,11 +18,11 @@ public class QuestDAO extends DBConnection {
         super(tableName);
     }
 
-    public static Quest createQuestFromDatabase(Integer id) {
+    public Quest getQuestById(Integer id) {
 
         Quest course = null;
 
-        String query = "SELECT * FROM quests WHERE id_ = " + id + ";";
+        String query = "SELECT * FROM quests WHERE quest_id = " + id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -36,14 +37,35 @@ public class QuestDAO extends DBConnection {
         return course;
     }
 
+    public ArrayList<Quest> getAllQuests() {
+
+        ArrayList<Quest> allQuests = new ArrayList<>();
+        Quest quest = null;
+
+        String query = "SELECT * FROM quests";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while (rs.next()) {
+                quest = createQuestFromResultSet(rs);
+                allQuests.add(quest);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allQuests;
+    }
+
 
     public static Quest createQuestFromResultSet(ResultSet rs) throws SQLException {
 
-        Integer id = rs.getInt("id");
+        Integer id = rs.getInt("quest_id");
         String title = rs.getString("title");
         String info = rs.getString("info");
         Integer prize = rs.getInt("prize");
-        String category = rs.getString("quest_category");
+        String category = rs.getString("category");
 
         Quest quest = new Quest(title, info, prize, category);
         quest.setId(id);
@@ -53,7 +75,7 @@ public class QuestDAO extends DBConnection {
 
     public void saveQuest(Quest quest) {
 
-        String query = "INSERT INTO quests (title, info, prize, quest_category) VALUES(?,?,?,?)";
+        String query = "INSERT INTO quests (title, info, prize, category) VALUES(?,?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(query)) {
 
@@ -68,6 +90,19 @@ public class QuestDAO extends DBConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void deleteQuest(Integer questID, Integer studentID) {
+
+        String query = "DELETE FROM students_quests WHERE quest_id = '" + questID + "'AND student_id = '" + studentID + "'";
+
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
 

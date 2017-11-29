@@ -14,6 +14,14 @@ import java.util.ArrayList;
 
 public class AdminController {
 
+    private Admin myAdmin;
+
+    public AdminController(Admin admin){
+
+        myAdmin = admin;
+        startController(admin);
+    }
+
     public static void startController(Admin admin) {
 
         AdminView.welcomeMsg(admin.getName());
@@ -23,6 +31,12 @@ public class AdminController {
         startRequestProcess(choice);
 
     }
+
+    public Admin getAdmin(){
+        return myAdmin;
+    }
+
+
 
     public static void startRequestProcess(String choice){
 
@@ -35,9 +49,7 @@ public class AdminController {
                 createCourse();
                 break;
 
-            case "3":
-                editMentorProfile();
-                break;
+
 
             case "4":
                 showCourseInfo();
@@ -84,14 +96,6 @@ public class AdminController {
         courseDao.saveCourse(course);
     }
 
-    public static void editMentorProfile(){
-
-        Integer id = MentorView.getMentorId();
-        String name = MentorView.typeStudentName();
-
-        MentorDAO.editMentor(name, id);
-        System.out.println("details have changed");
-    }
 
     public static void showCourseInfo(){
 
@@ -107,7 +111,7 @@ public class AdminController {
 
     public static void showMentorProfile(){
 
-        ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("mentor");
+        ArrayList<User> mentorsList = new UserDAO().getAllUsersByStatus("admin");
 
         for(User mentor : mentorsList){
             MentorView.showStudent(mentor);

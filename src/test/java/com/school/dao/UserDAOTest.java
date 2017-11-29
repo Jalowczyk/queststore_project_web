@@ -42,7 +42,7 @@ class UserDAOTest {
 
     @Test
     public void testGetUserAsMentor() throws  SQLException {
-        testGetUser("mentor");
+        testGetUser("admin");
     }
 
     @Test

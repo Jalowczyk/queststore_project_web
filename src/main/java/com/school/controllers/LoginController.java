@@ -16,15 +16,19 @@ public class LoginController {
         String password = LoginView.getInput();
         startLoginProcess(id, password);
 
-}
-    public static void startLoginProcess(String id, String password){
+    }
 
-            UserDAO dao = new UserDAO();
-            User user = dao.load(id, password);
-            if(user != null) {
-                UserLogger.logIn(user);
-            }else{
-                LoginView.failedLoginMsg();
-            }
+    public static User startLoginProcess(String id, String password) {
+
+        UserDAO dao = new UserDAO();
+        User user = dao.load(id, password);
+        if (user != null) {
+            return user;
+        } else {
+//                UserLogger.logIn(user);
+//         else
+//                LoginView.failedLoginMsg();
+            return null;
+        }
     }
 }

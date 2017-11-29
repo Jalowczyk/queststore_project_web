@@ -63,7 +63,7 @@ public class MentorView extends AbstractView {
     }
 
     public static Integer getMentorId() {
-        System.out.println("Please provide mentor's id: ");
+        System.out.println("Please provide admin's id: ");
         Integer id = scan.nextInt();
         return id;
     }

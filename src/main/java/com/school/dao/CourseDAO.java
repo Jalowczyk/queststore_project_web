@@ -1,6 +1,8 @@
 package com.school.dao;
 
 import com.school.models.Course;
+import com.school.models.Student;
+import com.school.models.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,9 +52,9 @@ public class CourseDAO extends DBConnection {
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
 
-             if(rs.next()){
-                 course = createCourseFromResultSet(rs);
-             }
+            if (rs.next()) {
+                course = createCourseFromResultSet(rs);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +88,30 @@ public class CourseDAO extends DBConnection {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    public ArrayList<Student> getAllStudentsOfCourse(Integer id) {
+
+        ArrayList<Student> allStudents = new ArrayList();
+        String query = "SELECT * FROM students WHERE course_id = " + id + ";";
+
+        try (Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(query)) {
+
+            while(rs.next()){
+                Integer studentID = rs.getInt("student_id");
+                UserDAO userDAO = new UserDAO();
+                User studentObject = userDAO.getUserById(studentID);
+                Student student = (Student) studentObject;
+                allStudents.add(student);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        } finally {
+            return allStudents;
+
         }
     }
 }

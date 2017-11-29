@@ -6,20 +6,29 @@ import com.school.models.Student;
 import com.school.models.Wallet;
 import com.school.views.StudentView;
 
-import java.util.HashMap;
-
 public class StudentController {
 
-    public static void startController(Student student) {
+    private Student myStudent;
 
-        setUpAttributes(student);
+    public StudentController(Student student){
+
+        myStudent = student;
+        startController(student);
+    }
+
+    public static void startController(Student student) {
 
         StudentView.welcomeMsg(student.getName());
         StudentView.showMenu();
 
-        String choice = StudentView.getChoice();
-        startRequestProcess(choice, student);
+//        String choice = StudentView.getChoice();
+//        startRequestProcess(choice, student);
     }
+
+    public Student getStudent(){
+        return myStudent;
+    }
+
 
     public static void startRequestProcess(String choice, Student student) {
 
@@ -46,14 +55,14 @@ public class StudentController {
 
         Integer balance = student.getWallet().getBalance();
 
-        StudentView.showWalletInfo(balance);
+//        StudentView.showWalletInfo(balance);
     }
 
     public static void seeMyLevel(Student student) {
 
         Integer experience = student.getWallet().getExperience();
 
-        StudentView.showMyLevel(experience);
+//        StudentView.showMyLevel(experience);
     }
 
     public static void goToStore() {
@@ -69,5 +78,6 @@ public class StudentController {
         Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
         student.setWallet(myWallet);
     }
+
 
 }

@@ -12,7 +12,7 @@ public abstract class AbstractView {
     }
 
     public static Integer typeUserId(){
-        System.out.println("Please provide the mentor's id: ");
+        System.out.println("Please provide the admin's id: ");
         Integer mail = scan.nextInt();
         return mail;
     }
