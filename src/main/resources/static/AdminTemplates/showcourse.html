@@ -48,14 +48,14 @@
                         <div class="showmentortitle">
                             List of actual courses
                         </div>
-                        <form method="post" action="">
-                        <table>
+                        <form class="adminform" method="post" action="">
+                        <table class="admintable">
+                            {% for course in courses %}
                             <tr>
-                                {% for course in courses %}
                                 <td><a href="javascript:{}" onclick="document.getElementById('{{ course.getId() }}').click(); return false;" class="editmentordiv">{{ course.getName() }}</a></td>
                                 <input type="submit" class="hidden" id="{{ course.getId() }}"  value="{{ course.getId() }}" name="id">
-                                {% endfor %}
                             </tr>
+                            {% endfor %}
                         </table>
                         </form>
                     </div>

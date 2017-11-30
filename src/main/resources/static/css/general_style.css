@@ -148,7 +148,7 @@ body{
     justify-content: center;
     font-size: 5vw;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 15px;
     opacity: 0.8;
 }
 
@@ -177,18 +177,31 @@ body{
 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 3vw;
     border-top: 2px solid #B9AB2C;
     border-bottom: 2px solid #B9AB2C;
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 10px;
+    padding: 15px;
 }
 
 table
 {
     width: 100%;
+    padding-bottom: 20px;
+}
+
+.admintable
+{
+    width:100%;
+    padding-bottom: 0;
+}
+
+.coursetable
+{
+    width:100%;
     padding-bottom: 20px;
 }
 
@@ -276,6 +289,7 @@ th
 {
     display: flex;
     width: 55%;
+    min-width: 450px;
     justify-content: center;
     align-items: center;
     color:white;
@@ -311,26 +325,30 @@ th
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 9vw;
+    padding: 35px;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .showmentortitle
 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 2vw;
     border-top: 2px solid #B9AB2C;
     border-bottom: 2px solid #B9AB2C;
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 3vw;
+    padding: 15px;
 }
 
 .information
 {
     padding: 2vw;
+    display: flex;
+    justify-content: center;
 }
 
 .courseTitle
@@ -343,7 +361,7 @@ th
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 10px;
+    padding: 15px;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -418,7 +436,12 @@ a.editstudentdiv:hover
 
 form
 {
-    padding: 6%;
+    padding: 5%;
+}
+
+.adminform
+{
+    padding:0;
 }
 
 .flex-outer
