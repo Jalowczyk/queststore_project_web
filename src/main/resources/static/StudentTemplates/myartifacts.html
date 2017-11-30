@@ -9,16 +9,16 @@
             </div>
             <table>
                 <tr>
-                    <th style="width:30%">Title</th>
-                    <th style="width:50%">Price</th>
-                    <th style="width:20%">Category</th>
+                    <th style="width:50%">Title</th>
+                    <th style="width:30%">Category</th>
+                    <th style="width:20%">Price</th>
                 </tr>
 
                 {% for artifact in student_artifacts %}
                 <tr class="tablerow2">
                     <td>{{ artifact.getTitle() }}</td>
-                    <td>{{ artifact.getPrice() }}</td>
                     <td>{{ artifact.getCategory() }}</td>
+                    <td>{{ artifact.getPrice() }} <img src="static/img/ccoin25.png" class="coin25" style="float: left;" /></td>
                 </tr>
                 {% endfor %}
 

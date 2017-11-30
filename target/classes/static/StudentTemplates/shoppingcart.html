@@ -63,12 +63,14 @@
             </div>
             <div class="product-price">{{ artifact.getPrice() }}</div>
             <div class="product-quantity">
-                <input type="number" value="2" min="1">
+                <input type="number" value="1" min="1">
             </div>
             <div class="product-removal">
                 <button class="remove-product">
                     Remove
                 </button>
+
+
             </div>
             <div class="product-line-price"></div>
         </div>
@@ -77,7 +79,7 @@
         <div class="totals">
             <div class="totals-item totals-item-total">
                 <label>Grand Total</label>
-                <div class="totals-value" id="cart-total">{{ student.getBasket().getSumOfBasket() }}</div>
+                <div class="totals-value" id="cart-total"></div>
             </div>
         </div>
         <form action="paymentsuccessful.html" class="cartform" method="POST">
