@@ -13,22 +13,22 @@
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
     <script type="text/javascript"></script>
 
-    <script>
-                 function showInfo() {
-                    var admin_added_info = document.getElementById('admincontent3');
-                    var displaySetting = admin_added_info.style.display;
+    <!--<script>-->
+                 <!--function showInfo() {-->
+                    <!--var admin_added_info = document.getElementById('admincontent3');-->
+                    <!--var displaySetting = admin_added_info.style.display;-->
 
-                    if (displaySetting == 'block') {
+                    <!--if (displaySetting == 'block') {-->
 
-                    admin_added_info.style.display = 'none';
+                    <!--admin_added_info.style.display = 'none';-->
 
-                   }
-                    else {
+                   <!--}-->
+                    <!--else {-->
 
-                    admin_added_info.style.display = 'block';
-                    }
-                }
-                </script>
+                    <!--admin_added_info.style.display = 'block';-->
+                    <!--}-->
+                <!--}-->
+                <!--</script>-->
 
 </head>
 <body>
@@ -94,25 +94,25 @@
 
     </div>
 
-    <div class="admincontent3" id="admincontent3">
+    <!--<div class="admincontent3" id="admincontent3">-->
 
-        <div class="rectangle">
-            <div class="message">
+        <!--<div class="rectangle">-->
+            <!--<div class="message">-->
 
-                {% if (quest_added) %}
-                Quest has been successfully added
-                {% endif %}
-
-
-                {% if (quest_marked) %}
-                Quest has been successfully marked
-                {% endif %}
+                <!--{% if (quest_added) %}-->
+                <!--Quest has been successfully added-->
+                <!--{% endif %}-->
 
 
-            </div>
-        </div>
+                <!--{% if (quest_marked) %}-->
+                <!--Quest has been successfully marked-->
+                <!--{% endif %}-->
 
-    </div>
+
+            <!--</div>-->
+        <!--</div>-->
+
+    <!--</div>-->
 
     <footer>
         <div id="footer_page">
@@ -134,21 +134,21 @@
         </div>
     </footer>
 
-    {% if (quest_added) %}
+    <!--{% if (quest_added) %}-->
 
-    <script type="text/javascript">
-         showInfo();
-        </script>
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
 
-    {% endif %}
+    <!--{% endif %}-->
 
-    {% if (quest_marked) %}
+    <!--{% if (quest_marked) %}-->
 
-    <script type="text/javascript">
-         showInfo();
-        </script>
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
 
-    {% endif %}
+    <!--{% endif %}-->
 
 </div>
 

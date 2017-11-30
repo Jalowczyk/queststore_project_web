@@ -34,7 +34,7 @@ public class SubmitToDeleteArtifact extends AdminSessionController implements Ht
             ArtifactDAO artefactDAO = new ArtifactDAO();
             artefactDAO.deleteArtifact(artifact_id);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact_deleted", true);

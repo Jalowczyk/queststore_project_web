@@ -35,11 +35,11 @@ public class SubmitEditArtifact extends MentorSessionController implements HttpH
             ArtifactDAO artefactDAO = new ArtifactDAO();
             artefactDAO.editArtifact(title, info, price, id);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact_edited", true);
-            model.with("artifacts_controllers", artefactDAO.getAllArtifacts());
+            model.with("artifacts", artefactDAO.getAllArtifacts());
 
             response = template.render(model);
 

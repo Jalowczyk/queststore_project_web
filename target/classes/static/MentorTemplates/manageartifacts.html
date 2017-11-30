@@ -13,22 +13,22 @@
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
     <script type="text/javascript"></script>
 
-    <script>
-                 function showInfo() {
-                    var admin_added_info = document.getElementById('admincontent3');
-                    var displaySetting = admin_added_info.style.display;
+    <!--<script>-->
+                 <!--function showInfo() {-->
+                    <!--var admin_added_info = document.getElementById('admincontent3');-->
+                    <!--var displaySetting = admin_added_info.style.display;-->
 
-                    if (displaySetting == 'block') {
+                    <!--if (displaySetting == 'block') {-->
 
-                    admin_added_info.style.display = 'none';
+                    <!--admin_added_info.style.display = 'none';-->
 
-                   }
-                    else {
+                   <!--}-->
+                    <!--else {-->
 
-                    admin_added_info.style.display = 'block';
-                    }
-                }
-                </script>
+                    <!--admin_added_info.style.display = 'block';-->
+                    <!--}-->
+                <!--}-->
+                <!--</script>-->
 
 </head>
 <body>
@@ -96,31 +96,31 @@
 
     </div>
 
-    <div class="admincontent3" id="admincontent3">
+    <!--<div class="admincontent3" id="admincontent3">-->
 
-        <div class="rectangle">
-            <div class="message">
+        <!--<div class="rectangle">-->
+            <!--<div class="message">-->
 
-                {% if (artifact_marked) %}
-                Artifact has been successfully marked
-                {% endif %}
+                <!--{% if (artifact_marked) %}-->
+                <!--Artifact has been successfully marked-->
+                <!--{% endif %}-->
 
-                {% if (artifact_added) %}
-                Artifact has been successfully added
-                {% endif %}
+                <!--{% if (artifact_added) %}-->
+                <!--Artifact has been successfully added-->
+                <!--{% endif %}-->
 
-                {% if (artifact_edited) %}
-                Artifact has been successfully edited
-                {% endif %}
+                <!--{% if (artifact_edited) %}-->
+                <!--Artifact has been successfully edited-->
+                <!--{% endif %}-->
 
-                {% if (artifact_deleted) %}
-                Artifact has been successfully deleted
-                {% endif %}
+                <!--{% if (artifact_deleted) %}-->
+                <!--Artifact has been successfully deleted-->
+                <!--{% endif %}-->
 
-            </div>
-        </div>
+            <!--</div>-->
+        <!--</div>-->
 
-    </div>
+    <!--</div>-->
 
     <footer>
         <div id="footer_page">
@@ -143,39 +143,39 @@
     </footer>
 
 
-    {% if (artifact_marked) %}
+    <!--{% if (artifact_marked) %}-->
 
-    <script type="text/javascript">
-         showInfo();
-        </script>
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
 
-    {% endif %}
+    <!--{% endif %}-->
 
-    {% if (artifact_added) %}
+    <!--{% if (artifact_added) %}-->
 
-    <script type="text/javascript">
-         showInfo();
-        </script>
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
 
-    {% endif %}
-
-
-    {% if (artifact_edited) %}
-
-    <script type="text/javascript">
-         showInfo();
-        </script>
-
-    {% endif %}
+    <!--{% endif %}-->
 
 
-    {% if (artifact_deleted) %}
+    <!--{% if (artifact_edited) %}-->
 
-    <script type="text/javascript">
-         showInfo();
-        </script>
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
 
-    {% endif %}
+    <!--{% endif %}-->
+
+
+    <!--{% if (artifact_deleted) %}-->
+
+    <!--<script type="text/javascript">-->
+         <!--showInfo();-->
+        <!--</script>-->
+
+    <!--{% endif %}-->
 </div>
 
 </body>

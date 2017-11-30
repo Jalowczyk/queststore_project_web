@@ -33,7 +33,7 @@ public class DeleteStudentSubmit extends AdminSessionController implements HttpH
             ArtifactDAO artefactDAO = new ArtifactDAO();
             artefactDAO.deleteArtifact(Integer.parseInt(artifact_id));
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact_deleted", true);
