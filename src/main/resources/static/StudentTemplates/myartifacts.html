@@ -1,6 +1,5 @@
 
-{% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/header.html" %}
-
+{% include "classpath:/header.html" %}
 
     <div class="content">
 
@@ -16,7 +15,7 @@
                 </tr>
 
                 {% for artifact in student_artifacts %}
-                <tr>
+                <tr class="tablerow2">
                     <td>{{ artifact.getTitle() }}</td>
                     <td>{{ artifact.getPrice() }}</td>
                     <td>{{ artifact.getCategory() }}</td>
@@ -39,4 +38,4 @@
 
 </div>
 
-        {% include "/Users/valik/Desktop/queststore-system-team_power/src/main/resources/footer.html" %}
+    {% include "classpath:/footer.html" %}
