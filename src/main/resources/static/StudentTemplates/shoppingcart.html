@@ -13,6 +13,13 @@
 
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
 
+    <script type="text/javascript">
+
+
+</script>
+
+
+
 </head>
 
 <body>
@@ -52,6 +59,7 @@
             <label class="product-line-price">Total</label>
         </div>
 
+
         {% for artifact in student_artifacts %}
         <div class="product">
             <div class="product-image">
@@ -65,28 +73,41 @@
             <div class="product-quantity">
                 <input type="number" value="1" min="1">
             </div>
+
+
             <div class="product-removal">
-                <button class="remove-product">
+
+                <button onclick="setTimeout(function(){document.getElementById('{{ artifact.getId() }}').click()}, 300);" class="remove-product">
                     Remove
                 </button>
-
-
             </div>
-            <div class="product-line-price"></div>
+            <div class="product-line-price">{{ artifact.getPrice() }}</div>
         </div>
+
+        <form method="post" action="">
+            <input type="submit" class="hidden" id="{{ artifact.getId() }}" value="{{ artifact.getId() }}" name="id_to_delete">
+        </form>
         {% endfor %}
+
 
         <div class="totals">
             <div class="totals-item totals-item-total">
                 <label>Grand Total</label>
-                <div class="totals-value" id="cart-total"></div>
+                {% for sum in sumProducts %}
+                <div class="totals-value" id="cart-total">{{ sum }}</div>
             </div>
         </div>
-        <form action="paymentsuccessful.html" class="cartform" method="POST">
+
+
+        <form method="POST" action="transactionSuccessful" >
+
+            <input type="text" class="hidden" id="input_total" name="total" value="{{ sum }}">
+            {% endfor %}
             <input type="submit" class="checkout" value="Checkout">
+
         </form>
 
-        <form action="shop" class="cartform">
+        <form action="shop" class="cartform" method="get">
             <input type="submit" class="continueshopping" value="Continue shopping">
         </form>
 

@@ -32,6 +32,8 @@ public class StudentWebController extends StudentSessionController implements Ht
         } else if (method.equals("GET")) {
 
             Student student = loadStudent(userID);
+            setupStudentBalance(student);
+            setupStudentBasket(student);
 
             if (student != null) {
                 String cookie = setupCookies(student);

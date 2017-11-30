@@ -1,6 +1,5 @@
 package com.school.controllers.WebControllers.student;
 
-import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -31,6 +30,9 @@ public class StudentQuestWebController extends StudentSessionController implemen
 
             Student student = loadStudent(userID);
             setupStudentquests(student);
+            setupStudentBalance(student);
+            setupStudentBasket(student);
+
 
             if (student != null) {
                 String cookie = setupCookies(student);

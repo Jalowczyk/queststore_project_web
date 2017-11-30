@@ -5,9 +5,11 @@ import com.school.models.Artifact;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
 public class Basket {
 
     ArrayList<Artifact> productList = new ArrayList<>();
+    Integer sumOfProducts;
 
 
     public void addProduct(Artifact product) {

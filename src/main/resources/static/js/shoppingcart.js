@@ -1,6 +1,4 @@
-/* Set rates + misc */
-var taxRate = 0.05;
-var shippingRate = 15.00;
+
 var fadeTime = 300;
 
 
@@ -24,15 +22,13 @@ function recalculateCart() {
     });
 
     /* Calculate totals */
-    var tax = subtotal * taxRate;
-    var shipping = (subtotal > 0 ? shippingRate : 0);
-    var total = subtotal + tax + shipping;
+
+    var total = subtotal
+    document.getElementById("input_total").value = total.toString();
 
     /* Update totals display */
     $('.totals-value').fadeOut(fadeTime, function () {
-        $('#cart-subtotal').html(subtotal.toFixed(2));
-        $('#cart-tax').html(tax.toFixed(2));
-        $('#cart-shipping').html(shipping.toFixed(2));
+
         $('#cart-total').html(total.toFixed(2));
         if (total == 0) {
             $('.checkout').fadeOut(fadeTime);
@@ -42,6 +38,9 @@ function recalculateCart() {
         $('.totals-value').fadeIn(fadeTime);
     });
 }
+
+
+
 
 
 /* Update quantity */

@@ -29,6 +29,9 @@ public class ShopController extends StudentSessionController implements HttpHand
 
         Integer userID = getIdFromExistingCookies(requestHeaders);
         Student student = loadStudent(userID);
+        setupStudentBalance(student);
+        setupStudentBasket(student);
+
 
         ArtifactDAO artefactDAO = new ArtifactDAO();
         ArrayList<Artifact> artifacts = artefactDAO.getAllArtifacts();
@@ -53,8 +56,6 @@ public class ShopController extends StudentSessionController implements HttpHand
             model.with("artifacts", artifacts);
             response = template.render(model);
 
-            final byte[] finalResponseBytes = response.getBytes("UTF-8");
-            httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
         } else if (method.equals("POST")) {
 
@@ -82,10 +83,10 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             response = template.render(model);
 
-            final byte[] finalResponseBytes = response.getBytes("UTF-8");
-            httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
-
         }
+
+        final byte[] finalResponseBytes = response.getBytes("UTF-8");
+        httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());

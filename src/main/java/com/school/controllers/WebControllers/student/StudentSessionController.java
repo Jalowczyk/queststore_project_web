@@ -5,6 +5,7 @@ import com.school.dao.QuestDAO;
 import com.school.dao.StudentDAO;
 import com.school.dao.UserDAO;
 import com.school.dao.WalletDAO;
+import com.school.models.Artifact;
 import com.school.models.Student;
 import com.school.models.User;
 import com.school.models.Wallet;
@@ -19,8 +20,8 @@ public abstract class StudentSessionController extends Cookie {
 
         try {
             Student student = (Student) user;
-            setupStudentBalance(student);
-            setupStudentBasket(student);
+
+
 
 
             return student;
@@ -53,8 +54,9 @@ public abstract class StudentSessionController extends Cookie {
         Wallet myWallet = walletDAO.getWalletById(studentDAO.getStudentWalletId());
         student.setWallet(myWallet);
 
+
     }
-    private void setupStudentBasket(Student student) {
+    public void setupStudentBasket(Student student) {
 
         StudentDAO studentDAO = new StudentDAO(student);
         Basket basket = studentDAO.getStudentBasket();

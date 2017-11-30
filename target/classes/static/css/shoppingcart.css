@@ -620,3 +620,7 @@ a.links:hover
 {
     padding:20px;
 }
+
+.hidden{
+  display: none;
+}

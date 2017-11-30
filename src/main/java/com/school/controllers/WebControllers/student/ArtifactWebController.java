@@ -32,6 +32,8 @@ public class ArtifactWebController extends StudentSessionController implements H
         else if (method.equals("GET")) {
 
             Student student = loadStudent(userID);
+            setupStudentBalance(student);
+            setupStudentBasket(student);
             setupStudentArtifacts(student);
 
             if (student != null) {

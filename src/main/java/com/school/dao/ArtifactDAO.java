@@ -48,7 +48,6 @@ public class ArtifactDAO extends  DBConnection{
         Integer price = rs.getInt("price");
         String category = rs.getString("category");
 
-
         Artifact artifact = new Artifact(title, price, category);
         artifact.setId(id);
 

@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
-    <link rel="stylesheet" href="css/shoppingcart.css">
+    <link rel="stylesheet" href="static/css/shoppingcart.css">
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
@@ -18,7 +18,7 @@
 <body>
     <div class="logo">
 
-        <img src="img/cart.png" style="float: left;"/>
+        <img src="static/img/cart.png" style="float: left;"/>
         <span style="color: #E0E0E0" font-weight: bold;>Shopping</span>Cart
     </div>
     <div class="stickymenu">
@@ -29,10 +29,12 @@
             </ol>
         </div>
         <div class="rightmenu">
+            {% for student in student %}
             <ol>
-                <li><a id="coin"><img src ="img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>Fake200</a></li>
-                <li id="cart"><a id="cart_btn" href="shoppingcart.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>2</a></li>
+                <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{ student.getWallet.getBalance() }} </a></li>
+                <li id="cart"><a id="cart_btn" href="shoppingcart.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket.getProductList.size() }}</a></li>
             </ol>
+            {% endfor %}
         </div>
 
     </div>

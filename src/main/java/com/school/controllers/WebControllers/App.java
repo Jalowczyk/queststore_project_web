@@ -31,6 +31,7 @@ public class App {
             server.createContext("/availablequests", new QuestWebController());
             server.createContext("/basket", new BasketController());
             server.createContext("/payment", new PaymentController());
+            server.createContext("/transactionSuccessful", new TransactionDone() );
 
             //admins
             server.createContext("/admins", new AdminWebController());
@@ -63,6 +64,8 @@ public class App {
             server.createContext("/deleteartifacts", new DeleteArtifactsController());
             server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
             server.createContext("/showcourses", new ShowCoursesController());
+
+
 
             //static
             server.createContext("/static", new Static());
