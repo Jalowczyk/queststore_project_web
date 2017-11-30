@@ -12,14 +12,14 @@
 //class WalletTest {
 //
 //    private Wallet wallet;
-//    private ArrayList<Artifact> artifacts;
+//    private ArrayList<Artifact> artifacts_controllers;
 //
 //    @BeforeEach
 //    public void before() {
-//        this.artifacts = new ArrayList<Artifact>();
-//        this.artifacts.add(new Artifact("artifact1"));
-//        this.artifacts.add(new Artifact("artifact2"));
-//        this.wallet = new Wallet(1, 100, 100, this.artifacts);
+//        this.artifacts_controllers = new ArrayList<Artifact>();
+//        this.artifacts_controllers.add(new Artifact("artifact1"));
+//        this.artifacts_controllers.add(new Artifact("artifact2"));
+//        this.wallet = new Wallet(1, 100, 100, this.artifacts_controllers);
 //    }
 //
 //    @Test
@@ -35,7 +35,7 @@
 //
 //    @Test
 //    public void testWalletHasConstructorWithAllAttribiutes() {
-//        assertNotNull(new Wallet(1, 100, 100, artifacts));
+//        assertNotNull(new Wallet(1, 100, 100, artifacts_controllers));
 //    }
 //
 //    @Test
@@ -94,7 +94,7 @@
 //    @Test
 //    public void testGetArtifactsReturnsExpectedValue() {
 //        ArrayList<Artifact> actual = this.wallet.getArtifacts();
-//        assertIterableEquals(this.artifacts, actual);
+//        assertIterableEquals(this.artifacts_controllers, actual);
 //    }
 //
 //    @Test
@@ -133,7 +133,7 @@
 //
 //    @Test
 //    public void testViewWalletReturnsExpectedString() {
-//        String expected = "You have 100 coolcoins available.\nYour bought artifacts:";
+//        String expected = "You have 100 coolcoins available.\nYour bought artifacts_controllers:";
 //        expected += "\n" + "artifact1";
 //        expected += "\n" + "artifact2";
 //        String actual = this.wallet.viewWallet();
@@ -142,7 +142,7 @@
 //
 //    @Test
 //    public void testViewWalletReturnsExpectedStringIfThereAreNoArtifacts() {
-//        String expected = "You have 100 coolcoins available.\nYour bought artifacts:";
+//        String expected = "You have 100 coolcoins available.\nYour bought artifacts_controllers:";
 //        String actual = new Wallet(100, 100).viewWallet();
 //        assertEquals(expected, actual);
 //    }

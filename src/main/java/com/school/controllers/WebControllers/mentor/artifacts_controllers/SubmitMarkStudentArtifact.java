@@ -1,8 +1,7 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
-import com.school.controllers.WebControllers.admin.AdminSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.dao.UserDAO;
+import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.ArtifactDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -14,15 +13,15 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class SubmitToDeleteArtifact extends AdminSessionController implements HttpHandler {
+public class SubmitMarkStudentArtifact extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String method = httpExchange.getRequestMethod();
         String response = "";
+        String method = httpExchange.getRequestMethod();
 
-        if(method.equals("POST")) {
+     if (method.equals("POST")) {
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -31,14 +30,17 @@ public class SubmitToDeleteArtifact extends AdminSessionController implements Ht
             Map inputs = parseFormData(formData);
 
             Integer artifact_id = Integer.parseInt(inputs.get("artifact_id").toString());
+            Integer student_id = Integer.parseInt(inputs.get("student_id").toString());
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            artefactDAO.deleteArtifact(artifact_id);
+            ArtifactDAO artefactDAO = new ArtifactDAO();
+            artefactDAO.deleteStudentArtifact(artifact_id, student_id);
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
-
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifact_deleted", true);
+            model.with("artifact_marked", true);
+            model.with("artifacts_controllers", artefactDAO.getAllArtifacts());
+
+
             response = template.render(model);
         }
 
@@ -48,7 +50,7 @@ public class SubmitToDeleteArtifact extends AdminSessionController implements Ht
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-
     }
 }
+
 

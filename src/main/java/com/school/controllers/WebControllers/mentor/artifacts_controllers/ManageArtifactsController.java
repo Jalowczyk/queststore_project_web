@@ -1,8 +1,7 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.models.Artifact;
+import com.school.dao.ArtifactDAO;
 import com.school.models.Mentor;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -12,7 +11,6 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
 
 public class ManageArtifactsController extends MentorSessionController implements HttpHandler {
@@ -42,12 +40,11 @@ public class ManageArtifactsController extends MentorSessionController implement
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            ArrayList<Artifact> allArtifacts = artefactDAO.getAllArtifacts();
+            ArtifactDAO artefactDAO = new ArtifactDAO();
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifacts", allArtifacts);
+            model.with("artifacts", artefactDAO.getAllArtifacts());
 
             response = template.render(model);
             httpExchange.sendResponseHeaders(200, response.length());

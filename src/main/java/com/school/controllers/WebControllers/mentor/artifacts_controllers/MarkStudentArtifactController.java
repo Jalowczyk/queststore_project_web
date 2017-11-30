@@ -1,9 +1,9 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.models.Artifact;
+import com.school.dao.UserDAO;
 import com.school.models.Mentor;
+import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,14 +14,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Map;
 
-public class EditArtifactController extends MentorSessionController implements HttpHandler {
+public class MarkStudentArtifactController extends MentorSessionController implements HttpHandler  {
+
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String method = httpExchange.getRequestMethod();
         String response = "";
+        String method = httpExchange.getRequestMethod();
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
@@ -30,7 +32,7 @@ public class EditArtifactController extends MentorSessionController implements H
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, response.length());
+            httpExchange.sendResponseHeaders(302, -1);
 
         } else if (method.equals("GET")) {
 
@@ -41,17 +43,16 @@ public class EditArtifactController extends MentorSessionController implements H
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editartifact.html");
+            UserDAO userDAO = new UserDAO();
+            ArrayList allStudents = userDAO.getAllUsersByStatus("student");
 
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifact", artefactDAO.getAllArtifacts());
+            model.with("students", allStudents);
+
             response = template.render(model);
 
-
         } else if (method.equals("POST")) {
-
-            ArtefactDAO artefactDAO = new ArtefactDAO();
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -59,15 +60,16 @@ public class EditArtifactController extends MentorSessionController implements H
 
             Map inputs = parseFormData(formData);
 
-            String id = inputs.get("id").toString();
-            Artifact artifact = artefactDAO.getArtefactById(Integer.parseInt(id));
+            Integer studentId = Integer.parseInt(inputs.get("id").toString());
+            Student student = loadStudent(studentId);
+            setupStudentArtifacts(student);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editartifact2.html");
-
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact2.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifact", artifact);
-            response = template.render(model);
+            model.with("student", student);
+            model.with("student_artifacts", student.getArtifacts());
 
+            response = template.render(model);
         }
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -77,5 +79,5 @@ public class EditArtifactController extends MentorSessionController implements H
         os.write(response.getBytes());
         os.close();
     }
-
 }
+

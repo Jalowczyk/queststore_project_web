@@ -98,7 +98,7 @@ public class StudentDAO extends UserDAO {
         ArrayList<Artifact> artifacts = new ArrayList<>();
 
         String query = "SELECT student_id, artifact_id FROM students_artifacts WHERE student_id = " + student.getId() + ";";
-        ArtefactDAO artefactDAO = new ArtefactDAO();
+        ArtifactDAO artefactDAO = new ArtifactDAO();
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
