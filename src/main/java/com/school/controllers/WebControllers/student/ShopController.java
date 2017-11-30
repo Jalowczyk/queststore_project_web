@@ -50,7 +50,7 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", student);
-            model.with("artifacts_controllers", artifacts);
+            model.with("artifacts", artifacts);
             response = template.render(model);
 
             final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -76,7 +76,7 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", student);
-            model.with("artifacts_controllers", artifacts);
+            model.with("artifacts", artifacts);
             model.with("added_to_basket",true);
 
 

@@ -52,6 +52,15 @@ public class Basket {
         productList.clear();
     }
 
+    public Integer getSumOfBasket(){
+        int sum = 0;
+
+        for (Artifact artifact : productList)
+            sum = sum + artifact.getPrice();
+
+        return sum;
+    }
+
 
     private class ProductIterator implements Iterator {
 

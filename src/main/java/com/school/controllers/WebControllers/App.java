@@ -26,10 +26,11 @@ public class App {
             //students
             server.createContext("/shop", new ShopController());
             server.createContext("/students", new StudentWebController());
-            server.createContext("/artifacts_controllers", new ArtifactWebController());
+            server.createContext("/myartifacts", new ArtifactWebController());
             server.createContext("/quests", new StudentQuestWebController());
             server.createContext("/availablequests", new QuestWebController());
             server.createContext("/basket", new BasketController());
+            server.createContext("/payment", new PaymentController());
 
             //admins
             server.createContext("/admins", new AdminWebController());
@@ -39,10 +40,6 @@ public class App {
             server.createContext("/add_course", new AddCourseController());
             server.createContext("/show_mentor", new ShowMentorController());
             server.createContext("/show_course", new ShowCourseController());
-            //static
-            server.createContext("/static", new Static());
-            server.setExecutor(null); // creates a default executor
-
 
             //mentors
             server.createContext("/mentors", new MentorWebController());
@@ -66,6 +63,10 @@ public class App {
             server.createContext("/deleteartifacts", new DeleteArtifactsController());
             server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
             server.createContext("/showcourses", new ShowCoursesController());
+
+            //static
+            server.createContext("/static", new Static());
+            server.setExecutor(null); // creates a default executor
 
 
             // start listening
