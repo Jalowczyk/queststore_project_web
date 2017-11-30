@@ -48,14 +48,15 @@
                         <div class="showmentortitle">
                             Choose mentor to see the detail information
                         </div>
-                        <form method="post" action="">
-                        <table>
+                        <form class="adminform" method="post" action="">
+                        <table class="admintable">
+
+                            {% for mentor in mentors %}
                             <tr>
-                                {% for mentor in mentors %}
                                 <td><a href="javascript:{}" onclick="document.getElementById('{{ mentor.getId() }}').click(); return false;" class="editmentordiv">{{ mentor.getName() }}</a></td>
                                 <input type="submit" class="hidden" id="{{ mentor.getId() }}"  value="{{ mentor.getId() }}" name="id">
-                                {% endfor %}
                             </tr>
+                            {% endfor %}
 
                         </table>
                         </form>

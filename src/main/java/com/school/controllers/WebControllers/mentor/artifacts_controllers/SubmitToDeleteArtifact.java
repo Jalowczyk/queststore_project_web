@@ -1,7 +1,7 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
+import com.school.controllers.WebControllers.admin.AdminSessionController;
+import com.school.dao.ArtifactDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -13,7 +13,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class SubmitEditArtifact extends MentorSessionController implements HttpHandler {
+public class SubmitToDeleteArtifact extends AdminSessionController implements HttpHandler {
+
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
@@ -27,22 +28,18 @@ public class SubmitEditArtifact extends MentorSessionController implements HttpH
             String formData = br.readLine();
 
             Map inputs = parseFormData(formData);
-            String title = inputs.get("title").toString();
-            String info = inputs.get("information").toString();
-            Integer price = Integer.parseInt(inputs.get("price").toString());
-            Integer id = Integer.parseInt(inputs.get("id").toString());
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            artefactDAO.editArtifact(title, info, price, id);
+            Integer artifact_id = Integer.parseInt(inputs.get("artifact_id").toString());
+
+            ArtifactDAO artefactDAO = new ArtifactDAO();
+            artefactDAO.deleteArtifact(artifact_id);
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifact_edited", true);
-            model.with("artifacts", artefactDAO.getAllArtifacts());
-
+            model.with("artifact_deleted", true);
+            model.with("artifacts",  artefactDAO.getAllArtifacts());
             response = template.render(model);
-
         }
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");

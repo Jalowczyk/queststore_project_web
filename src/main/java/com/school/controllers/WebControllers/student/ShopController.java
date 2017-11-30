@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
-import com.school.dao.ArtefactDAO;
+import com.school.dao.ArtifactDAO;
 import com.school.dao.StudentDAO;
 import com.school.models.Artifact;
 import com.school.models.Student;
@@ -30,7 +30,7 @@ public class ShopController extends StudentSessionController implements HttpHand
         Integer userID = getIdFromExistingCookies(requestHeaders);
         Student student = loadStudent(userID);
 
-        ArtefactDAO artefactDAO = new ArtefactDAO();
+        ArtifactDAO artefactDAO = new ArtifactDAO();
         ArrayList<Artifact> artifacts = artefactDAO.getAllArtifacts();
 
         if (userID == null) {

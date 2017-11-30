@@ -1,6 +1,7 @@
-package com.school.controllers.WebControllers.mentor.student_controllers;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.dao.ArtifactDAO;
 import com.school.models.Mentor;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -11,7 +12,9 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class ManageStudentController extends MentorSessionController implements HttpHandler {
+
+public class ManageArtifactsController extends MentorSessionController implements HttpHandler {
+
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -21,6 +24,7 @@ public class ManageStudentController extends MentorSessionController implements 
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
+
 
         if (userID == null) {
 
@@ -36,8 +40,11 @@ public class ManageStudentController extends MentorSessionController implements 
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            ArtifactDAO artefactDAO = new ArtifactDAO();
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
             JtwigModel model = JtwigModel.newModel();
+            model.with("artifacts", artefactDAO.getAllArtifacts());
 
             response = template.render(model);
             httpExchange.sendResponseHeaders(200, response.length());
@@ -49,4 +56,3 @@ public class ManageStudentController extends MentorSessionController implements 
 
     }
 }
-

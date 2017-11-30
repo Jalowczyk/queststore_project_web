@@ -48,7 +48,7 @@ public class Wallet implements WalletInterface{
   public String vievWallet(){
     String walletInfo;
 
-    walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts: %s", balance, artifacts);
+    walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts_controllers: %s", balance, artifacts);
 
     return walletInfo;
   }

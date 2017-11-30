@@ -1,8 +1,7 @@
 package com.school.controllers.WebControllers.mentor.student_controllers;
 
 import com.school.controllers.WebControllers.admin.AdminSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.dao.UserDAO;
+import com.school.dao.ArtifactDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -31,7 +30,7 @@ public class DeleteStudentSubmit extends AdminSessionController implements HttpH
             Map inputs = parseFormData(formData);
             String artifact_id = inputs.get("artifact_id").toString();
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
+            ArtifactDAO artefactDAO = new ArtifactDAO();
             artefactDAO.deleteArtifact(Integer.parseInt(artifact_id));
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");

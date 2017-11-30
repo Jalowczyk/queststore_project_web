@@ -1,61 +1,62 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.student;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.models.Artifact;
-import com.school.models.Mentor;
+import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
+import java.util.Map;
 
-
-public class ManageArtifactsController extends MentorSessionController implements HttpHandler {
-
+public class PaymentController extends StudentSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String response = "";
         String method = httpExchange.getRequestMethod();
+        String response = "";
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, -1);
+            httpExchange.sendResponseHeaders(302, response.length());
 
         } else if (method.equals("GET")) {
 
-            Mentor mentor = loadMentor(userID);
+            Student student = loadStudent(userID);
 
-            if (mentor != null) {
-                String cookie = setupCookies(mentor);
+            if (student != null) {
+                String cookie = setupCookies(student);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            ArrayList<Artifact> allArtifacts = artefactDAO.getAllArtifacts();
+            setupStudentBalance(student);
+            setupStudentArtifacts(student);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("static/StudentTemplates/shoppingcart.html");
+
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifacts", allArtifacts);
+
+            model.with("student_artifacts", student.getBasket().getProductList());
+            model.with("student", student);
 
             response = template.render(model);
-            httpExchange.sendResponseHeaders(200, response.length());
+
         }
+        final byte[] finalResponseBytes = response.getBytes("UTF-8");
+        httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-
     }
 }
+

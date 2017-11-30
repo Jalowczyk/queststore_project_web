@@ -1,7 +1,7 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
+import com.school.dao.ArtifactDAO;
 import com.school.models.Artifact;
 import com.school.models.Mentor;
 import com.sun.net.httpserver.Headers;
@@ -16,21 +16,21 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class AddArtifactController extends MentorSessionController implements HttpHandler {
-
+public class EditArtifactController extends MentorSessionController implements HttpHandler {
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String response = "";
         String method = httpExchange.getRequestMethod();
+        String response = "";
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
+
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
-            httpExchange.sendResponseHeaders(302, -1);
+            httpExchange.sendResponseHeaders(302, response.length());
 
         } else if (method.equals("GET")) {
 
@@ -41,12 +41,17 @@ public class AddArtifactController extends MentorSessionController implements Ht
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/addartifact.html");
-            JtwigModel model = JtwigModel.newModel();
+            ArtifactDAO artefactDAO = new ArtifactDAO();
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editartifact.html");
 
+            JtwigModel model = JtwigModel.newModel();
+            model.with("artifact", artefactDAO.getAllArtifacts());
             response = template.render(model);
 
+
         } else if (method.equals("POST")) {
+
+            ArtifactDAO artefactDAO = new ArtifactDAO();
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -54,21 +59,13 @@ public class AddArtifactController extends MentorSessionController implements Ht
 
             Map inputs = parseFormData(formData);
 
-            String artifactName = inputs.get("artifact_title").toString();
-            String artifactInfo = inputs.get("artifact_category").toString();
-            Integer artifactPrice = Integer.parseInt(inputs.get("artifact_price").toString());
+            String id = inputs.get("id").toString();
+            Artifact artifact = artefactDAO.getArtefactById(Integer.parseInt(id));
 
-            Artifact artifact = new Artifact(artifactName, artifactPrice, artifactInfo);
-            ArtefactDAO artefactDAO = new ArtefactDAO();
-            artefactDAO.saveArtifact(artifact);
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/editartifact2.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifact_added", true);
-            model.with("artifacts", artefactDAO.getAllArtifacts());
-
-
+            model.with("artifact", artifact);
             response = template.render(model);
 
         }
@@ -80,5 +77,5 @@ public class AddArtifactController extends MentorSessionController implements Ht
         os.write(response.getBytes());
         os.close();
     }
-}
 
+}
