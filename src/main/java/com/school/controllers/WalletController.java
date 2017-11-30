@@ -7,7 +7,7 @@ package src.controllers;
 //  Wallet wallet = Student.getWallet();
 //  String walletInfo;
 //
-//  walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts: %s", wallet.balance, wallet.artifacts);
+//  walletInfo = String.format("You have %s coolcoins available.\nYour bought artifacts_controllers: %s", wallet.balance, wallet.artifacts_controllers);
 //
 //  return walletInfo;
 //}

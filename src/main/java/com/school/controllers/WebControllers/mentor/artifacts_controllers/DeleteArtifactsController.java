@@ -1,12 +1,9 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.ArtefactDAO;
-import com.school.dao.UserDAO;
+import com.school.dao.ArtifactDAO;
 import com.school.models.Artifact;
 import com.school.models.Mentor;
-import com.school.models.Student;
-import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -30,8 +27,6 @@ public class DeleteArtifactsController extends MentorSessionController implement
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-        UserDAO userDAO = new UserDAO();
-
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
@@ -46,12 +41,12 @@ public class DeleteArtifactsController extends MentorSessionController implement
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
+            ArtifactDAO artifactDAO = new ArtifactDAO();
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deleteartifacts.html");
 
             JtwigModel model = JtwigModel.newModel();
-            model.with("artifacts", artefactDAO.getAllArtifacts());
+            model.with("artifacts", artifactDAO.getAllArtifacts());
             response = template.render(model);
 
 
@@ -63,7 +58,7 @@ public class DeleteArtifactsController extends MentorSessionController implement
 
             Map inputs = parseFormData(formData);
 
-            ArtefactDAO artefactDAO = new ArtefactDAO();
+            ArtifactDAO artefactDAO = new ArtifactDAO();
 
             Integer id = Integer.parseInt(inputs.get("artifact_id").toString());
             Artifact artifact = artefactDAO.getArtefactById(id);
@@ -72,6 +67,8 @@ public class DeleteArtifactsController extends MentorSessionController implement
 
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact", artifact);
+            model.with("artifacts", artefactDAO.getAllArtifacts());
+
             response = template.render(model);
 
         }

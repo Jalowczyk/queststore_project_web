@@ -2,7 +2,7 @@ package com.school.controllers.WebControllers;
 
 import com.school.controllers.WebControllers.admin.*;
 import com.school.controllers.WebControllers.mentor.*;
-import com.school.controllers.WebControllers.mentor.artifacts.*;
+import com.school.controllers.WebControllers.mentor.artifacts_controllers.*;
 import com.school.controllers.WebControllers.mentor.quest_controllers.*;
 import com.school.controllers.WebControllers.mentor.student_controllers.*;
 import com.school.controllers.WebControllers.student.*;
@@ -26,7 +26,7 @@ public class App {
             //students
             server.createContext("/shop", new ShopController());
             server.createContext("/students", new StudentWebController());
-            server.createContext("/artifacts", new ArtifactWebController());
+            server.createContext("/artifacts_controllers", new ArtifactWebController());
             server.createContext("/quests", new StudentQuestWebController());
             server.createContext("/availablequests", new QuestWebController());
             server.createContext("/basket", new BasketController());
@@ -65,6 +65,7 @@ public class App {
             server.createContext("/editartifactsubmit", new SubmitEditArtifact());
             server.createContext("/deleteartifacts", new DeleteArtifactsController());
             server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
+            server.createContext("/showcourses", new ShowCoursesController());
 
 
             // start listening

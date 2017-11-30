@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ArtefactDAO extends  DBConnection{
+public class ArtifactDAO extends  DBConnection{
 
     private static String table_name = "artefacts";
 //    ArrayList<Artifact> artefacts = new ArrayList<>();
 
-    public ArtefactDAO(){
+    public ArtifactDAO(){
 
         super(table_name);
 

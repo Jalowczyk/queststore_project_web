@@ -1,9 +1,9 @@
-package com.school.controllers.WebControllers.mentor.artifacts;
+package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
 import com.school.controllers.WebControllers.mentor.MentorSessionController;
-import com.school.dao.UserDAO;
+import com.school.dao.ArtifactDAO;
+import com.school.models.Artifact;
 import com.school.models.Mentor;
-import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -14,10 +14,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.Map;
 
-public class MarkStudentArtifactController extends MentorSessionController implements HttpHandler  {
+public class AddArtifactController extends MentorSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -27,7 +26,6 @@ public class MarkStudentArtifactController extends MentorSessionController imple
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
-
 
         if (userID == null) {
 
@@ -43,12 +41,8 @@ public class MarkStudentArtifactController extends MentorSessionController imple
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
 
-            UserDAO userDAO = new UserDAO();
-            ArrayList allStudents = userDAO.getAllUsersByStatus("student");
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/addartifact.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("students", allStudents);
 
             response = template.render(model);
 
@@ -60,16 +54,23 @@ public class MarkStudentArtifactController extends MentorSessionController imple
 
             Map inputs = parseFormData(formData);
 
-            Integer studentId = Integer.parseInt(inputs.get("id").toString());
-            Student student = loadStudent(studentId);
-            setupStudentArtifacts(student);
+            String artifactName = inputs.get("artifact_title").toString();
+            String artifactInfo = inputs.get("artifact_category").toString();
+            Integer artifactPrice = Integer.parseInt(inputs.get("artifact_price").toString());
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/markstudentartifact2.html");
+            Artifact artifact = new Artifact(artifactName, artifactPrice, artifactInfo);
+            ArtifactDAO artefactDAO = new ArtifactDAO();
+            artefactDAO.saveArtifact(artifact);
+
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+
             JtwigModel model = JtwigModel.newModel();
-            model.with("student", student);
-            model.with("student_artifacts", student.getArtifacts());
+            model.with("artifact_added", true);
+            model.with("artifacts_controllers", artefactDAO.getAllArtifacts());
+
 
             response = template.render(model);
+
         }
 
         final byte[] finalResponseBytes = response.getBytes("UTF-8");

@@ -43,9 +43,9 @@ public class Student extends User {
     }
 
 
-    public Student(String name, String surname, String password, String mail){
+    public Student(String name, String surname, String mail, String password){
 
-        super(name, surname, password, mail, status);
+        super(name, surname, mail, password, status);
         this.wallet = new Wallet();
         this.basket = new Basket();
 

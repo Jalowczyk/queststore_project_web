@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
-import com.school.dao.ArtefactDAO;
+import com.school.dao.ArtifactDAO;
 import com.school.dao.StudentDAO;
 import com.school.models.Artifact;
 import com.school.models.Student;
@@ -30,7 +30,7 @@ public class ShopController extends StudentSessionController implements HttpHand
         Integer userID = getIdFromExistingCookies(requestHeaders);
         Student student = loadStudent(userID);
 
-        ArtefactDAO artefactDAO = new ArtefactDAO();
+        ArtifactDAO artefactDAO = new ArtifactDAO();
         ArrayList<Artifact> artifacts = artefactDAO.getAllArtifacts();
 
         if (userID == null) {
@@ -50,7 +50,7 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", student);
-            model.with("artifacts", artifacts);
+            model.with("artifacts_controllers", artifacts);
             response = template.render(model);
 
             final byte[] finalResponseBytes = response.getBytes("UTF-8");
@@ -76,7 +76,7 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             JtwigModel model = JtwigModel.newModel();
             model.with("students", student);
-            model.with("artifacts", artifacts);
+            model.with("artifacts_controllers", artifacts);
             model.with("added_to_basket",true);
 
 

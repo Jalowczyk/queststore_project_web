@@ -22,7 +22,6 @@ public class ManageStudentController extends MentorSessionController implements 
         Headers requestHeaders = httpExchange.getRequestHeaders();
         Integer userID = getIdFromExistingCookies(requestHeaders);
 
-
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
