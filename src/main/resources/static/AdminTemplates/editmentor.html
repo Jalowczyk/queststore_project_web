@@ -49,15 +49,15 @@
                             Choose mentor you want to edit
                         </div>
 
-                        <form method="post" action="">
+                        <form class="adminform" method="post" action="">
 
-                            <table>
+                            <table class="admintable">
+                                {% for mentor in mentors %}
                                 <tr>
-                                    {% for mentor in mentors %}
                                     <td><a href="javascript:{}" onclick="document.getElementById('{{ mentor.getId() }}').click(); return false;" class="editmentordiv">{{ mentor.getName() }}</a>
                                         <input type="submit" class="hidden" id="{{ mentor.getId() }}"  value="{{ mentor.getId() }}" name="id"></td>
-                                    {% endfor %}
                                 </tr>
+                                {% endfor %}
                             </table>
 
                         </form>

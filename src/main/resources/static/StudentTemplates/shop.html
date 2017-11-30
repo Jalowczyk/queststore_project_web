@@ -70,26 +70,28 @@
     <div class="stickymenu">
         <div class="leftmenu">
             <ol>
-                <li><a id="myacc_btn" href="account.html"><i class="fa fa-user" id="user" aria-hidden="true"></i>
+                <li><a id="myacc_btn" href="students"><i class="fa fa-user" id="user" aria-hidden="true"></i>
                     My account
                 </a>
                     <ul>
-                        <li><a href="artifacts">My Artifacts</a></li>
+                        <li><a href="myartifacts">My Artifacts</a></li>
                         <li><a href="quests">My Quests</a></li>
                         <li><a href="availablequests">Available Quests</a></li>
                         <li><a href="shop">Shop</a></li>
                         <li><a href="loginForm">Log Out</a></li>
                     </ul>
                 </li>
-                <li><a id="group_btn" href="groupshopping.html"><i class="fa fa-users" id="users" aria-hidden="true"></i>
-                    Group shopping
-                </a>
-                </li>
+                <!--Group shopping - to implement in future-->
+
+                <!--<li><a id="group_btn" href="groupshopping.html"><i class="fa fa-users" id="users" aria-hidden="true"></i>-->
+                    <!--Group shopping-->
+                <!--</a>-->
+                <!--</li>-->
             </ol>
         </div>
         <div class="rightmenu">
             <ol>
-                <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
+                <li><a id="coin"><img src ="static/img/ccoin.png" class="shopcoin" height="23" width="23" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
                 <li id="cart"><a id="cart_btn" href="payment"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket().getProductList().size() }}</a></li>
             </ol>
         </div>
@@ -99,10 +101,10 @@
     {% endfor %}
     <div class="wrapper">
 
-        <div class="accountContent">
+        <div class="shopContent">
 
-            <div class="accountRectangle">
-                <div class="accountTitle">
+            <div class="shopRectangle">
+                <div class="shopTitle">
 
                     WELCOME  TO STORE
 
@@ -113,7 +115,7 @@
             </div>
 
         </div>
-        <a class="button" href="javascript:{}" onclick="showLogin();" target="_blank" id="TellMeMoreButton">DO PURCHASE</a>
+        <a class="button" href="javascript:{}" onclick="showLogin();" target="_blank" id="TellMeMoreButton">PURCHASE</a>
     </div>
 
 
@@ -180,7 +182,7 @@
         <div id="footer_page">
             <div id="left_footer">
                 <span>&copy; 2017</span>
-                <a href="account.html" class="links">Account Page</a>
+                <a href="students" class="links">Home Page</a>
             </div>
             <a href="https://www.facebook.com/CodecoolPoland/" target="_blank" class="socialhtml5">
                 <div class="fb">

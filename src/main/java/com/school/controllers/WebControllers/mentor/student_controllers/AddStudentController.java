@@ -75,7 +75,7 @@ public class AddStudentController extends MentorSessionController implements Htt
             walletDAO.saveWallet(wallet);
             studentDAO.save();
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student_added", true);

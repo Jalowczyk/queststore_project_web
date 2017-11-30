@@ -38,7 +38,7 @@
         <div class="rightmenu">
             <ol>
                 {% for student in student %}
-                <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{ student.getWallet().getBalance() }}</a></li>
+                <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="4"/>{{ student.getWallet().getBalance() }}</a></li>
                 <li id="cart"><a id="cart_btn" href="shoppingcart.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket().getProductList().size() }}</a></li>
             {% endfor %}
             </ol>
@@ -80,6 +80,8 @@
                 <button onclick="setTimeout(function(){document.getElementById('{{ artifact.getId() }}').click()}, 300);" class="remove-product">
                     Remove
                 </button>
+
+
             </div>
             <div class="product-line-price">{{ artifact.getPrice() }}</div>
         </div>

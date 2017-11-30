@@ -48,17 +48,17 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
         String status = rs.getString("status");
 
         if(status.equals("student")){
-            Student student = new Student(name, surname, mail, password);
+            Student student = new Student(name, surname, password, mail);
             student.setId(idNum);
             return student;
         }
         if(status.equals("mentor")){
-            Mentor mentor = new Mentor(name, surname, mail, password);
+            Mentor mentor = new Mentor(name, surname, password, mail);
             mentor.setId(idNum);
             return mentor;
         }
         if(status.equals("admin")){
-            Admin admin = new Admin(name, surname, mail, password);
+            Admin admin = new Admin(name, surname, password, mail);
             admin.setId(idNum);
             return admin;
         }
@@ -142,7 +142,7 @@ public class UserDAO extends DBConnection implements UserInterfaceDAO {
     }
 
 
-    public static void editUser(String first_name, String last_name, String mail, String password, Integer id) {
+    public static void editUser(String first_name, String last_name, String password, String mail, Integer id) {
 
         String query = "UPDATE users SET first_name = '" + first_name + "', last_name = '" + last_name + "', email = '" + mail + "', password = '" + password + "' WHERE id_number = '" + id + "'";
 

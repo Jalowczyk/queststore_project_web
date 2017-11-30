@@ -2,6 +2,7 @@ body{
     font-family: 'Lato', sans-serif;
     font-size: 20px;
     background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/image1.jpg") center top / cover;
+    background-attachment: fixed;
     padding: 0;
     margin: 0 !important;
     min-width: 550px;
@@ -147,7 +148,7 @@ body{
     justify-content: center;
     font-size: 5vw;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 15px;
     opacity: 0.8;
 }
 
@@ -156,7 +157,6 @@ body{
 .content
 {
     display: flex;
-    width: 70%;
     justify-content: center;
     align-items: center;
     color:white;
@@ -168,27 +168,49 @@ body{
 
 .rectangle
 {
-    width: 100%;
+    width: 70%;
     background-color: #006666;
     border-radius: 30px;
     opacity: 0.9;
 }
+
+.actionRectangle
+{
+    background-color: #006666;
+    border-radius: 30px;
+    opacity: 0.9;
+}
+
 .title
 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 3vw;
     border-top: 2px solid #B9AB2C;
     border-bottom: 2px solid #B9AB2C;
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 10px;
+    padding: 15px;
 }
 
 table
 {
     width: 100%;
+    padding-bottom: 20px;
+}
+
+.admintable
+{
+    width:100%;
+    padding-bottom: 0;
+}
+
+.coursetable
+{
+    width:100%;
+    padding-bottom: 20px;
 }
 
 #contenttable
@@ -234,6 +256,12 @@ td
     vertical-align:middle;
 }
 
+.coin25
+{
+    float: left;
+    width: 20%;
+}
+
 .tdpayment
 {
     height: 100%;
@@ -269,6 +297,7 @@ th
 {
     display: flex;
     width: 55%;
+    min-width: 450px;
     justify-content: center;
     align-items: center;
     color:white;
@@ -304,26 +333,30 @@ th
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 9vw;
+    padding: 35px;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .showmentortitle
 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 2vw;
     border-top: 2px solid #B9AB2C;
     border-bottom: 2px solid #B9AB2C;
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 3vw;
+    padding: 15px;
 }
 
 .information
 {
     padding: 2vw;
+    display: flex;
+    justify-content: center;
 }
 
 .courseTitle
@@ -336,7 +369,7 @@ th
     border-left: 2px solid #B9AB2C;
     border-right: 2px solid #B9AB2C;
     border-radius: 30px;
-    padding: 10px;
+    padding: 15px;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -387,7 +420,6 @@ a.editstudentdiv:hover
 
 .questcontent
 {
-
     display: flex;
     width: 70%;
     justify-content: center;
@@ -412,7 +444,12 @@ a.editstudentdiv:hover
 
 form
 {
-    padding: 6%;
+    padding: 5%;
+}
+
+.adminform
+{
+    padding:0;
 }
 
 .flex-outer
@@ -766,7 +803,9 @@ ol a
 
 #coin
 {
-    width: 135px;
+    width: auto;
+    padding-right: 15px;
+    padding-left: 10px;
 }
 
 #cart_btn

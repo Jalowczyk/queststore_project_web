@@ -15,8 +15,8 @@ public abstract class User {
 
         this.name = name;
         this.surname = surname;
-        this.mail = mail;
         this.password = password;
+        this.mail = mail;
         this.status = status;
     }
 

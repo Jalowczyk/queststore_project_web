@@ -42,15 +42,15 @@
                 </div>
             </div>
 
-            <div class="admincontent3">
+            <div class="admincontent">
 
                 <div class="rectangle">
+                    {% for mentor in mentors %}
                     <div class="message">
-                        {% for mentor in mentors %}
                         {{ mentor.getName() }} {{ mentor.getSurname() }}
                         <div class="information">{{ mentor.getMail() }}</div>
-                        {% endfor %}
                     </div>
+                    {% endfor %}
                 </div>
 
                 <div class="buttons">

@@ -66,6 +66,7 @@ body {
     padding: 0px 30px 30px 20px;
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
     background:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("../img/background2.jpg") center top / cover;
+    background-attachment: fixed;
     font-weight: 100;
     font-size: 18px;
     padding: 0;
@@ -497,7 +498,9 @@ ol a
 
 #coin
 {
-    width: 135px;
+    width: auto;
+    padding-right: 20px;
+    padding-left: 10px;
 }
 
 #cart_btn

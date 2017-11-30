@@ -36,7 +36,7 @@ public class EditStudentSubmit extends AdminSessionController implements HttpHan
 
             UserDAO.editUser(name, surname, mail, password, id);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student_edited", true);

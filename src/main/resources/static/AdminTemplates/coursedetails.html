@@ -49,27 +49,19 @@
                             {% for course in courses %}
                             Course name: {{course.getName() }}
                             {% endfor %}
+                        </div>
 
                         <div class="information">Students assigned to this course</div>
-                            <table>
-                                <tr>
-                            {% for student in course_students %}
+                            <table class="coursetable">
+                                {% for student in course_students %}
+                                <tr class="tablerow2">
                                     <td>{{student.getName()}}</td>
-                            {% endfor %}
                                 </tr>
+                                {% endfor %}
                             </table>
 
-
                         </div>
-                        
-                        <table>
 
-                            <tr>
-                                <td><a class="editmentordiv"></a></td>
-                            </tr>
-
-                
-                        </table>
                     </div>
 
                     <div class="buttons">
@@ -80,10 +72,6 @@
                             </div>
                         </a>
                     </div>
-            </div>
-
-            <div class="items">
-                new items
             </div>
 
 
