@@ -74,7 +74,7 @@
                     My account
                 </a>
                     <ul>
-                        <li><a href="artifacts">My Artifacts</a></li>
+                        <li><a href="myartifacts">My Artifacts</a></li>
                         <li><a href="quests">My Quests</a></li>
                         <li><a href="availablequests">Available Quests</a></li>
                         <li><a href="shop">Shop</a></li>
@@ -90,7 +90,7 @@
         <div class="rightmenu">
             <ol>
                 <li><a id="coin"><img src ="static/img/ccoin.png" height="33" width="33" style="float: left;" hspace="2"/>{{student.getWallet().getBalance()}}</a></li>
-                <li id="cart"><a id="cart_btn" href="payment.html"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket().getProductList().size() }}</a></li>
+                <li id="cart"><a id="cart_btn" href="payment"><i class="fa fa-shopping-cart" id="cart_font" aria-hidden="true"></i>{{ student.getBasket().getProductList().size() }}</a></li>
             </ol>
         </div>
 
