@@ -64,7 +64,7 @@ public class AddQuestController extends UserSessionController implements HttpHan
             QuestDAO questDAO = new QuestDAO();
             questDAO.saveQuest(quest);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managequests.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("quest_added", true);
