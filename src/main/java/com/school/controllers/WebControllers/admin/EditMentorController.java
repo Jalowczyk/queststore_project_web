@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.admin;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.UserDAO;
 import com.school.models.Admin;
 import com.school.models.Mentor;
@@ -15,7 +16,7 @@ import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditMentorController extends AdminSessionController implements HttpHandler {
+public class EditMentorController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

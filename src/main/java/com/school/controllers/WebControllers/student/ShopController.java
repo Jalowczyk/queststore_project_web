@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.ArtifactDAO;
 import com.school.dao.StudentDAO;
 import com.school.models.Artifact;
@@ -17,7 +18,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ShopController extends StudentSessionController implements HttpHandler {
+public class ShopController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

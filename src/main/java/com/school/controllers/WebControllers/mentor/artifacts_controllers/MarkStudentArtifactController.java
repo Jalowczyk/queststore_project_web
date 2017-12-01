@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.UserDAO;
 import com.school.models.Mentor;
 import com.school.models.Student;
@@ -17,7 +17,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class MarkStudentArtifactController extends MentorSessionController implements HttpHandler  {
+public class MarkStudentArtifactController extends UserSessionController implements HttpHandler  {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

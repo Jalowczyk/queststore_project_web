@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.ArtifactDAO;
 import com.school.models.Mentor;
 import com.sun.net.httpserver.Headers;
@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 
-public class ManageArtifactsController extends MentorSessionController implements HttpHandler {
+public class ManageArtifactsController extends UserSessionController implements HttpHandler {
 
 
     @Override

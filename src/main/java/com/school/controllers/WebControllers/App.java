@@ -23,6 +23,8 @@ public class App {
             server.createContext("/loginForm", new LoginWebController());
             server.createContext("/signUp", new SignUpWebController());
 
+            server.createContext("/logOut", new LogOutController());
+
             //students
             server.createContext("/shop", new ShopController());
             server.createContext("/students", new StudentWebController());
@@ -31,7 +33,10 @@ public class App {
             server.createContext("/availablequests", new QuestWebController());
             server.createContext("/basket", new BasketController());
             server.createContext("/payment", new PaymentController());
-            server.createContext("/transactionSuccessful", new TransactionDone() );
+            server.createContext("/transactionSuccessful", new TransactionDoneController());
+//            server.createContext("/transactionUnsuccessful", new TransactionDoneController());
+
+
 
             //admins
             server.createContext("/admins", new AdminWebController());

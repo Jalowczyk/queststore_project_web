@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.QuestDAO;
 import com.school.dao.StudentDAO;
 import com.school.models.Artifact;
@@ -16,7 +17,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class PaymentController extends StudentSessionController implements HttpHandler {
+public class PaymentController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

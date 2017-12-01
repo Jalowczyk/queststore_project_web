@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.quest_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.QuestDAO;
 import com.school.models.Mentor;
 import com.school.models.Quest;
@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class AddQuestController extends MentorSessionController implements HttpHandler {
+public class AddQuestController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

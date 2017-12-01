@@ -1,9 +1,8 @@
 package com.school.controllers.WebControllers.mentor.quest_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.QuestDAO;
 import com.school.models.Mentor;
-import com.school.models.Quest;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -12,9 +11,8 @@ import org.jtwig.JtwigTemplate;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
 
-public class ManageQuestController extends MentorSessionController implements HttpHandler {
+public class ManageQuestController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
