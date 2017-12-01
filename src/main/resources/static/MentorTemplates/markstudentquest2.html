@@ -63,7 +63,7 @@
                 <tr class="tablerow">
                     <td><a href="javascript:{}" onclick="document.getElementById('{{ quest.getId() }}').click(); return false;" class="editmentordiv">{{ quest.getTitle() }}</a>
                     <td><a href="javascript:{}" onclick="document.getElementById('{{ quest.getId() }}').click(); return false;" class="editmentordiv">{{ quest.getInfo() }}</a>
-                    <td><a href="javascript:{}" onclick="document.getElementById('{{ quest.getId() }}').click(); return false;" class="editmentordiv">{{ quest.getPrize() }}</a>
+                    <td><a href="javascript:{}" onclick="document.getElementById('{{ quest.getId() }}').click(); return false;" class="editmentordiv">{{ quest.getPrize() }} <img src="static/img/ccoin.png" height="23" width="23" style="float: left;" /></a>
 
                     <input type="submit" class="hidden" id="{{ quest.getId() }}"  value="{{ quest.getId() }}" name="quest_id">
 
