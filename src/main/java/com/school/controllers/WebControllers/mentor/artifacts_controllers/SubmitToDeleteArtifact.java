@@ -39,6 +39,9 @@ public class SubmitToDeleteArtifact extends UserSessionController implements Htt
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact_deleted", true);
             model.with("artifacts",  artefactDAO.getAllArtifacts());
+
+
+
             response = template.render(model);
         }
 

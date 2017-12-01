@@ -67,8 +67,11 @@ public class App {
             server.createContext("/editartifact", new EditArtifactController());
             server.createContext("/editartifactsubmit", new SubmitEditArtifact());
             server.createContext("/deleteartifacts", new DeleteArtifactsController());
+            server.createContext("/deletequest", new DeleteQuestController());
             server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
             server.createContext("/showcourses", new ShowCoursesController());
+            server.createContext("/deletesubmissionquest", new SubmitToDeleteQuest());
+
 
 
 

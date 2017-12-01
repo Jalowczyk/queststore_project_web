@@ -92,9 +92,22 @@ public class QuestDAO extends DBConnection {
         }
     }
 
-    public void deleteQuest(Integer questID, Integer studentID) {
+    public void deleteStudentQuest(Integer questID, Integer studentID) {
 
         String query = "DELETE FROM students_quests WHERE quest_id = '" + questID + "'AND student_id = '" + studentID + "'";
+
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteQuest(Integer questID) {
+
+        String query = "DELETE FROM quests WHERE quest_id = '" + questID + "'";
 
         try {
             Statement st = conn.createStatement();
