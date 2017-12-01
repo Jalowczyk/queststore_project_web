@@ -33,7 +33,16 @@ public abstract class Cookie {
 
     public String setupCookies(User user) {
 
-        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(200000));
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(500));
+        String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
+        String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
+
+        return cookie;
+    }
+
+    public String removeCookies(User user) {
+
+        OffsetDateTime oneHourFromNow = OffsetDateTime.now(ZoneOffset.UTC).plus(Duration.ofSeconds(0));
         String cookieExpire = "expires=" + DateTimeFormatter.RFC_1123_DATE_TIME.format(oneHourFromNow);
         String cookie = String.format("id=%s; %s;", user.getId(), cookieExpire);
 

@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.admin;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.MentorDAO;
 import com.school.models.Admin;
 import com.school.models.Mentor;
@@ -14,7 +15,7 @@ import java.io.*;
 import java.util.Map;
 
 
-public class AddMentorController extends AdminSessionController implements HttpHandler {
+public class AddMentorController extends UserSessionController implements HttpHandler {
 
 
     @Override

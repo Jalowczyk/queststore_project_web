@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.BasketDAO;
 import com.school.dao.WalletDAO;
 import com.school.models.Student;
@@ -16,7 +17,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 
-public class TransactionDone extends StudentSessionController implements HttpHandler {
+public class TransactionDoneController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -54,7 +55,7 @@ public class TransactionDone extends StudentSessionController implements HttpHan
             if(ifUserHasBalance(student, totalAmount)){
                 template = JtwigTemplate.classpathTemplate("static/StudentTemplates/transactionSuccessful.html");
             } else {
-                template = JtwigTemplate.classpathTemplate("static/StudentTemplates/unsuccessfulpayment.html");
+                template = JtwigTemplate.classpathTemplate("static/StudentTemplates/transactionUnsuccessful.html");
             }
 
             JtwigModel model = JtwigModel.newModel();
@@ -73,7 +74,7 @@ public class TransactionDone extends StudentSessionController implements HttpHan
 
     private Boolean ifUserHasBalance(Student student, Integer totalAmount) {
 
-        if (student.getWallet().getBalance() >= totalAmount) {
+        if (student.getWallet().getBalance() >= totalAmount && totalAmount!= 0) {
 
             student.getWallet().setBalance(student.getWallet().getBalance() - totalAmount);
             student.getBasket().clearBasket();

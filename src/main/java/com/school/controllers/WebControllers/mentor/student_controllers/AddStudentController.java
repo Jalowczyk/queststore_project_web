@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.student_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.StudentDAO;
 import com.school.dao.WalletDAO;
 import com.school.models.Mentor;
@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class AddStudentController extends MentorSessionController implements HttpHandler {
+public class AddStudentController extends UserSessionController implements HttpHandler {
 
 
     @Override

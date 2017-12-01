@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.admin;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.CourseDAO;
 import com.school.models.Admin;
 import com.school.models.Course;
@@ -13,7 +14,7 @@ import java.io.*;
 import java.util.Map;
 
 
-public class AddCourseController extends AdminSessionController implements HttpHandler {
+public class AddCourseController extends UserSessionController implements HttpHandler {
 
 
     @Override

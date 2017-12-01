@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -10,7 +11,7 @@ import org.jtwig.JtwigTemplate;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class StudentQuestWebController extends StudentSessionController implements HttpHandler {
+public class StudentQuestWebController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.admin;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.models.Admin;
 import com.sun.net.httpserver.Headers;
 import org.jtwig.JtwigModel;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 
-public class AdminWebController extends AdminSessionController implements HttpHandler {
+public class AdminWebController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
