@@ -52,7 +52,6 @@ public class StudentWebController extends StudentSessionController implements Ht
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
-
     }
 }
 
