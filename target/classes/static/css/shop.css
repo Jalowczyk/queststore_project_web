@@ -442,6 +442,7 @@ input.button:hover
 
 #admincontent3{
     display: none ;
+
     width: 45%;
     justify-content: center;
     align-items: center;
@@ -450,7 +451,7 @@ input.button:hover
     flex-wrap: wrap;
     font-size: 2vw;
     margin-top: -42vw;
-    margin-left: 314px;
+    margin-left: 550px;
     -webkit-animation: seconds 1.0s forwards;
 
       -webkit-animation-iteration-count: 1;

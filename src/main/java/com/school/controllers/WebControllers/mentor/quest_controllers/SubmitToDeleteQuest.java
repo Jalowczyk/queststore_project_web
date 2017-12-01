@@ -2,9 +2,6 @@ package com.school.controllers.WebControllers.mentor.quest_controllers;
 
 import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.QuestDAO;
-import com.school.dao.WalletDAO;
-import com.school.models.Quest;
-import com.school.models.Student;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.jtwig.JtwigModel;
@@ -16,17 +13,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class MarkStudentSubmit extends UserSessionController implements HttpHandler {
+public class SubmitToDeleteQuest  extends UserSessionController implements HttpHandler  {
+
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
 
-        String response = "";
         String method = httpExchange.getRequestMethod();
+        String response = "";
 
-         if (method.equals("POST")) {
-
-            System.out.println("here");
+        if(method.equals("POST")) {
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
@@ -34,31 +30,16 @@ public class MarkStudentSubmit extends UserSessionController implements HttpHand
 
             Map inputs = parseFormData(formData);
 
-            Integer studentId = Integer.parseInt(inputs.get("student_id").toString());
-            Integer questId = Integer.parseInt(inputs.get("quest_id").toString());
+            Integer quest_id = Integer.parseInt(inputs.get("quest_id").toString());
 
             QuestDAO questDAO = new QuestDAO();
-            Quest quest = questDAO.getQuestById(questId);
-            questDAO.deleteStudentQuest(studentId, questId);
+            questDAO.deleteQuest(quest_id);
 
-            Student student = loadStudent(studentId);
-            setupStudentBalance(student);
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
-            Integer questPrize = quest.getPrize();
-
-            Integer studentBalance = student.getWallet().getBalance();
-
-            Integer newStudentBalance = questPrize + studentBalance;
-            student.getWallet().setBalance(newStudentBalance);
-
-            WalletDAO walletDAO = new WalletDAO();
-            walletDAO.editWallet(student.getWallet());
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managequests.html");
             JtwigModel model = JtwigModel.newModel();
-            model.with("quest_marked", true);
-            model.with("quests", questDAO.getAllQuests());
-
+            model.with("quest_deleted", true);
+            model.with("quests",  questDAO.getAllQuests());
             response = template.render(model);
         }
 
@@ -68,6 +49,6 @@ public class MarkStudentSubmit extends UserSessionController implements HttpHand
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());
         os.close();
+
     }
 }
-
