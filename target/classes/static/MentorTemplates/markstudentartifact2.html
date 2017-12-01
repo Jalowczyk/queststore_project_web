@@ -64,7 +64,7 @@
 
                     <td><a href="javascript:{}" onclick="document.getElementById('{{ artifact.getId() }}').click(); return false;" class="editmentordiv">{{ artifact.getTitle() }}</a>
                     <td><a href="javascript:{}" onclick="document.getElementById('{{ artifact.getId() }}').click(); return false;" class="editmentordiv">{{ artifact.getCategory() }}</a>
-                    <td><a href="javascript:{}" onclick="document.getElementById('{{ artifact.getId() }}').click(); return false;" class="editmentordiv">{{ artifact.getPrice() }}</a>
+                    <td><a href="javascript:{}" onclick="document.getElementById('{{ artifact.getId() }}').click(); return false;" class="editmentordiv">{{ artifact.getPrice() }} <img src="static/img/ccoin.png" height="23" width="23" style="float: left;" /></a>
 
                     <input type="submit" class="hidden" id="{{ artifact.getId() }}"  value="{{ artifact.getId() }}" name="artifact_id">
                 </tr>
