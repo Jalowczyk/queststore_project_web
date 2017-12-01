@@ -142,7 +142,7 @@
                             <input type="submit" class="hidden" id="{{ artifact.getTitle() }}"  value="{{ artifact.getId() }}" name="id">
                             <a href="javascript:{}" onclick="document.getElementById('{{ artifact.getTitle() }}').click(); return false;" id="href_id">
 
-                                <h3>b{{ artifact.getTitle() }}</h3>
+                                <h3>{{ artifact.getTitle() }}</h3>
                                 <div class="price">
                                     <h4>$ {{artifact.getPrice() }}<span> BUY </span></h4>
                                 </div>
