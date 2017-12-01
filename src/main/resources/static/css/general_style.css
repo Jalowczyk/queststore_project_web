@@ -407,6 +407,7 @@ a.editstudentdiv:hover
 {
     display: flex;
     justify-content: center;
+    text-align: center;
     font-size: 2vw;
     border-top: 2px solid #B9AB2C;
     border-bottom: 2px solid #B9AB2C;

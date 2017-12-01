@@ -54,7 +54,7 @@ public class MarkStudentSubmit extends UserSessionController implements HttpHand
             WalletDAO walletDAO = new WalletDAO();
             walletDAO.editWallet(student.getWallet());
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managequests.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
             JtwigModel model = JtwigModel.newModel();
             model.with("quest_marked", true);
             model.with("quests", questDAO.getAllQuests());
