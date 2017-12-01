@@ -117,5 +117,18 @@ public class QuestDAO extends DBConnection {
         }
 
     }
+
+    public void editArtifact(String title, String info, Integer price, Integer quest_id) {
+
+        String query = "UPDATE quests SET title = '" + title + "', prize = '" + price + "'," +
+                " category = '" + info + "' WHERE quest_id = '" + quest_id + "'";
+
+        try {
+            Statement st = conn.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

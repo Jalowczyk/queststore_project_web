@@ -107,6 +107,10 @@
                 Quest has been successfully deleted
                 {% endif %}
 
+                {% if (quest_edited) %}
+                Quest has been successfully edited
+                {% endif %}
+
                 <!--students-->
                 {% if (student_added) %}
                 Student has been successfully added
@@ -189,6 +193,22 @@
     {% endif %}
 
     {% if (quest_marked) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (quest_deleted) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (quest_edited) %}
 
     <script type="text/javascript">
         showInfo();

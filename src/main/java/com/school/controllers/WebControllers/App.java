@@ -23,6 +23,7 @@ public class App {
             server.createContext("/loginForm", new LoginWebController());
             server.createContext("/signUp", new SignUpWebController());
 
+            //log out
             server.createContext("/logOut", new LogOutController());
 
             //students
@@ -66,14 +67,13 @@ public class App {
             server.createContext("/addartifact", new AddArtifactController());
             server.createContext("/editartifact", new EditArtifactController());
             server.createContext("/editartifactsubmit", new SubmitEditArtifact());
+            server.createContext("/editquestsubmit", new SubmitEditQuest());
             server.createContext("/deleteartifacts", new DeleteArtifactsController());
             server.createContext("/deletequest", new DeleteQuestController());
             server.createContext("/deletesubmission", new SubmitToDeleteArtifact());
             server.createContext("/showcourses", new ShowCoursesController());
             server.createContext("/deletesubmissionquest", new SubmitToDeleteQuest());
-
-
-
+            server.createContext("/editquest", new EditQuestController());
 
             //static
             server.createContext("/static", new Static());
