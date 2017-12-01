@@ -1,10 +1,9 @@
-package com.school.controllers.WebControllers.mentor.student_controllers;
+package com.school.controllers.WebControllers.student;
 
 import com.school.controllers.WebControllers.UserSessionController;
-import com.school.dao.UserDAO;
-import com.school.models.Mentor;
+import com.school.dao.BasketDAO;
+import com.school.dao.WalletDAO;
 import com.school.models.Student;
-import com.school.models.User;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -17,7 +16,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class DeleteStudentController extends UserSessionController implements HttpHandler {
+
+public class TransactionDoneController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -26,44 +26,37 @@ public class DeleteStudentController extends UserSessionController implements Ht
         String response = "";
 
         Headers requestHeaders = httpExchange.getRequestHeaders();
-        Integer userID = getIdFromExistingCookies(requestHeaders);
 
-        UserDAO userDAO = new UserDAO();
+        Integer userID = getIdFromExistingCookies(requestHeaders);
+        Student student = loadStudent(userID);
+        setupStudentBalance(student);
 
         if (userID == null) {
 
             httpExchange.getResponseHeaders().set("Location", "/loginForm");
             httpExchange.sendResponseHeaders(302, response.length());
 
-        } else if (method.equals("GET")) {
+        } else if (method.equals("POST")) {
 
-            Mentor mentor = loadMentor(userID);
-
-            if (mentor != null) {
-                String cookie = setupCookies(mentor);
+            if (student != null) {
+                String cookie = setupCookies(student);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie);
             }
-
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent.html");
-
-            JtwigModel model = JtwigModel.newModel();
-            model.with("students", userDAO.getAllUsersByStatus("student"));
-            response = template.render(model);
-
-
-        } else if (method.equals("POST")) {
 
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
             BufferedReader br = new BufferedReader(isr);
             String formData = br.readLine();
 
             Map inputs = parseFormData(formData);
+            Integer totalAmount = Integer.parseInt(inputs.get("total").toString());
 
-            String id = inputs.get("id").toString();
-            User chosenStudent = userDAO.getUserById(Integer.parseInt(id));
-            Student student = (Student) chosenStudent;
+            JtwigTemplate template = null;
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/deletestudent2.html");
+            if(ifUserHasBalance(student, totalAmount)){
+                template = JtwigTemplate.classpathTemplate("static/StudentTemplates/transactionSuccessful.html");
+            } else {
+                template = JtwigTemplate.classpathTemplate("static/StudentTemplates/transactionUnsuccessful.html");
+            }
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student", student);
@@ -79,5 +72,24 @@ public class DeleteStudentController extends UserSessionController implements Ht
         os.close();
     }
 
+    private Boolean ifUserHasBalance(Student student, Integer totalAmount) {
+
+        if (student.getWallet().getBalance() >= totalAmount && totalAmount!= 0) {
+
+            student.getWallet().setBalance(student.getWallet().getBalance() - totalAmount);
+            student.getBasket().clearBasket();
+
+            WalletDAO walletDAO = new WalletDAO();
+            walletDAO.editWallet(student.getWallet());
+
+            BasketDAO basketDAO = new BasketDAO();
+            basketDAO.deleteBasket(student);
+            return true;
+
+        } else {
+            return false;
+        }
+    }
 }
+
 

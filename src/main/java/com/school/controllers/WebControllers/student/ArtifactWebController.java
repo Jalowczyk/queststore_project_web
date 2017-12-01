@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.models.Student;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
@@ -11,7 +12,7 @@ import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 
-public class ArtifactWebController extends StudentSessionController implements HttpHandler {
+public class ArtifactWebController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -32,6 +33,8 @@ public class ArtifactWebController extends StudentSessionController implements H
         else if (method.equals("GET")) {
 
             Student student = loadStudent(userID);
+            setupStudentBalance(student);
+            setupStudentBasket(student);
             setupStudentArtifacts(student);
 
             if (student != null) {

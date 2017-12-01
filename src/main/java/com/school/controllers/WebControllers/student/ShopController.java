@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.student;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.ArtifactDAO;
 import com.school.dao.StudentDAO;
 import com.school.models.Artifact;
@@ -17,7 +18,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ShopController extends StudentSessionController implements HttpHandler {
+public class ShopController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -29,6 +30,9 @@ public class ShopController extends StudentSessionController implements HttpHand
 
         Integer userID = getIdFromExistingCookies(requestHeaders);
         Student student = loadStudent(userID);
+        setupStudentBalance(student);
+        setupStudentBasket(student);
+
 
         ArtifactDAO artefactDAO = new ArtifactDAO();
         ArrayList<Artifact> artifacts = artefactDAO.getAllArtifacts();
@@ -53,8 +57,6 @@ public class ShopController extends StudentSessionController implements HttpHand
             model.with("artifacts", artifacts);
             response = template.render(model);
 
-            final byte[] finalResponseBytes = response.getBytes("UTF-8");
-            httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
         } else if (method.equals("POST")) {
 
@@ -82,10 +84,10 @@ public class ShopController extends StudentSessionController implements HttpHand
 
             response = template.render(model);
 
-            final byte[] finalResponseBytes = response.getBytes("UTF-8");
-            httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
-
         }
+
+        final byte[] finalResponseBytes = response.getBytes("UTF-8");
+        httpExchange.sendResponseHeaders(200, finalResponseBytes.length);
 
         OutputStream os = httpExchange.getResponseBody();
         os.write(response.getBytes());

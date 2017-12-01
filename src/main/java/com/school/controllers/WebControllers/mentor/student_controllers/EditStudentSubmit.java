@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.student_controllers;
 
-import com.school.controllers.WebControllers.admin.AdminSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.UserDAO;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class EditStudentSubmit extends AdminSessionController implements HttpHandler {
+public class EditStudentSubmit extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -36,7 +36,7 @@ public class EditStudentSubmit extends AdminSessionController implements HttpHan
 
             UserDAO.editUser(name, surname, mail, password, id);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/managestudents.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("student_edited", true);

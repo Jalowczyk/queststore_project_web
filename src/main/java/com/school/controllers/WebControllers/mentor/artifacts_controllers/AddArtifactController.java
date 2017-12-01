@@ -1,6 +1,6 @@
 package com.school.controllers.WebControllers.mentor.artifacts_controllers;
 
-import com.school.controllers.WebControllers.mentor.MentorSessionController;
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.ArtifactDAO;
 import com.school.models.Artifact;
 import com.school.models.Mentor;
@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class AddArtifactController extends MentorSessionController implements HttpHandler {
+public class AddArtifactController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
@@ -62,11 +62,11 @@ public class AddArtifactController extends MentorSessionController implements Ht
             ArtifactDAO artefactDAO = new ArtifactDAO();
             artefactDAO.saveArtifact(artifact);
 
-            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/manageartifacts.html");
+            JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
             JtwigModel model = JtwigModel.newModel();
             model.with("artifact_added", true);
-            model.with("artifacts_controllers", artefactDAO.getAllArtifacts());
+            model.with("artifacts", artefactDAO.getAllArtifacts());
 
 
             response = template.render(model);

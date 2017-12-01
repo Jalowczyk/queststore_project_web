@@ -173,6 +173,14 @@ body{
     border-radius: 30px;
     opacity: 0.9;
 }
+
+.actionRectangle
+{
+    background-color: #006666;
+    border-radius: 30px;
+    opacity: 0.9;
+}
+
 .title
 {
     display: flex;

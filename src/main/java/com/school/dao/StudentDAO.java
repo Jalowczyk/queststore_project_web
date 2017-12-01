@@ -159,7 +159,7 @@ public class StudentDAO extends UserDAO {
 
     private Basket addProductToBasket(Integer product_id, Basket basket) {
 
-        String query = "SELECT title, price, category FROM artifacts WHERE artifact_id = " + product_id + ";";
+        String query = "SELECT artifact_id, title, price, category FROM artifacts WHERE artifact_id = " + product_id + ";";
 
         try (Statement st = conn.createStatement();
              ResultSet rs = st.executeQuery(query)) {
@@ -169,8 +169,10 @@ public class StudentDAO extends UserDAO {
                 String item_name = rs.getString("title");
                 String item_info = rs.getString("category");
                 Integer price = rs.getInt("price");
+                Integer id = rs.getInt("artifact_id");
 
                 Artifact artifact = new Artifact(item_name, price, item_info);
+                artifact.setId(id);
                 basket.addProduct(artifact);
             }
     } catch (SQLException e) {
@@ -179,6 +181,19 @@ public class StudentDAO extends UserDAO {
     return basket;
 
 }
+    public void deleteProductFromBasket(Integer product_id) {
+
+            String query = "DELETE FROM students_basket WHERE student_id = '" + student.getId()  + "'AND basket_artifact_id = '" + product_id + "'";
+
+            try {
+                Statement st = conn.createStatement();
+                st.executeUpdate(query);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
+
 
     public static void editStudent(String first_name, String last_name, String mail, String password, Integer id) {
 

@@ -1,5 +1,6 @@
 package com.school.controllers.WebControllers.mentor;
 
+import com.school.controllers.WebControllers.UserSessionController;
 import com.school.dao.CourseDAO;
 import com.school.models.Course;
 import com.school.models.Mentor;
@@ -18,7 +19,7 @@ import java.io.OutputStream;
 import java.util.Map;
 
 
-public class ShowCoursesController extends MentorSessionController implements HttpHandler {
+public class ShowCoursesController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

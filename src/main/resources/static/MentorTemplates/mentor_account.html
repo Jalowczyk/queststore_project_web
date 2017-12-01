@@ -13,6 +13,23 @@
     <script src="https://use.fontawesome.com/0dc27d5e41.js"></script>
     <script type="text/javascript"></script>
 
+    <script>
+        function showInfo() {
+            var admin_added_info = document.getElementById('admincontent3');
+            var displaySetting = admin_added_info.style.display;
+
+            if (displaySetting == 'block') {
+
+                admin_added_info.style.display = 'none';
+
+            }
+            else {
+
+                admin_added_info.style.display = 'block';
+            }
+        }
+    </script>
+
 </head>
 <body>
 
@@ -36,7 +53,7 @@
                         <li><a href="managequests">Manage quests</a></li>
                         <li><a href="manageartifacts">Manage artifacts</a></li>
                         <li><a href="showcourses">Show courses</a></li>
-                        <li><a href="main_page">Log Out</a></li>
+                        <li><a href="logOut">Log Out</a></li>
                     </ul>
                 </li>
             </ol>
@@ -52,6 +69,53 @@
             <h1 id="accounth1">
                 It's Nice To See You
             </h1>
+        </div>
+
+    </div>
+    <div class="admincontent3" id="admincontent3">
+
+        <div class="actionRectangle">
+            <div class="message">
+
+                <!--artifacts-->
+                {% if (artifact_marked) %}
+                Artifact has been successfully marked
+                {% endif %}
+
+                {% if (artifact_added) %}
+                Artifact has been successfully added
+                {% endif %}
+
+                {% if (artifact_edited) %}
+                Artifact has been successfully edited
+                {% endif %}
+
+                {% if (artifact_deleted) %}
+                Artifact has been successfully deleted
+                {% endif %}
+
+                <!--quests-->
+                {% if (quest_added) %}
+                Quest has been successfully added
+                {% endif %}
+
+                {% if (quest_marked) %}
+                Quest has been successfully marked
+                {% endif %}
+
+                <!--students-->
+                {% if (student_added) %}
+                Student has been successfully added
+                {% endif %}
+
+                {% if (student_edited) %}
+                Student has been successfully edited
+                {% endif %}
+
+                {% if (student_deleted) %}
+                Student has been successfully deleted
+                {% endif %}
+            </div>
         </div>
 
     </div>
@@ -76,6 +140,82 @@
         </div>
     </footer>
 
+    <!--artifacts-->
+    {% if (artifact_marked) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (artifact_added) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+
+    {% if (artifact_edited) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+
+    {% if (artifact_deleted) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    <!--quests-->
+    {% if (quest_added) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (quest_marked) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    <!--students-->
+    {% if (student_added) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (student_edited) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
+
+    {% if (student_deleted) %}
+
+    <script type="text/javascript">
+        showInfo();
+    </script>
+
+    {% endif %}
 </div>
 
 </body>

@@ -1,6 +1,5 @@
 package com.school.controllers.WebControllers;
 
-import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -11,7 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Map;
 
-public class BasketController extends StudentSessionController implements HttpHandler {
+public class BasketController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {

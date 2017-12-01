@@ -1,7 +1,6 @@
 package com.school.controllers.WebControllers;
 
 import com.school.controllers.LoginController;
-import com.school.controllers.WebControllers.student.StudentSessionController;
 import com.school.models.User;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -9,15 +8,12 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.*;
 import java.util.Map;
 
-import java.net.URLDecoder;
-import java.util.HashMap;
-
 
 import org.jtwig.JtwigModel;
 import org.jtwig.JtwigTemplate;
 
 
-public class LoginWebController extends StudentSessionController implements HttpHandler {
+public class LoginWebController extends UserSessionController implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
