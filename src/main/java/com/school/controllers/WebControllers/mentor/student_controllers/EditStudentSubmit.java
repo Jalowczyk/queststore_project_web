@@ -34,7 +34,7 @@ public class EditStudentSubmit extends UserSessionController implements HttpHand
             Integer id = Integer.parseInt(inputs.get("id").toString());
             String password = inputs.get("password").toString();
 
-            UserDAO.editUser(name, surname, mail, password, id);
+            UserDAO.editUser(name, surname, password, mail, id);
 
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/static/MentorTemplates/mentor_account.html");
 
